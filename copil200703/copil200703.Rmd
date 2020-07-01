@@ -131,7 +131,7 @@ Mais c'est difficile : demande peu visible, pas de possibilité de soumettre la 
 
 ---
 ## Préconisations pour un schéma efficace
-* Respect de règle de formatage des fichiers (format, séparateur, encodage)
+* Définition et respect de règles de formatage des fichiers (format, séparateur, encodage)
 * Nommage des fichiers normalisés
 * Travail sur la structures des champs (nom) et le contenu des champs (cardinalité et type de contenu)
 
@@ -141,25 +141,25 @@ Mais c'est difficile : demande peu visible, pas de possibilité de soumettre la 
 ---
 ## Méthodologie envisagée et étapes / échéances
 
-### Basée sur la [méthodologie d'Etalab](https://guides.etalab.gouv.fr/producteurs-schemas/#a-qui-s-adresse-ce-guide)
-* Phase d'investigation (en cours)
-* Phase de concertation 
-* Phase de construction
+**Basée sur la [méthodologie de schema.data.gouv](https://guides.etalab.gouv.fr/producteurs-schemas/#a-qui-s-adresse-ce-guide)**
+
+![](etape.png)
 
 ---
 ## Atelier sur les cas d'usages
 
 
----
-## Analyse des données
-
-[![](airtable.png)](https://airtable.com/tblpktTkKbbLzry9w/viwYyop42cFR1AvQM?blocks=hide)
 
 ---
 ## Rapport d'étonnement sur les premiers fichiers reçus
 ### .red[Analyse générale]
 
 ![](bilan_etonnement1.png)
+---
+## Rapport d'étonnement sur les premiers fichiers reçus
+
+[![](airtable.png)](https://airtable.com/tblpktTkKbbLzry9w/viwYyop42cFR1AvQM?blocks=hide)
+
 ---
 ## Rapport d'étonnement sur les premiers fichiers reçus
 ### .red[Analyse des fichiers]
