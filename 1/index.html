@@ -4,7 +4,7 @@
     <title>Schéma de données pour les registres d’entrées</title>
     <meta charset="utf-8" />
     <meta name="author" content="Samuel Goëta, Anne-Laure Donzel, Datactivist" />
-    <script src="libs/header-attrs-2.3/header-attrs.js"></script>
+    <meta name="date" content="2020-07-03" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/datactivist.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/datactivist-fonts.css" rel="stylesheet" />
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # Schéma de données pour les registres d’entrées
 ## COPIL SIAF / AAF
 ### Samuel Goëta, Anne-Laure Donzel, Datactivist
-### 03 juil. 2020
+### 03 jul 2020
 
 ---
 
@@ -52,9 +52,9 @@ layout: true
 
 class: center, middle
 
-Ces slides en ligne : http://datactivist.coop/Schéma de données registre des entrées
+Ces slides en ligne : http://datactivist.coop/siaf/1
 
-Sources : https://github.com/datactivist/Schéma de données registre des entrées
+Sources : https://github.com/datactivist/siaf/1
 
 
 Les productions de Datactivist sont librement réutilisables selon les termes de la licence [Creative Commons 4.0 BY-SA](https://creativecommons.org/licenses/by-sa/4.0/legalcode.fr).
@@ -66,30 +66,9 @@ Les productions de Datactivist sont librement réutilisables selon les termes de
 
 
 ---
-## Qui sommes nous ?
+### Qui sommes nous ?
 
-&lt;img src='https://github.com/datactivist/slides_datactivist/raw/master/inst/rmarkdown/templates/xaringan/resources/img/logo.png' width='320px'&gt;
-
-### We .red[open data], we make them .red[useful]
-
-
-![](team.png)
-
----
-## Qui sommes nous ?
-
-- Datactivist est un .red[**pure player de l’open data**] créé en 2016, par Samuel Goëta et Joël Gombin.
-
-- Se positionnant sur .red[**toutes les étapes du travail d’ouverture des données**], Datactivist travaille tant avec les producteurs de données qu’avec les réutilisateurs et participe à l’appropriation des données par chacun.
-
-- Nous appliquons nos propres .red[**valeurs**] : nous sommes une coopérative ; nos supports de formation et nos contenus sont librement réutilisables, publiés en licence Creative Commons.
-
-- Une approche issue de la recherche : voir notamment **https://datactivist.coop/these**. 
-
-- Nous animons la communauté [#TeamOpenData](https://teamopendata.org).
-
----
-## Nos activités
+Datactivist est un .red[**pure player de l’open data**] créé en 2016, par Samuel Goëta et Joël Gombin. Se positionnant sur .red[**toutes les étapes du travail d’ouverture des données**], Datactivist travaille tant avec les producteurs de données qu’avec les réutilisateurs dans ses activités :
 
 - Conseil sur les .red[**stratégies d’ouverture de données**] : nous aidons les organisations dans la conception et la mise en œuvre de leur stratégie d’ouverture de données.
 
@@ -105,75 +84,83 @@ Les productions de Datactivist sont librement réutilisables selon les termes de
 La médiation de données est aussi fondamentalement une animation de communauté(s). 
 
 ---
-## Notre vision
+class:inverse, middle,center
 
-### D'un open data de l'offre à un .red[open data de la demande]
 
-Aujourd’hui, les administrations choisissent les données à ouvrir, elles décident du quand et du comment .red[**sans consulter les usagers**].
+## Qui sommes nous ? 
 
-Les rares données ouvertes sont souvent décevantes : pas à jour, trop agrégées, mal documentées, mal formatées, parfois inutilisables. 
+--
 
-Il faut aujourd’hui passer à l’étape supérieure : .red[**un open data piloté par la demande**].
-
-Mais c'est difficile : demande peu visible, pas de possibilité de soumettre la communication des données à l'expression d'une demande. Leviers : demandes d'ouverture, plateformes, animations (ex : hackathon), gouvernance partagée... 
+### Rapide tour de table
 
 ---
-## Rappel de la demande et objectifs
+### Rappel de la demande et objectifs
 
 * Définir un schéma de données pour la publication en open data des registres d'entrées
+
 * Réfléchir aux utilisations et visualisations possibles
 
-.red[**Pourquoi faire un schéma?**]
+.red[**Pourquoi réaliser un standard ?**]
+
 * Permet de mieux documenter les jeux de données
+
 * Permet d'harmoniser les jeux de données
+
 * Permet de faciliter l'exploitation des jeux de données (agrégation, consolidation, traitements automatisés)
 
 ---
-## Préconisations pour un schéma efficace
+### Préconisations pour un schéma efficace
 * Définition et respect de règles de formatage des fichiers (format, séparateur, encodage)
+
 * Nommage des fichiers normalisés
+
 * Travail sur la structures des champs (nom) et le contenu des champs (cardinalité et type de contenu)
 
-.red[[**Exemple** sur schema.data.gouv](https://schema.data.gouv.fr/metis-reseaux/infos-travaux/latest.html)] 
+.red[[**Exemple** sur schema.data.gouv.fr](https://schema.data.gouv.fr/metis-reseaux/infos-travaux/latest.html)] 
 
 
 ---
-## Méthodologie envisagée et étapes / échéances
+### Méthodologie envisagée et étapes / échéances
 
-**Basée sur la [méthodologie de schema.data.gouv](https://guides.etalab.gouv.fr/producteurs-schemas/#a-qui-s-adresse-ce-guide)**
+**Basée sur la [méthodologie de schema.data.gouv.fr](https://guides.etalab.gouv.fr/producteurs-schemas/#a-qui-s-adresse-ce-guide)**
 
 ![](etape.png)
 
 ---
-## Atelier sur les cas d'usages
+### Atelier sur les cas d'usages
 
 ![](Cas_d'usage.png)
 ---
-## Rapport d'étonnement sur les premiers fichiers reçus
+### Rapport d'étonnement sur les premiers fichiers reçus
 ### .red[Analyse générale]
 
 ![](bilan_etonnement1.png)
 ---
-## Rapport d'étonnement sur les premiers fichiers reçus
+### Rapport d'étonnement sur les premiers fichiers reçus
 
-[![](airtable.png)](https://airtable.com/tblpktTkKbbLzry9w/viwYyop42cFR1AvQM?blocks=hide)
+[![](airtable.png)](https://airtable.com/shreFmJJ97QRDYmKf)
 
 ---
-## Rapport d'étonnement sur les premiers fichiers reçus
+### Rapport d'étonnement sur les premiers fichiers reçus
 ### .red[Analyse des fichiers]
 
 * Peu d'usage de nomenclature
+
 * Problématique des dates
+
 * Une centaine de champs différents...mais des grandes familles qui se dégagent
+
 * La plupart des champs sont des champs textuels
 
 ---
-## Questions / arbitrages
+### Questions / arbitrages
+
 * Définir le registre d'entrée tel qu'il doit être publié
+
 * Validation d'un schéma en csv
 
 ---
-## Prochaines étapes
+### Prochaines étapes
 
 ---
 class: inverse, center, middle
@@ -181,8 +168,6 @@ class: inverse, center, middle
 # Merci !
 
 Contact : [samuel@datactivist.coop](mailto:samuel@datactivist.coop), [annelaure@datactivist.coop](mailto:annelaure@datactivist.coop)
-
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
