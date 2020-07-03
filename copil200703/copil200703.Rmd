@@ -148,8 +148,7 @@ Mais c'est difficile : demande peu visible, pas de possibilité de soumettre la 
 ---
 ## Atelier sur les cas d'usages
 
-
-
+![](Cas_d'usage.png)
 ---
 ## Rapport d'étonnement sur les premiers fichiers reçus
 ### .red[Analyse générale]
