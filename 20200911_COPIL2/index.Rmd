@@ -107,7 +107,7 @@ Les productions de Datactivist sont librement réutilisables selon les termes de
 ---
 ### Méthodologie
 
-Regroupement des éléments dans une base [Airtable](https://airtable.com/shrfIOB70gsVUYB1b)
+Regroupement des éléments dans une base [Airtable](https://airtable.com/shreFmJJ97QRDYmKf)
 
 * **Recensement des sources de données** : producteurs, types de producteurs, source des données
 
