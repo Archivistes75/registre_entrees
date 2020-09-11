@@ -129,6 +129,8 @@ class: inverse, center, middle
 ## Echanges autour du [projet de schéma](https://docs.google.com/spreadsheets/d/1GMw0vQKkXcWwOcZkIpK-AJX59LDIZWIpEO3RTCsflOo/edit?usp=sharing)
 
 
+[![](schema.png)](https://docs.google.com/spreadsheets/d/1GMw0vQKkXcWwOcZkIpK-AJX59LDIZWIpEO3RTCsflOo/edit?usp=sharing)
+
 ---
 ## Prochaines étapes
 
