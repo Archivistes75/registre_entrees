@@ -1,0 +1,136 @@
+---
+title: "Schéma de données pour les registres d'entrées"
+subtitle: "COPIL SIAF / AAF"
+author: "Samuel Goëta, Anne-Laure Donzel, Datactivist"
+date: "`r format(Sys.Date(), '11/09/2020')`"
+output:
+  SlidesDatactivist::moon_reader:
+    css: [default, datactivist, datactivist-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: ["macros.js", "https://platform.twitter.com/widgets.js"]
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>`
+params:
+  event: COPIL SIAF / AAF
+  slug: siaf/2
+
+---
+
+```{r, echo=FALSE}
+library(metathis)
+meta() %>% 
+  meta_description(params$event) %>% 
+  meta_name("github-repo" = paste0("datactivist/", params$slug)) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = params$title,
+    url = paste0("https://datactivist.coop/", params$slug),
+    image = params$image,
+    image_alt = params$image_alt,
+    og_type = "website",
+    og_author = "Datactivist",
+    og_locale = "fr_FR",
+    og_site_name = "Datactivist",
+    twitter_card_type = "summary",
+    twitter_creator = "@datactivi_st")
+
+```
+
+layout: true
+
+<style>
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: #e95459;
+}
+
+</style>
+
+
+`r paste0("<div class='my-footer'><span>", params$event, "</span> <center><div class=logo><a href='https://datactivist.coop/'><img src='https://github.com/datactivist/slides_datactivist/raw/master/inst/rmarkdown/templates/xaringan/resources/img/fond_noir_monochrome.png' width='100px'></a></div></center></span></div>")` 
+
+
+---
+
+class: center, middle
+
+Ces slides en ligne : `r paste0("http://datactivist.coop/", params$slug)`
+
+Sources : `r paste0("https://github.com/datactivist/", params$slug)`
+
+
+Les productions de Datactivist sont librement réutilisables selon les termes de la licence [Creative Commons 4.0 BY-SA](https://creativecommons.org/licenses/by-sa/4.0/legalcode.fr).
+
+<BR>
+<BR>
+
+![](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png)
+
+
+---
+## Rappel des enjeux autour du registres des entrées
+* Différentes sources de données (logiciel métier, tableur)
+* Différents usages : à la fois outil de gestion interne, communication, connaissance
+* Multiplicité des profils des usagers
+* Pas d'harmonisation, formats et structures hétérogènes
+
+
+---
+## Méthodologie
+Lien vers la base [Airtable](https://airtable.com/shrfIOB70gsVUYB1b)
+
+A partir des éléments recueillis :
+* Organisation en famille et sous-famille
+* Exploration des jeux de données avec l'outil [WTFCSV](https://www.databasic.io/en/wtfcsv/)
+* Réalisation d'une V0 à partir de ces éléments
+
+---
+## Remarques sur l'analyse des jeux de données
+
+Les champs sont de type :
+* Chaîne de caractères (texte)
+* Nombre 
+* Dates (non standardisées le plus souvent)
+
+---
+class: inverse, center, middle
+
+## Echanges autour du [projet de schéma](https://docs.google.com/spreadsheets/d/1GMw0vQKkXcWwOcZkIpK-AJX59LDIZWIpEO3RTCsflOo/edit?usp=sharing)
+
+
+---
+## Prochaines étapes
+
+* Validation d'une V1 du schéma
+* Documenter le schéma (métadonnées)
+* Test de construction du schéma
+
+
+---
+class: inverse, center, middle
+
+# Merci !
+
+Contact : [samuel@datactivist.coop](mailto:samuel@datactivist.coop), [annelaure@datactivist.coop](mailto:annelaure@datactivist.coop)
+
+
