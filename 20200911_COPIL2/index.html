@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <meta name="author" content="Samuel Goëta, Anne-Laure Donzel, Datactivist" />
     <meta name="date" content="2020-11-09" />
-    <script src="libs/header-attrs-2.3/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/datactivist.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/datactivist-fonts.css" rel="stylesheet" />
@@ -17,12 +16,12 @@
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:creator" content="@datactivi_st"/>
     <meta name="twitter:site" content="@datactivi_st"/>
-    <meta name="og:description" content="COPIL SIAF / AAF"/>
-    <meta name="og:url" content="https://datactivist.coop/siaf/2"/>
-    <meta name="og:type" content="website"/>
-    <meta name="og:locale" content="fr_FR"/>
-    <meta name="og:site_name" content="Datactivist"/>
-    <meta name="article:author" content="Datactivist"/>
+    <meta property="og:description" content="COPIL SIAF / AAF"/>
+    <meta property="og:url" content="https://datactivist.coop/siaf/2"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="fr_FR"/>
+    <meta property="og:site_name" content="Datactivist"/>
+    <meta property="article:author" content="Datactivist"/>
   </head>
   <body>
     <textarea id="source">
@@ -83,29 +82,40 @@ Les productions de Datactivist sont librement réutilisables selon les termes de
 
 
 ---
-## Rappel des enjeux autour du registres des entrées
-* Différentes sources de données (logiciel métier, tableur)
+### Rappel des enjeux autour du registres des entrées
+
+
+* Différentes sources de données : logiciel métier, tableur
+
 * Différents usages : à la fois outil de gestion interne, communication, connaissance
-* Multiplicité des rpofils des usagers
+
+* Multiplicité des profils des usagers
+
 * Pas d'harmonisation, formats et structures hétérogènes
 
+---
+### Rappel des cas d'usage identifiés
+
+![](cas.png)
 
 ---
-## Méthodologie
-Lien vers la base [Airtable](https://airtable.com/shrfIOB70gsVUYB1b)
+### Méthodologie
 
-A partir des éléments recueillis :
-* Organisation en famille et sous-famille
-* Exploration des jeux de données avec l'outil [WTFCSV](https://www.databasic.io/en/wtfcsv/)
-* Réalisation d'une V0 à partir de ces éléments
+Regroupement des éléments dans une base [Airtable](https://airtable.com/shrfIOB70gsVUYB1b)
+
+* **Recensement des sources de données** : producteurs, types de producteurs, source des données
+
+* **Dépouillement des fichiers ** : compilation de tous les éléments présents dans les différents fichiers et tels qu'ils existent (par ex. "cote" et "cotation", même s'ils représentent la même chose. Ajout d'une description du champ, du type...
+
+* ** Création de familles et de sous-familles** : ces éléments apparaissent assez rapidement une fois le travail d'identification effectué. Les familles et sous-familles permettent de voir les éléments importants du schéma. 
+
+* **Exploration des jeux de données** avec l'outil [WTFCSV](https://www.databasic.io/en/wtfcsv/)
+
+* **Réalisation d'une V0** à partir de ces éléments, en faisant apparaître les questions à discuter en COPIL.
 
 ---
-## Remarques sur l'analyse des jeux de données
 
-Les champs sont de type :
-* Chaîne de caractères (texte)
-* Nombre 
-* Dates (non standardisées le plus souvent)
+&lt;iframe class="airtable-embed" src="https://airtable.com/embed/shrTBPPBuRQ5ldUY3?backgroundColor=purple&amp;viewControls=on" frameborder="0" onmousewheel="" width="100%" height="630" style="background: transparent; border: 1px solid #ccc;"&gt;&lt;/iframe&gt;
 
 ---
 class: inverse, center, middle
@@ -117,9 +127,14 @@ class: inverse, center, middle
 ## Prochaines étapes
 
 * Validation d'une V1 du schéma
-* Documenter le schéma (métadonnées)
-* Test de construction du schéma
 
+* Documenter le schéma (métadonnées)
+
+* Test de construction du schéma au format schema.org
+
+* Organisation d'une consultation
+
+* Proposition de communication
 
 ---
 class: inverse, center, middle
@@ -127,8 +142,6 @@ class: inverse, center, middle
 # Merci !
 
 Contact : [samuel@datactivist.coop](mailto:samuel@datactivist.coop), [annelaure@datactivist.coop](mailto:annelaure@datactivist.coop)
-
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
