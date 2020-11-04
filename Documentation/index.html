@@ -96,8 +96,8 @@
 <li><a href="#identifier-les-données"><span class="toc-section-number">4.1</span> Identifier les données</a></li>
 <li><a href="#préparer-les-données"><span class="toc-section-number">4.2</span> Préparer les données</a></li>
 <li><a href="#documenter-les-données"><span class="toc-section-number">4.3</span> Documenter les données</a></li>
-<li><a href="#choisir-une-licence"><span class="toc-section-number">4.4</span> Choisir une licence?</a></li>
-<li><a href="#où-publier-ses-données"><span class="toc-section-number">4.5</span> Où publier ses données?</a></li>
+<li><a href="#choisir-une-licence"><span class="toc-section-number">4.4</span> Choisir une licence</a></li>
+<li><a href="#où-publier-ses-données"><span class="toc-section-number">4.5</span> Où publier ses données</a></li>
 </ul></li>
 <li><a href="#le-schéma-registre-des-entrées"><span class="toc-section-number">5</span> - Le schéma registre des entrées</a>
 <ul>
@@ -216,15 +216,15 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <blockquote>
 <p><em>Utiliser des données pivot relevant d’un référentiel ouvert pour relier les données à d’autres données, par exemple l’utilisation du numéro SIREN pour identifier des organisations</em>.</p>
 </blockquote>
-<p>Il est à noter que l’importance du recours à des référentiels partagés figure également dans le Cadre stratégique des Archives</p>
+<p>Il est à noter que l’importance du recours à des référentiels partagés figure également dans le Cadre stratégique des Archives :</p>
 <blockquote>
-<p>Objectif 6.1 : Promouvoir l’utilisation d’autorités et de référentiels partagés</p>
+<p><strong>Objectif 6.1</strong> : Promouvoir l’utilisation d’autorités et de référentiels partagés</p>
 </blockquote>
 <p>La recherche d’une donnée pivot a été une opération assez délicate. L’utilisation du SIREN de la collectivité à laquelle appartient le service des archives ne s’avérait pas totalement satisfaisante, la notion de service public d’archives étant gommée au profit de l’institution d’appartenance. Par ailleurs, dans certains cas, cela pouvait entraîner une confusion plus préjudiciable : cas des versements réalisés par les services déconcentrés de l’Etat et conservés par les services départementaux d’archives.</p>
 <p>Il pouvait y avoir 2 candidats à cet identifiant pivot :</p>
 <ul>
 <li><p>de nombreux services diffusant leurs fonds numérisés en ligne possèdent des identifiants pérennes ARK. L’ARK se compose d’une partie, le Name Assigning Authority Number (NAAN), qui permet d’identifier une institution. Mais, même si le <a href="https://n2t.net/e/pub/naan_registry.txt">registre des NAAN est public</a>, il n’est pas diffusé de façon structuré. Par ailleurs, tous les services n’ont pas un tel identifiant et cela semble complexe de le rendre obligatoire pour les services.</p></li>
-<li><p>Les archivistes utilisent depuis de nombreuses années un standard de description des archives, l’<em>Encoded Archives Description</em> (EAD), l’EAD comporte une balise <eadid> qui possède l’attribut MAINAGENCYCODE. Cela fait référence à une autre norme, l’ISAD-G, qui dans son 3.1.1, définit bien les éléments d’identification d’un fonds.</p>
+<li><p>les archivistes utilisent depuis de nombreuses années un standard de description des archives, l’<em>Encoded Archives Description</em> (EAD), l’EAD comporte une balise <eadid> qui possède l’attribut MAINAGENCYCODE. Cela fait référence à une autre norme, l’ISAD-G, qui dans son 3.1.1, définit bien les éléments d’identification d’un fonds.</p>
 <ul>
 <li><p>le code du pays conformément à la dernière version de l’ISO 3166, <em>Codes pour la représentation des noms de pays</em> (FR);</p></li>
 <li><p>le code du service d’archives conformément à la norme nationale de codification des services d’archives, ou tout autre élément d’identification du lieu de conservation (AD01);</p></li>
@@ -235,23 +235,20 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <ul>
 <li><p>Pour les archives départementales, le code est de type : FRAD_0COG (ex. FRAD_001)</p></li>
 <li><p>Pour les archives communales, le code est de type : FRAC_COG (ex. FRAC_06088) ou FRAC_CodePostal (FRAC_95500)</p></li>
-<li><p>Cas des archives métropolitaines ou services mutualisés</p></li>
-<li><p>Pour les services de l’Etat</p></li>
+<li><p>Comment gérer les cas des services d’archives métropolitaines et des services mutualisés?</p></li>
+<li><p>Comment gérer les cas des entrées venant des services de l’Etat?</p></li>
 </ul>
-<p>L’une des limites est que la liste des identifiants n’est pas publiée en open data et donc permettant de réellement jouer son rôle de pivot.</p>
+<p>L’une des limites est que la liste des identifiants n’est pas publiée en open data et donc ne permet pas de réellement jouer son rôle de pivot.</p>
 <p>Il existe d’autres identifiants (VIAF, ISNI…) mais ceux-ci ne sont pas utilisés (connus) par les services archives, qui ne les utilisent pas, en l’état actuel de diffusion de ces identifiants, ils ne constituent donc pas un pivot intéressants pour faire le lien entre un service et des IR par exemple.</p>
 </div>
 <div id="concertation-en-dehors-du-gt" class="section level3" number="2.2.5">
 <h3><span class="header-section-number">2.2.5</span> Concertation en dehors du GT</h3>
-<p>[A VENIR]
-Lien avec schema.data.gouv.fr</p>
+<p>[A VENIR]</p>
 </div>
 </div>
 <div id="construction" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> construction</h2>
 <p>[A VENIR]</p>
-<p>Obtenir des retours sur la réalisation des jeux de données</p>
-<p>accompagner les utilisateurs du schéma</p>
 </div>
 </div>
 <div id="remarques-générales-sur-les-schémas-de-données" class="section level1" number="3">
@@ -282,16 +279,14 @@ Lien avec schema.data.gouv.fr</p>
 <h2><span class="header-section-number">3.4</span> Recommandations pour le nommage des fichiers</h2>
 <p>Les fichiers doivent, sauf exception et autant que possible, respecter les règles de nommage suivantes :</p>
 <p>AAAAMMJJ_idProducteur_registre_des_entrees_millesime.csv</p>
-<pre><code>AAAAMMJJ : Date de création du fichier
-
-idServArch : identifiant du service d&#39;archives (ex. FRAD_001)
-
-registre_des_entrees : nom du fichier, en minuscules non accentuées
-
-millésime : année des entrées
-
-extension : Si les règles de formatage sont respectées, l&#39;extension est .csv</code></pre>
-<p>Exemple : ‘20201012_FRAD_001_registre_des_entrees_2020.csv’</p>
+<ul>
+<li><p>AAAAMMJJ : Date de création du fichier</p></li>
+<li><p>idServArch : identifiant du service d’archives (ex. FRAD_001)</p></li>
+<li><p>registre_des_entrees : nom du fichier, en minuscules non accentuées</p></li>
+<li><p>millésime : année des entrées</p></li>
+<li><p>extension : Si les règles de formatage sont respectées, l’extension est .csv</p></li>
+</ul>
+<p><strong>Exemple</strong> : ‘20201012_FRAD_001_registre_des_entrees_2020.csv’</p>
 </div>
 <div id="recommandations-pour-la-mise-en-conformité" class="section level2" number="3.5">
 <h2><span class="header-section-number">3.5</span> Recommandations pour la mise en conformité</h2>
@@ -315,7 +310,7 @@ extension : Si les règles de formatage sont respectées, l&#39;extension est .c
 <h2><span class="header-section-number">4.1</span> Identifier les données</h2>
 <p>Lors de la phase de création du standard, nous avons identifié deux sources de productions des données, elles peuvent :</p>
 <ul>
-<li><p>provenir des SIA</p></li>
+<li><p>provenir des systèmes d’information des services d’archives (SIA)</p></li>
 <li><p>provenir de fichers tabulaires (excel, calc)</p></li>
 </ul>
 </div>
@@ -325,7 +320,7 @@ extension : Si les règles de formatage sont respectées, l&#39;extension est .c
 </div>
 <div id="documenter-les-données" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Documenter les données</h2>
-<p>[A CONSTRUIRE]</p>
+<p>[EN CONSTRUCTION]</p>
 <ul>
 <li><p>Gérér les métadonnées</p>
 <p><strong>Métadonnées descriptives</strong>
@@ -345,10 +340,12 @@ extension : Si les règles de formatage sont respectées, l&#39;extension est .c
 </ul>
 </div>
 <div id="choisir-une-licence" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Choisir une licence?</h2>
+<h2><span class="header-section-number">4.4</span> Choisir une licence</h2>
+<p>[EN CONSTRUCTION]</p>
 </div>
 <div id="où-publier-ses-données" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> Où publier ses données?</h2>
+<h2><span class="header-section-number">4.5</span> Où publier ses données</h2>
+<p>[EN CONSTRUCTION]</p>
 </div>
 </div>
 <div id="le-schéma-registre-des-entrées" class="section level1" number="5">
@@ -357,21 +354,19 @@ extension : Si les règles de formatage sont respectées, l&#39;extension est .c
 <p>Spécification du modèle de données relatif aux registres des entrées des services publics d’archives.</p>
 <div id="contexte" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Contexte</h2>
+<p>[EN CONSTRUCTION]</p>
 </div>
 <div id="outils" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Outils</h2>
-<ul>
-<li><a href="https://go.validata.fr/table-schema?schema_name=scdl.deliberations">Valider un fichier avec Validata</a></li>
-<li><a href="https://csv-gg.etalab.studio/?schema=scdl%2Fdeliberations">Créer un fichier avec CSV Good Generator</a></li>
-<li><a href="">Télécharger un fichier gabarit au format XLSX</a></li>
-</ul>
+<p>[EN CONSTRUCTION]</p>
 </div>
 <div id="voir-aussi" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Voir aussi</h2>
-<p>Pour poser une question, commenter, faire un retour d’usage ou contribuer à l’amélioration du modèle de données, vous pouvez :</p>
+<p>[EN CONSTRUCTION]</p>
 </div>
 <div id="registres-des-entrées" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Registres des entrées</h2>
+<p>[EN CONSTRUCTION]</p>
 <p>Spécification du modèle de données relatif aux délibérations adoptées par une collectivité locale</p>
 <ul>
 <li>nom :</li>
@@ -390,14 +385,15 @@ extension : Si les règles de formatage sont respectées, l&#39;extension est .c
 </ul>
 <div id="modèle-de-données" class="section level3" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Modèle de données</h3>
-<p>Ce modèle de données repose sur les 17 champs suivants correspondant aux colonnes du fichier tabulaire.</p>
+<p>[EN CONSTRUCTION]</p>
+<p>Ce modèle de données repose sur les XX champs suivants correspondant aux colonnes du fichier tabulaire.</p>
 <div id="id" class="section level4" number="5.4.1.1">
 <h4><span class="header-section-number">5.4.1.1</span> <code>ID</code></h4>
 <ul>
 <li>titre :</li>
 <li>description :</li>
 <li>type :</li>
-<li>exemple : <code>Ville de Poitiers</code></li>
+<li>exemple : <code>Ville de xx</code></li>
 <li>valeur obligatoire</li>
 </ul>
 </div>
