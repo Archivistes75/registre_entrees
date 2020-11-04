@@ -319,8 +319,7 @@ Spécification du modèle de données relatif aux délibérations adoptées par 
 - date de dernière modification : 
 - concerne le pays : FR
 - valeurs manquantes représentées par : `[""]`
-- contributeurs :
-  - 
+- contributeurs : 
 - ressources :
   - Exemple de fichier 
 
