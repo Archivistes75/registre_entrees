@@ -309,20 +309,6 @@ Spécification du modèle de données relatif aux registres des entrées des ser
 
 [EN CONSTRUCTION]
 
-Spécification du modèle de données relatif aux délibérations adoptées par une collectivité locale
-
-- nom : 
-- page d'accueil : 
-- URL du schéma : 
-- version : 
-- date de création : 
-- date de dernière modification : 
-- concerne le pays : FR
-- valeurs manquantes représentées par : `[""]`
-- contributeurs : 
-- ressources :
-  - Exemple de fichier 
-
 ### Modèle de données
 
 [EN CONSTRUCTION]
