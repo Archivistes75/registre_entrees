@@ -5,3 +5,5 @@ Création d'un schéma de données pour les registres d'entrées d'archives des 
 
 
 * [Copil 2](https://datactivist.coop/siaf/20200911_COPIL2/) 
+* [Copil 3](https://datactivist.coop/siaf/20200911_COPIL2/)
+* [Documentation](https://datactivist.coop/siaf/Documentation)
