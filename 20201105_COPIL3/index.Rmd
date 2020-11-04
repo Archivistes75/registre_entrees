@@ -91,31 +91,45 @@ Les productions de Datactivist sont librement réutilisables selon les termes de
 ## Point d'étape : travail réalisé depuis le dernier COPIL
 
 **Modification du projet de schéma avec :**
-* Eléments du précédent COPIL
-* Eléments reçus par mail ou en commentaires du document
 
-**Aspects à trancher**
-* Retour sur l'ID
-* Domaine du producteur
+* Eléments du précédent COPIL 
+
+* Eléments reçus par mail ou en commentaires du document partagé
+
+![](img/schema.png)
+---
+## Point d'étape : travail réalisé depuis le dernier COPIL
+
+**Aspects à trancher :**
+* Retour sur l'ID :
+
+> Pour les services publics : FRAD_001_2020_001 ou 22231_2020_001 (22231 étant le naan des AD01), pour les entreprises SIREN_2020_001
+
 * Suppression des dernières colonnes
-* 
 
 ---
 ## Point d'étape : travail réalisé depuis le dernier COPIL
 
-**Réalisation d'une première version de métadonnées**
+* Domaine du producteur : quelle liste de termes?
 
+![](img/categ_prod.png)
 ---
-## Points restants à trancher
+## Point d'étape : travail réalisé depuis le dernier COPIL
 
-**Valider la version V1 du schéma qui sera soumise à consultation**
-
+**Réalisation d'une première version de métadonnées**
+![](img/MD_schema.png)
+(https://docs.google.com/document/d/1vGtfVluJQnWa95pj4YOuhTN95demcmg9Zz_lpxefAqg/edit?usp=sharing)
 
 ---
 ## Prochaines étapes
 
+**Finalisation du schéma et de la documentation (novembre)**
 
+**Phase d'appel à commentaires (décembre)**
+* Auprès des archivistes via un doc transmis par canaux de diffusion habituels (Liste SIAF et AAF)
+* Auprès des communautés techniques via schema.data.gouv et relai Team Open Data
 
+**Prise en compte des commentaires et publication (janvier)**
 
 ---
 class: inverse, center, middle

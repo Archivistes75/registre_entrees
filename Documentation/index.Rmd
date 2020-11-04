@@ -5,10 +5,9 @@ date: "`r Sys.Date()`"
 output:
   pagedown::html_paged:
     toc: true
-    # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
     self_contained: false
-# uncomment this line to produce HTML and PDF in RStudio:
     knit: pagedown::chrome_print
+  links-to-footnotes: true
 ---
 
 ```{r setup, include=FALSE}
@@ -17,20 +16,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introduction
 
-En 2018, 86 kilomètres de documents et plus de 160 00Go de données sont venus enrichir les collections des services publics d'archives français[1](Données du service interministériel des archives de France).
+En 2018, 86 kilomètres de documents et plus de 16000Go de données sont venus enrichir les collections des services publics d'archives français (Données du service interministériel des archives de France).
 
 Dans une optique de gestion et de suivi de leurs fonds, les services d'archives consignent chaque entrée d'archives à partir de renseignements sommaires permettant d’identifier et de retracer toutes les arrivées de nouveaux documents (provenance, date d'arrivée dans le service, volume...) : c'est le registre des entrées.
 
-ajout
-
 Il est généralement directement tenu au sein d'un système d'information dédié aux archives (le SIA), mais il peut également être réalisé avec un tableur voir sur un cahier.
 
-Dans son [*Cadre stratégique commun de modernisation des archives*](https://www.gouvernement.fr/cadre-strategique-commun-de-modernisation-des-archives-3042), la Délégation interministérielle aux archives de France, mentionne dans les objectifs 2020-2024 :
+Dans son [Cadre stratégique commun de modernisation des archives](https://www.gouvernement.fr/cadre-strategique-commun-de-modernisation-des-archives-3042), la Délégation interministérielle aux archives de France, mentionne dans les objectifs 2020-2024 :
 
 > **Objectif 1.4 : Numériser les archives et rendre les archives numériques aisément consultables et exploitables** 
 
 > Il conviendra également de généraliser l’open data dans les services d’archives de l’État et de recommander ce modèle aux services territoriaux d’archives.
 La création d'un schéma de données permet de standardiser la diffusion des données produites par les services d'archives. Cette standardisation est impérative pour les ré-utilisateurs car elle permet de faciliter la découverte des jeux de données et de les utiliser, notamment en simplifiant l'alignement à différentes échelles (utilisation sur des échelles locales ou nationales).
+
 # - Phasage de la création du schéma
 
 Cette partie reprend l'organisation du guide publié par [Etalab](https://schema.data.gouv.fr/). Elle vient enrichir le contenu méthodologique développé par Etalab d'un retour d'expérience complémentaire.
@@ -132,9 +130,9 @@ Les pratiques de chaque service impactent assez fortement les fichiers produits.
 
 > *Utiliser des données pivot relevant d’un référentiel ouvert pour relier les données à d’autres données, par exemple l’utilisation du numéro SIREN pour identifier des organisations*. 
 
-Il est à noter que l'importance du recours à des référentiels partagés figure également dans le Cadre stratégique des Archives
+Il est à noter que l'importance du recours à des référentiels partagés figure également dans le Cadre stratégique des Archives :
 
-> Objectif 6.1 : Promouvoir l’utilisation d’autorités et de référentiels partagés
+> **Objectif 6.1** : Promouvoir l’utilisation d’autorités et de référentiels partagés
 
 La recherche d'une donnée pivot a été une opération assez délicate. L'utilisation du SIREN de la collectivité à laquelle appartient le service des archives ne s’avérait pas totalement satisfaisante, la notion de service public d'archives étant gommée au profit de l'institution d'appartenance. Par ailleurs, dans certains cas, cela pouvait entraîner une confusion plus préjudiciable : cas des versements réalisés par les services déconcentrés de l'Etat et conservés par les services départementaux d'archives.
 
@@ -142,7 +140,7 @@ Il pouvait y avoir 2 candidats à cet identifiant pivot :
 
 * de nombreux services diffusant leurs fonds numérisés en ligne possèdent des identifiants pérennes ARK. L'ARK se compose d'une partie, le Name Assigning Authority Number (NAAN), qui permet d'identifier une institution. Mais, même si le [registre des NAAN est public](https://n2t.net/e/pub/naan_registry.txt), il n'est pas diffusé de façon structuré. Par ailleurs, tous les services n'ont pas un tel identifiant et cela semble complexe de le rendre obligatoire pour les services.
 
-* Les archivistes utilisent depuis de nombreuses années un standard de description des archives, l'*Encoded Archives Description* (EAD), l'EAD comporte une balise <eadid> qui possède l'attribut MAINAGENCYCODE. Cela fait référence à une autre norme, l'ISAD-G, qui dans son 3.1.1, définit bien les éléments d'identification d'un fonds.
+* les archivistes utilisent depuis de nombreuses années un standard de description des archives, l'*Encoded Archives Description* (EAD), l'EAD comporte une balise <eadid> qui possède l'attribut MAINAGENCYCODE. Cela fait référence à une autre norme, l'ISAD-G, qui dans son 3.1.1, définit bien les éléments d'identification d'un fonds.
 
   * le code du pays conformément à la dernière version de l'ISO 3166, *Codes pour la représentation des noms de pays* (FR);
       
@@ -156,11 +154,11 @@ L'EAD précise pour sa part que le MAINAGENCYCODE doit être conforme à la norm
         
 * Pour les archives communales, le code est de type : FRAC_COG (ex. FRAC_06088) ou FRAC_CodePostal (FRAC_95500)
         
-* Cas des archives métropolitaines ou services mutualisés
+* Comment gérer les cas des services d'archives métropolitaines et des services mutualisés?
         
-* Pour les services de l'Etat
+* Comment gérer les cas des entrées venant des services de l'Etat?
 
-L'une des limites est que la liste des identifiants n'est pas publiée en open data et donc permettant de réellement jouer son rôle de pivot.
+L'une des limites est que la liste des identifiants n'est pas publiée en open data et donc ne permet pas de réellement jouer son rôle de pivot.
 
 Il existe d'autres identifiants (VIAF, ISNI...) mais ceux-ci ne sont pas utilisés (connus) par les services archives, qui ne les utilisent pas, en l'état actuel de diffusion de ces identifiants, ils ne constituent donc pas un pivot intéressants pour faire le lien entre un service et des IR par exemple.
  
@@ -168,16 +166,10 @@ Il existe d'autres identifiants (VIAF, ISNI...) mais ceux-ci ne sont pas utilis�
 ### Concertation en dehors du GT
 
 [A VENIR]
-Lien avec schema.data.gouv.fr
-
 
 ## construction
 
 [A VENIR]
-
-Obtenir des retours sur la réalisation des jeux de données
-
-accompagner les utilisateurs du schéma
 
 # - Remarques générales sur les schémas de données
 
@@ -217,17 +209,17 @@ Les fichiers doivent, sauf exception et autant que possible, respecter les règl
 
 AAAAMMJJ_idProducteur_registre_des_entrees_millesime.csv
 
-    AAAAMMJJ : Date de création du fichier
+* AAAAMMJJ : Date de création du fichier
 
-    idServArch : identifiant du service d'archives (ex. FRAD_001)
+* idServArch : identifiant du service d'archives (ex. FRAD_001)
 
-    registre_des_entrees : nom du fichier, en minuscules non accentuées
+* registre_des_entrees : nom du fichier, en minuscules non accentuées
     
-    millésime : année des entrées
+* millésime : année des entrées
 
-    extension : Si les règles de formatage sont respectées, l'extension est .csv
+* extension : Si les règles de formatage sont respectées, l'extension est .csv
 
-Exemple : '20201012_FRAD_001_registre_des_entrees_2020.csv'
+**Exemple** : '20201012_FRAD_001_registre_des_entrees_2020.csv'
 
 ## Recommandations pour la mise en conformité
 
@@ -252,7 +244,7 @@ Pour préparer la publication de vos données, vous pouvez trouver des informati
 ## Identifier les données
 Lors de la phase de création du standard, nous avons identifié deux sources de productions des données, elles peuvent :
 
-* provenir des SIA
+* provenir des systèmes d'information des services d'archives (SIA)
 
 * provenir de fichers tabulaires (excel, calc)
 
@@ -262,7 +254,7 @@ Il va falloir préparer les données afin qu'elles correspondent au modèle déf
 
 ## Documenter les données
 
-[A CONSTRUIRE]
+[EN CONSTRUCTION]
 
 * Gérér les métadonnées
 
@@ -286,9 +278,13 @@ Il va falloir préparer les données afin qu'elles correspondent au modèle déf
         * Contact :
         
 
-## Choisir une licence?
+## Choisir une licence
 
-## Où publier ses données? 
+[EN CONSTRUCTION]
+
+## Où publier ses données
+
+[EN CONSTRUCTION]
 
 # - Le schéma registre des entrées
 
@@ -299,20 +295,19 @@ Spécification du modèle de données relatif aux registres des entrées des ser
 
 ## Contexte
 
-
+[EN CONSTRUCTION]
 
 ## Outils
 
-* [Valider un fichier avec Validata](https://go.validata.fr/table-schema?schema_name=scdl.deliberations)
-* [Créer un fichier avec CSV Good Generator](https://csv-gg.etalab.studio/?schema=scdl%2Fdeliberations)
-* [Télécharger un fichier gabarit au format XLSX]()
+[EN CONSTRUCTION]
 
 ## Voir aussi
 
-Pour poser une question, commenter, faire un retour d’usage ou contribuer à l’amélioration du modèle de données, vous pouvez :
+[EN CONSTRUCTION]
 
 ## Registres des entrées
 
+[EN CONSTRUCTION]
 
 Spécification du modèle de données relatif aux délibérations adoptées par une collectivité locale
 
@@ -331,14 +326,16 @@ Spécification du modèle de données relatif aux délibérations adoptées par 
 
 ### Modèle de données
 
-Ce modèle de données repose sur les 17 champs suivants correspondant aux colonnes du fichier tabulaire.
+[EN CONSTRUCTION]
+
+Ce modèle de données repose sur les XX champs suivants correspondant aux colonnes du fichier tabulaire.
 
 #### `ID`
 
 - titre : 
 - description : 
 - type : 
-- exemple : `Ville de Poitiers`
+- exemple : `Ville de xx`
 - valeur obligatoire
 
 
