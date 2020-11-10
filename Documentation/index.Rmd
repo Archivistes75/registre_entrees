@@ -439,7 +439,7 @@ Ce modèle de données repose sur les XX champs suivants correspondant aux colon
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `sercice de l'achat public`
+- **exemple** : `service de l'achat public`
 
 - valeur optionnelle
 
