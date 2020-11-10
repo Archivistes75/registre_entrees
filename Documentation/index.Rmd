@@ -313,7 +313,7 @@ Spécification du modèle de données relatif aux registres des entrées des ser
 
 [EN CONSTRUCTION]
 
-Ce modèle de données repose sur les XX champs suivants correspondant aux colonnes du fichier tabulaire.
+Ce modèle de données repose sur les 20 champs suivants correspondant aux colonnes du fichier tabulaire.
 
 #### `ID`
 
@@ -401,7 +401,7 @@ Ce modèle de données repose sur les XX champs suivants correspondant aux colon
 
 - **description** : Nom de l'organisation qui a versé l'entrée, distincte du service qui a produit les entrées dans l'organisation
 
-- **type** : Chaîne de caractère
+- **type** : Chaîne de caractères
 
 - **exemple** : `Ville d'Aix-en-Provence`
 
@@ -425,7 +425,7 @@ Ce modèle de données repose sur les XX champs suivants correspondant aux colon
 
 - **description** : Nom de l'organisation qui a produit l'entrée, distincte du service qui a produit les entrées dans l'organisation
 
-- **type** : Chaîne de caractère
+- **type** : Chaîne de caractères
 
 - **exemple** : `Ville d'Aix-en-Provence`
 
@@ -439,7 +439,7 @@ Ce modèle de données repose sur les XX champs suivants correspondant aux colon
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `service de l'achat public`
+- **exemple** : `Service de l'achat public`
 
 - valeur optionnelle
 
