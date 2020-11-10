@@ -15,12 +15,12 @@
 
 <meta name="author" content="GT SIAF/AAF/Datactivist" />
 
-<meta name="date" content="2020-11-04" />
+<meta name="date" content="2020-11-10" />
 
 <meta name="description" content="Documentation d’accompagnement du schéma de données">
 
 <script id="pandoc-meta" type="application/json">
-{"newpage_html_class":"page-break-after","date":"2020-11-04","output":{"links-to-footnotes":"true","pagedown::html_paged":{"self_contained":null,"toc":"true","knit":"pagedown::chrome_print"}},"author":"GT SIAF/AAF/Datactivist","title":"Documentation d’accompagnement du schéma de données"}
+{"newpage_html_class":"page-break-after","date":"2020-11-10","output":{"links-to-footnotes":"true","pagedown::html_paged":{"self_contained":null,"toc":"true","knit":"pagedown::chrome_print"}},"author":"GT SIAF/AAF/Datactivist","title":"Documentation d’accompagnement du schéma de données"}
 </script>
 
 <title>Documentation d’accompagnement du schéma de données</title>
@@ -55,7 +55,7 @@
 <div id="header" class="title-page">
 <h1 class="title">Documentation d’accompagnement du schéma de données</h1>
 <h2 class="author">GT SIAF/AAF/Datactivist</h2>
-<h2 class="date">2020-11-04</h2>
+<h2 class="date">2020-11-10</h2>
 </div>
 </div>
 
@@ -374,11 +374,216 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <div id="id" class="section level4" number="5.4.1.1">
 <h4><span class="header-section-number">5.4.1.1</span> <code>ID</code></h4>
 <ul>
-<li>titre :</li>
-<li>description :</li>
-<li>type :</li>
-<li>exemple : <code>Ville de xx</code></li>
-<li>valeur obligatoire</li>
+<li><p><strong>titre</strong> : Identifiant unique de chaque entrée</p></li>
+<li><p><strong>description</strong> : Identifiant unique de chaque entrée sous la forme : l’identifiant du service archives, année d’entrée et numéro incrémental.</p></li>
+<li><p><strong>type</strong> : Chaîne de caractères</p></li>
+<li><p><strong>exemple</strong> : <code>FRAC_13001_2020_001</code></p></li>
+<li><p>valeur obligatoire</p></li>
+<li><p><strong>commentaire</strong> : L’identifiant du service d’archives peut être composé soit du numéro utilisé pour identifier les IR, ou pour des services d’entreprises le SIREN ou pour d’autres types de services le RCR, le numéro Muséophile. Dans ce cas, il faut renseigneer cet éléments dans les métadonnées associées</p></li>
+</ul>
+</div>
+<div id="nomarch" class="section level4" number="5.4.1.2">
+<h4><span class="header-section-number">5.4.1.2</span> <code>nomArch</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Nom du service archives</p></li>
+<li><p><strong>description</strong> : Nom sous forme textuelle du service d’archives dans où sont entrées les archives</p></li>
+<li><p><strong>type</strong> : chaîne de caractères</p></li>
+<li><p><strong>exemple</strong> : <code>Archives municipales d'Aix-en-Provence</code></p></li>
+<li><p>valeur obligatoire</p></li>
+</ul>
+</div>
+<div id="cotearch" class="section level4" number="5.4.1.3">
+<h4><span class="header-section-number">5.4.1.3</span> <code>coteArch</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Cotation</p></li>
+<li><p><strong>description</strong> : Identifiant de l’entrée d’archives et correspondant à sa place dans le cadre de classement (série et sous-série)</p></li>
+<li><p><strong>type</strong> : Chaîne de caractères</p></li>
+<li><p><strong>exemple</strong> : <code>1236W</code></p></li>
+<li><p>valeur optionnelle</p></li>
+</ul>
+</div>
+<div id="dateentree" class="section level4" number="5.4.1.4">
+<h4><span class="header-section-number">5.4.1.4</span> <code>dateEntree</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Date d’entrée</p></li>
+<li><p><strong>description</strong> : Date à laquelle les documents sont entrés dans le service d’archives au format ISO8601</p></li>
+<li><p><strong>type</strong> : Date</p></li>
+<li><p><strong>exemple</strong> : <code>2020-08-26</code></p></li>
+<li><p>valeur obligatoire</p></li>
+</ul>
+</div>
+<div id="nature" class="section level4" number="5.4.1.5">
+<h4><span class="header-section-number">5.4.1.5</span> <code>nature</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Nature juridique des documents entrés</p></li>
+<li><p><strong>description</strong> : Permet d’identifier le nature juridique des archives</p></li>
+<li><p><strong>type</strong> : Chaîne de caractères</p></li>
+<li><p><strong>exemple</strong> : <code>Archives publiques</code></p></li>
+<li><p>valeur obligatoire</p></li>
+<li><p><strong>valeurs autorisées</strong> : [“Archives publiques”,“Archives privées”,“Archives publiques et privées”]</p></li>
+<li><p><strong>commentaire</strong> : “Archives publiques et privées” est à réserver pour des entrées qui comporteraient à la fois du contenu public et privé.</p></li>
+</ul>
+</div>
+<div id="modeentree" class="section level4" number="5.4.1.6">
+<h4><span class="header-section-number">5.4.1.6</span> <code>modeEntree</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Modalité d’entrée</p></li>
+<li><p><strong>description</strong> : Permet d’identifier le mode d’entrée des archives</p></li>
+<li><p><strong>type</strong> : Chaîne de caractères</p></li>
+<li><p><strong>exemple</strong> : <code>Versement</code></p></li>
+<li><p>valeur obligatoire</p></li>
+<li><p><strong>valeurs autorisées</strong> : [“Versement”,“Don”,“Achat”, “Leg ou Dation”, “Copie”, “Restitution”]</p></li>
+</ul>
+</div>
+<div id="orgavers" class="section level4" number="5.4.1.7">
+<h4><span class="header-section-number">5.4.1.7</span> <code>orgaVers</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Organisation qui verse l’entrée</p></li>
+<li><p><strong>description</strong> : Nom de l’organisation qui a versé l’entrée, distincte du service qui a produit les entrées dans l’organisation</p></li>
+<li><p><strong>type</strong> : Chaîne de caractère</p></li>
+<li><p><strong>exemple</strong> : <code>Ville d'Aix-en-Provence</code></p></li>
+<li><p>valeur optionnelle</p></li>
+</ul>
+</div>
+<div id="servvers" class="section level4" number="5.4.1.8">
+<h4><span class="header-section-number">5.4.1.8</span> <code>servVers</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Service versant l’entrée</p></li>
+<li><p><strong>description</strong> : permet d’identifier la personne physique ou morale qui a transféré les documents</p></li>
+<li><p><strong>type</strong> : Chaîne de caractères</p></li>
+<li><p><strong>exemple</strong> : <code>Service de l'achat public</code></p></li>
+<li><p>valeur optionnelle</p></li>
+</ul>
+</div>
+<div id="orgaprod" class="section level4" number="5.4.1.9">
+<h4><span class="header-section-number">5.4.1.9</span> <code>orgaProd</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Organisation productrice de l’entrée</p></li>
+<li><p><strong>description</strong> : Nom de l’organisation qui a produit l’entrée, distincte du service qui a produit les entrées dans l’organisation</p></li>
+<li><p><strong>type</strong> : Chaîne de caractère</p></li>
+<li><p><strong>exemple</strong> : <code>Ville d'Aix-en-Provence</code></p></li>
+<li><p>valeur optionnelle</p></li>
+</ul>
+</div>
+<div id="producteur" class="section level4" number="5.4.1.10">
+<h4><span class="header-section-number">5.4.1.10</span> <code>producteur</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Service producteur</p></li>
+<li><p><strong>description</strong> : Permet d’identifier la personne physique ou morale qui a produit les documents</p></li>
+<li><p><strong>type</strong> : Chaîne de caractères</p></li>
+<li><p><strong>exemple</strong> : <code>sercice de l'achat public</code></p></li>
+<li><p>valeur optionnelle</p></li>
+</ul>
+</div>
+<div id="fonctionprod" class="section level4" number="5.4.1.11">
+<h4><span class="header-section-number">5.4.1.11</span> <code>fonctionProd</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Fonction du producteur</p></li>
+<li><p><strong>description</strong> : Permet d’identifier la fonction du producteur</p></li>
+<li><p><strong>type</strong> : Chaîne de caractères</p></li>
+<li><p><strong>exemple</strong> : <code>Association</code></p></li>
+<li><p>valeur obligatoire</p></li>
+<li><p><strong>valeurs autorisées</strong> : [<em>en attente éléments SIAF</em>]</p></li>
+<li><p><strong>commentaire</strong> : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle.</p></li>
+</ul>
+</div>
+<div id="domaineprod" class="section level4" number="5.4.1.12">
+<h4><span class="header-section-number">5.4.1.12</span> <code>domaineProd</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Domaine ou thématique d’action du producteur</p></li>
+<li><p><strong>description</strong> : Permet d’identifier le domaine d’activité du producteur</p></li>
+<li><p><strong>type</strong> : Chaîne de caractères</p></li>
+<li><p><strong>exemple</strong> : <code>Culture</code></p></li>
+<li><p>valeur obligatoire</p></li>
+<li><p><strong>valeurs autorisées</strong> : [<em>en attente éléments SIAF</em>]</p></li>
+<li><p><strong>commentaire</strong> : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle.</p></li>
+</ul>
+</div>
+<div id="desccontenu" class="section level4" number="5.4.1.13">
+<h4><span class="header-section-number">5.4.1.13</span> <code>descContenu</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Description du contenu</p></li>
+<li><p><strong>description</strong> : Permet de décrire le contenu des archives de l’entrée</p></li>
+<li><p><strong>type</strong> : Chaîne de caractère</p></li>
+<li><p><strong>exemple</strong> : <code>Marchés publics de prestations intellectuelles</code></p></li>
+<li><p>valeur obligatoire</p></li>
+</ul>
+</div>
+<div id="dateexd" class="section level4" number="5.4.1.14">
+<h4><span class="header-section-number">5.4.1.14</span> <code>dateExD</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Date extrème de début</p></li>
+<li><p><strong>description</strong> : Date du plus vieux document d’archives format AAAA</p></li>
+<li><p><strong>type</strong> : Date</p></li>
+<li><p><strong>exemple</strong> : <code>2014</code></p></li>
+<li><p>valeur optionnelle</p></li>
+</ul>
+</div>
+<div id="dateexf" class="section level4" number="5.4.1.15">
+<h4><span class="header-section-number">5.4.1.15</span> <code>dateExF</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Date extrème de fin</p></li>
+<li><p><strong>description</strong> : Date du plus récent document d’archives format AAAA</p></li>
+<li><p><strong>type</strong> : Date</p></li>
+<li><p><strong>exemple</strong> : <code>2020</code></p></li>
+<li><p>valeur optionnelle</p></li>
+</ul>
+</div>
+<div id="naturesupport" class="section level4" number="5.4.1.16">
+<h4><span class="header-section-number">5.4.1.16</span> <code>natureSupport</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Nature du support matériel des documents</p></li>
+<li><p><strong>description</strong> : permet d’indiquer de façon macro la typologie de support des documents</p></li>
+<li><p><strong>type</strong> : Chaîne de caractères</p></li>
+<li><p><strong>exemple</strong> : <code>Support papier</code></p></li>
+<li><p>valeur obligatoire</p></li>
+<li><p><strong>valeurs autorisées</strong> : [“Support papier”,“Support électronique”,“Support mixte”]</p></li>
+</ul>
+</div>
+<div id="mlentree" class="section level4" number="5.4.1.17">
+<h4><span class="header-section-number">5.4.1.17</span> <code>mlEntree</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Métrage linéaire de l’entrée</p></li>
+<li><p><strong>description</strong> : Volument en mètre linéaire de l’entrée</p></li>
+<li><p><strong>type</strong> : nombre réel</p></li>
+<li><p><strong>exemple</strong> : <code>1.60</code></p></li>
+<li><p>valeur optionnelle</p></li>
+<li><ul>
+<li><strong>commentaire</strong> : le séparateur décimal doit être le point . L’unité sera rappelée en métadonnée.</li>
+</ul></li>
+</ul>
+</div>
+<div id="nbreart" class="section level4" number="5.4.1.18">
+<h4><span class="header-section-number">5.4.1.18</span> <code>nbreArt</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Nombre d’articles</p></li>
+<li><p><strong>description</strong> : Permet d’indiquer le nombre d’articles d’une entrée</p></li>
+<li><p><strong>type</strong> : nombre entier</p></li>
+<li><p><strong>exemple</strong> : <code>56</code></p></li>
+<li><p>valeur optionnelle</p></li>
+</ul>
+</div>
+<div id="volelec" class="section level4" number="5.4.1.19">
+<h4><span class="header-section-number">5.4.1.19</span> <code>volElec</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Volume d’archives électroniques de l’entrée</p></li>
+<li><p><strong>description</strong> : Correspond à la volumétrie de fichiers électroniques présents dans l’entrée</p></li>
+<li><p><strong>type</strong> : nombre réel</p></li>
+<li><p><strong>exemple</strong> : <code>2.30</code></p></li>
+<li><p>valeur optionnelle</p></li>
+<li><ul>
+<li><strong>commentaire</strong> : le séparateur décimal doit être le point <strong>.</strong> L’unité sera rappelée en métadonnée.</li>
+</ul></li>
+</ul>
+</div>
+<div id="objelec" class="section level4" number="5.4.1.20">
+<h4><span class="header-section-number">5.4.1.20</span> <code>objElec</code></h4>
+<ul>
+<li><p><strong>titre</strong> : Nombre d’objets électroniques</p></li>
+<li><p><strong>description</strong> : Permet d’indiquer le nombre d’objets électroniques d’une entrée</p></li>
+<li><p><strong>type</strong> : nombre entier</p></li>
+<li><p><strong>exemple</strong> : <code>234</code></p></li>
+<li><p>valeur optionnelle</p></li>
 </ul>
 </div>
 </div>
