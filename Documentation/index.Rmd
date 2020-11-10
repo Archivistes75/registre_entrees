@@ -515,7 +515,7 @@ Ce modèle de données repose sur les XX champs suivants correspondant aux colon
 
 - **titre** : Nature du support matériel des documents
 
-- **description** : permet d'indiquer de façon macro la typologie de support des documents
+- **description** : Permet d'indiquer de façon macro la typologie de support des documents
 
 - **type** : Chaîne de caractères
 
