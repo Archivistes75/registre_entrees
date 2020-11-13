@@ -7,6 +7,7 @@ Création d'un schéma de données pour les registres d'entrées d'archives des 
 * [Copil 3](https://datactivist.coop/siaf/20201105_COPIL3/)
 
 
+#### Schéma [en cours de construction](https://docs.google.com/spreadsheets/d/1GMw0vQKkXcWwOcZkIpK-AJX59LDIZWIpEO3RTCsflOo/edit#gid=1111111620)
 
 # Introduction
 
