@@ -31,7 +31,7 @@ Ce shéma peut être utilisé lors de la publication d'un jeu de données de reg
 
 ## Suis-je obligé d'utiliser ce schéma?
 
-Non, aucune obligation car ce schéma n'a pas de caractère réglementaire. En revanche, si vous souhaitez publier des données l'utilisation de ce shéma est très fortement recommandée car il peut permettre une réutilisation plus facile de vos données car il est documenté et que vos données sont standardisées et peuvent être agrégée et comparée avec d'autres.
+Non, aucune obligation car ce schéma n'a pas de caractère réglementaire. En revanche, si vous souhaitez publier des données l'utilisation de ce schéma est très fortement recommandée car il peut permettre une réutilisation plus facile de vos données car il est documenté et que vos données sont standardisées et peuvent être agrégées et comparées avec d'autres.
 
 
 ## Recommandations pour le formatage des fichiers
