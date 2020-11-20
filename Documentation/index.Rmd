@@ -29,7 +29,19 @@ Dans son [Cadre stratégique commun de modernisation des archives](https://www.g
 > Il conviendra également de généraliser l’open data dans les services d’archives de l’État et de recommander ce modèle aux services territoriaux d’archives.
 La création d'un schéma de données permet de standardiser la diffusion des données produites par les services d'archives. Cette standardisation est impérative pour les ré-utilisateurs car elle permet de faciliter la découverte des jeux de données et de les utiliser, notamment en simplifiant l'alignement à différentes échelles (utilisation sur des échelles locales ou nationales).
 
-# - Phasage de la création du schéma
+# Composition du groupe de travail
+
+* Service Interministériel des Archives de France
+* Association des Archivistes Français
+* Datactivist
+* Archives municipales d'Avignon
+* Archives nationales
+* Programme Vitam
+* Archives régionales des Pays-de-la-Loire
+* Archives départementales de l'Eure
+* Archives départementales de l'Oise
+
+# Phasage de la création du schéma
 
 Cette partie reprend l'organisation du guide publié par [Etalab](https://schema.data.gouv.fr/). Elle vient enrichir le contenu méthodologique développé par Etalab d'un retour d'expérience complémentaire.
 
@@ -163,13 +175,17 @@ L'une des limites est que la liste des identifiants n'est pas publiée en open d
 Il existe d'autres identifiants (VIAF, ISNI...) mais ceux-ci ne sont pas utilisés (connus) par les services archives, qui ne les utilisent pas, en l'état actuel de diffusion de ces identifiants, ils ne constituent donc pas un pivot intéressants pour faire le lien entre un service et des IR par exemple.
  
 
-### Concertation en dehors du GT
+### Concertation en dehors du groupe de travail
 
-[A VENIR]
+[A COMPLETER]
 
-## construction
+Le schéma a été ajouté à schema.data.gouv comme étant en investigation le 15 novembre 2020.
 
-[A VENIR]
+## Construction du schéma
+
+[EN COURS]
+
+Le schéma sera produit au format json.
 
 # - Remarques générales sur les schémas de données
 
@@ -207,7 +223,7 @@ Les fichiers doivent, sauf exception et autant que possible, respecter les règl
 
 Les fichiers doivent, sauf exception et autant que possible, respecter les règles de nommage suivantes :
 
-AAAAMMJJ_idProducteur_registre_des_entrees_millesime.csv
+`AAAAMMJJ_idProducteur_registre_des_entrees_millesime.csv`
 
 * AAAAMMJJ : Date de création du fichier
 
@@ -219,7 +235,7 @@ AAAAMMJJ_idProducteur_registre_des_entrees_millesime.csv
 
 * extension : Si les règles de formatage sont respectées, l'extension est .csv
 
-**Exemple** : '20201012_FRAD_001_registre_des_entrees_2020.csv'
+**Exemple** : `20201012_FRAD_001_registre_des_entrees_2020.csv`
 
 ## Recommandations pour la mise en conformité
 
@@ -237,7 +253,7 @@ Les fichiers doivent comporter :
 
 Le respect du nommage de fichier et des métadonnées du schéma doivent permettre de découvrir l'ensemble des jeux de données répondant au schéma.
 
-# - Les étapes de publication d'un jeu de données
+# Les étapes de publication d'un jeu de données
 
 Pour préparer la publication de vos données, vous pouvez trouver des informations sur les fiches pratiques réalisées par [OpenDataFrance](https://opendatafrance.gitbook.io/odl-ressources/fiches-pratiques/premiers-pas/preparer-les-donnees-pour-une-publication-en-open-data)
 
@@ -254,64 +270,58 @@ Il va falloir préparer les données afin qu'elles correspondent au modèle déf
 
 ## Documenter les données
 
-[EN CONSTRUCTION]
+**Métadonnées descriptives**
 
-* Gérér les métadonnées
+* Nom du producteur du jeu de données : Le nom du producteur permet d’indiquer le service qui a produit et publié le jeu de données. 
 
-
-    **Métadonnées descriptives**
-        * Nom du producteur du jeu de données :
-        * Titre du jeu de données :
-        * Description du jeu de données :
-        * Taille du fichier :
-        * Catégories (tag) :
+            `Archives municipales de la commune de XXX`
+            `Archives départementales de XXX`
             
-    
-    **Métadonnées administratives**
-    
-        * Date de création du jeu de données :
-        * Date de modification :
-        * Licence :
-        * Fréquence de mise à jour :
-        * Période temporelle couverte :
-        * Aire géographique couverte :
-        * Contact :
+* Titre du jeu de données : il s’agit du nom du jeu de données et pas du nom du fichier
+
+        `Registre des entrées de [entité productrice], année [XXXX]`
+        
+* Description du jeu de données : 
+
+        `Ce jeu de données contient les entrées du services des archives de [entité] pour l’année [XXXX]. Chaque entrée dans le service est enregistrée par type d’entrée (publique ou privée) avec le service qui l’a produite, la thématique, le volume. Les données proviennent de l'outil [préciser l'outil de gestion], et elles ont été traitées de la façon suivante avant publication [préciser les traitements : ajout d'éléments, suppression, harmonisation etc.]`
+        
+* Fréquence de mise à jour :
+
+        `Annuelle `(à modifier le cas échéant)
+        
+* Catégories (tag) :
+
+        `“Archives”, “Entrées d’Archives”, "Archives publiques"`
+
+* Licence : [Dans le cas où une licence est associée au jeu de données, elle est à choisir dans le respect du cadre règlementaire]
+        
+* Contact :Indiquer un mail de contact pour les réutilisateurs 
+
+        `(archives@archives.fr)`
         
 
-## Choisir une licence
+## Choisir une licence?
 
-[EN CONSTRUCTION]
+La licence de réutilisation n'est pas obligatoire, dans le cas où il n'y en a pas, c'est le cadre règlementaire du CRPA qui s'applique.
 
-## Où publier ses données
+Si vous choisissez une licence, elle doit correspondre au cadre légal. Vous pouvez choisir soit la [Licence Ouverte](https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf) d'Etalab, soit la [licence ODbL](https://spdx.org/licenses/ODbL-1.0.html#licenseText).
 
-[EN CONSTRUCTION]
+## Où publier ses données?
+
+Suivant les procédures mises en oeuvre dans votre structure sur l'open data, vous pouvez être amenés à publier vos données soit :
+
+* Sur le portail open data de votre structure, si celui-ci est moissonné par data.gouv, vos jeux de données remonteront automatiquement sur la plateforme nationale. Dans ce cas, vous devez vous rapprocher du chargé open data de votre structure.
+* Soit directement sur data.gouv si votre structure ne possède pas de portail open data, toutes les informations nécessaire se trouvent [là](https://doc.data.gouv.fr/jeux-de-donnees/publier-un-jeu-de-donnees/)
 
 # - Le schéma registre des entrées
 
-[EN CONSTRUCTION]
-
-
 Spécification du modèle de données relatif aux registres des entrées des services publics d'archives.
-
-## Contexte
-
-[EN CONSTRUCTION]
-
-## Outils
-
-[EN CONSTRUCTION]
-
-## Voir aussi
-
-[EN CONSTRUCTION]
 
 ## Registres des entrées
 
-[EN CONSTRUCTION]
-
 ### Modèle de données
 
-[EN CONSTRUCTION]
+[EN CONSTRUCTION - SOUMIS A AVIS]
 
 Ce modèle de données repose sur les 20 champs suivants correspondant aux colonnes du fichier tabulaire.
 
@@ -323,7 +333,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `FRAC_13001_2020_001
+- **exemple** : `FRAC_13001_2020_001`
 `
 - valeur obligatoire
 
@@ -431,7 +441,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - valeur optionnelle
 
-#### `producteur`
+#### `servProd`
 
 - **titre** : Service producteur
 

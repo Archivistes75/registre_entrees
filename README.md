@@ -6,6 +6,17 @@ Création d'un schéma de données pour les registres d'entrées d'archives des 
 * [Copil 2](https://datactivist.coop/siaf/20200911_COPIL2/) 
 * [Copil 3](https://datactivist.coop/siaf/20201105_COPIL3/)
 
+## Composition du groupe de travail
+
+* Service Interministériel des Archives de France
+* Association des Archivistes Français
+* Datactivist
+* Archives départementales de l'Eure
+* Archives départementales de l'Oise
+* Archives municipales d'Avignon
+* Archives nationales
+* Archives régionales des Pays-de-la-Loire
+* Programme Vitam
 
 #### Schéma [en cours de construction](https://docs.google.com/spreadsheets/d/1GMw0vQKkXcWwOcZkIpK-AJX59LDIZWIpEO3RTCsflOo/edit#gid=1111111620)
 
@@ -58,7 +69,7 @@ Les fichiers doivent, sauf exception et autant que possible, respecter les règl
 
 Les fichiers doivent, sauf exception et autant que possible, respecter les règles de nommage suivantes :
 
-AAAAMMJJ_idProducteur_registre_des_entrees_millesime.csv
+`AAAAMMJJ_idProducteur_registre_des_entrees_millesime.csv`
 
 * AAAAMMJJ : Date de création du fichier
 
@@ -70,7 +81,7 @@ AAAAMMJJ_idProducteur_registre_des_entrees_millesime.csv
 
 * extension : Si les règles de formatage sont respectées, l'extension est .csv
 
-**Exemple** : '20201012_FRAD_001_registre_des_entrees_2020.csv'
+**Exemple** : `20201012_FRAD_001_registre_des_entrees_2020.csv`
 
 ## Recommandations pour la mise en conformité
 
@@ -88,7 +99,7 @@ Les fichiers doivent comporter :
 
 Le respect du nommage de fichier et des métadonnées du schéma doivent permettre de découvrir l'ensemble des jeux de données répondant au schéma.
 
-# - Les étapes de publication d'un jeu de données
+# Les étapes de publication d'un jeu de données
 
 Pour préparer la publication de vos données, vous pouvez trouver des informations sur les fiches pratiques réalisées par [OpenDataFrance](https://opendatafrance.gitbook.io/odl-ressources/fiches-pratiques/premiers-pas/preparer-les-donnees-pour-une-publication-en-open-data)
 
@@ -105,40 +116,35 @@ Il va falloir préparer les données afin qu'elles correspondent au modèle déf
 
 ## Documenter les données
 
-[EN CONSTRUCTION]
+[PROPOSITION - SOUMISE A AVIS]
 
-* Gérér les métadonnées
+**Métadonnées descriptives**
 
+* Nom du producteur du jeu de données : Le nom du producteur permet d’indiquer le service qui a produit et publié le jeu de données. 
 
-    **Métadonnées descriptives**
-        * Nom du producteur du jeu de données :
-        * Titre du jeu de données :
-        * Description du jeu de données :
-        * Taille du fichier :
-        * Catégories (tag) :
+            `Archives municipales de la commune de XXX`
+            `Archives départementales de XXX`
             
-    
-    **Métadonnées administratives**
-    
-        * Date de création du jeu de données :
-        * Date de modification :
-        * Licence :
-        * Fréquence de mise à jour :
-        * Période temporelle couverte :
-        * Aire géographique couverte :
-        * Contact :
+* Titre du jeu de données : il s’agit du nom du jeu de données et pas du nom du fichier
+
+        `Registre des entrées de [entité productrice], année [XXXX]`
         
+* Description du jeu de données :
 
-## Choisir une licence
+        `Ce jeu de données contient les entrées du services des archives de [entité] pour l’année [XXXX]. Chaque entrée dans le service est enregistrée par type d’entrée (publique ou privée) avec le service qui l’a produite, la thématique, le volume. Les données proviennent de l'outil [préciser l'outil de gestion], et elles ont été traitées de la façon suivante avant publication [préciser les traitements : ajout d'éléments, suppression, harmonisation etc.]`
+        
+* Fréquence de mise à jour :
 
-[EN CONSTRUCTION]
+        `Annuelle `(à modifier le cas échéant)
+        
+* Catégories (tag) :
 
-## Où publier ses données
+        `“Archives”, “Entrées d’Archives”, "Archives publiques"`
 
-[EN CONSTRUCTION]
+* Licence : [Licence à choisir dans le cadre règlementaire]
+        
+* Contact : Indiquer un mail de contact pour les réutilisateurs 
 
-# Le schéma registre des entrées
-
-[EN CONSTRUCTION]
+        `(archives@archives.fr)`
 
 #### Le schéma est en cours de construction, à terme il prendra [cette forme](standard.md) (attention les champs ne sont pas stabilisés).

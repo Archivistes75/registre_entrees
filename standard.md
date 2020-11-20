@@ -1,28 +1,11 @@
-
-
 Spécification du modèle de données relatif aux registres des entrées des services publics d'archives.
 
-## Contexte
-
-[EN CONSTRUCTION]
-
-## Outils
-
-[EN CONSTRUCTION]
-
-## Voir aussi
-
-[EN CONSTRUCTION]
-
-## Registres des entrées
-
-[EN CONSTRUCTION]
 
 ### Modèle de données
 
-[EN CONSTRUCTION]
+[VERSION PROVISOIRE SOUMISE A AVIS]
 
-Ce modèle de données repose sur les 20 champs suivants correspondant aux colonnes du fichier tabulaire.
+Ce modèle de données repose sur les 20 champs suivants correspondant aux colonnes du [fichier tabulaire](https://docs.google.com/spreadsheets/d/1GMw0vQKkXcWwOcZkIpK-AJX59LDIZWIpEO3RTCsflOo/edit#gid=1111111620).
 
 #### `ID`
 
@@ -32,7 +15,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `FRAC_13001_2020_001
+- **exemple** : `FRAC_13001_2020_001`
 `
 - valeur obligatoire
 
@@ -140,7 +123,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - valeur optionnelle
 
-#### `producteur`
+#### `servProd`
 
 - **titre** : Service producteur
 
