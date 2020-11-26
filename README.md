@@ -16,9 +16,10 @@ Création d'un schéma de données pour les registres d'entrées d'archives des 
 * Archives municipales d'Avignon
 * Archives nationales
 * Archives régionales des Pays-de-la-Loire
+* INHA, Université de Paris Nanterre
 * Programme Vitam
 
-#### Schéma [en cours de construction](https://docs.google.com/spreadsheets/d/1GMw0vQKkXcWwOcZkIpK-AJX59LDIZWIpEO3RTCsflOo/edit#gid=1111111620)
+#### Schéma [en cours de construction](https://docs.google.com/spreadsheets/d/1O-8Hhw6_78BILxNAchl391cpYNXpck2S1cTH1bXM_d8/edit?usp=sharing)
 
 # Introduction
 
