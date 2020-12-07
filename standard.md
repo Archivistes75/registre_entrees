@@ -143,11 +143,11 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `Association`
+- **exemple** : `Communes de plus de 2 000 habitants`
 
 - valeur obligatoire
 
-- **valeurs autorisées** : [*en attente éléments SIAF*]
+- **valeurs autorisées** : ["Présidence de la République", "Premier ministre", "Ministères (directions d'administration centrale) ", "Assemblées parlementaires", "Grands organes de contrôle", "Services déconcentrés et établissements publics de l’État à compétence départementale ou locale", "Services déconcentrés et établissements publics de l’État à compétence régionale ou supra-départementale", "Administrations centrales délocalisées et établissements publics nationaux de l’État", "Communes de plus de 2 000 habitants", "Communes de moins de 2 000 habitants", "Services du conseil départemental et établissements publics départementaux", "Services du conseil régional et établissements publics régionaux", "Services de la commune et établissements publics communaux", "Groupements de collectivités", "Établissements publics de santé", "Organismes de droit privé chargés d’une mission de service public", "Officiers publics ou ministériels (dont notaires) ", "Producteurs privés"]
 
 - **commentaire** : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l'enquête annuelle. 
 
@@ -159,13 +159,13 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `Culture`
+- **exemple** : `Ressources humaines`
 
 - valeur obligatoire
 
-- **valeurs autorisées** : [*en attente éléments SIAF*]
+- **valeurs autorisées** : ["Instances de délibération", "Direction, cabinet", "Administration générale (fonctions transverses hors RH)", "Finances, fiscalité", "Ressources humaines", "Économie, industrie", "Agriculture", "Équipement, environnement", "Travail, emploi", "Affaires sociales, santé", "Justice", "Police, protection civile, intérieur", "Éducation, recherche", "Culture, jeunesse et sports", "Défense, anciens combattants", "Outre-mer", "Archives privées personnelles et familiales", "Archives privées cultuelles", "Archives privées d'associations, de partis politiques, de syndicats", "Archives privées d'entreprises", "Archives privées de professionnels (architectes, photographes...)"]
 
-- **commentaire** : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l'enquête annuelle.
+- **commentaire** : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l'enquête annuelle. Les valeurs "Archives privées personnelles et familiales", "Archives privées cultuelles", "Archives privées d'associations, de partis politiques, de syndicats", "Archives privées d'entreprises", "Archives privées de professionnels (architectes, photographes...)" sont à réserver aux éléments qui possèdent l'élément "Producteurs privés" en *fonction du producteur*.
 
 #### `descContenu`
 

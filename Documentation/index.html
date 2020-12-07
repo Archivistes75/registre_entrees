@@ -15,12 +15,12 @@
 
 <meta name="author" content="GT SIAF/AAF/Datactivist" />
 
-<meta name="date" content="2020-11-26" />
+<meta name="date" content="2020-12-07" />
 
 <meta name="description" content="Documentation d’accompagnement du schéma de données">
 
 <script id="pandoc-meta" type="application/json">
-{"newpage_html_class":"page-break-after","date":"2020-11-26","output":{"links-to-footnotes":"true","pagedown::html_paged":{"self_contained":null,"toc":"true","knit":"pagedown::chrome_print"}},"author":"GT SIAF/AAF/Datactivist","title":"Documentation d’accompagnement du schéma de données"}
+{"newpage_html_class":"page-break-after","date":"2020-12-07","output":{"links-to-footnotes":"true","pagedown::html_paged":{"self_contained":null,"toc":"true","knit":"pagedown::chrome_print"}},"author":"GT SIAF/AAF/Datactivist","title":"Documentation d’accompagnement du schéma de données"}
 </script>
 
 <title>Documentation d’accompagnement du schéma de données</title>
@@ -55,7 +55,7 @@
 <div id="header" class="title-page">
 <h1 class="title">Documentation d’accompagnement du schéma de données</h1>
 <h2 class="author">GT SIAF/AAF/Datactivist</h2>
-<h2 class="date">2020-11-26</h2>
+<h2 class="date">2020-12-07</h2>
 </div>
 </div>
 
@@ -487,9 +487,9 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <li><p><strong>titre</strong> : Fonction du producteur</p></li>
 <li><p><strong>description</strong> : Permet d’identifier la fonction du producteur</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>Association</code></p></li>
+<li><p><strong>exemple</strong> : <code>Communes de plus de 2 000 habitants</code></p></li>
 <li><p>valeur obligatoire</p></li>
-<li><p><strong>valeurs autorisées</strong> : [<em>en attente éléments SIAF</em>]</p></li>
+<li><p><strong>valeurs autorisées</strong> : [“Présidence de la République”, “Premier ministre”, “Ministères (directions d’administration centrale)”, “Assemblées parlementaires”, “Grands organes de contrôle”, “Services déconcentrés et établissements publics de l’État à compétence départementale ou locale”, “Services déconcentrés et établissements publics de l’État à compétence régionale ou supra-départementale”, “Administrations centrales délocalisées et établissements publics nationaux de l’État”, “Communes de plus de 2 000 habitants”, “Communes de moins de 2 000 habitants”, “Services du conseil départemental et établissements publics départementaux”, “Services du conseil régional et établissements publics régionaux”, “Services de la commune et établissements publics communaux”, “Groupements de collectivités”, “Établissements publics de santé”, “Organismes de droit privé chargés d’une mission de service public”, “Officiers publics ou ministériels (dont notaires)”, “Producteurs privés”]</p></li>
 <li><p><strong>commentaire</strong> : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle.</p></li>
 </ul>
 </div>
@@ -499,10 +499,10 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <li><p><strong>titre</strong> : Domaine ou thématique d’action du producteur</p></li>
 <li><p><strong>description</strong> : Permet d’identifier le domaine d’activité du producteur</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>Culture</code></p></li>
+<li><p><strong>exemple</strong> : <code>Ressources humaines</code></p></li>
 <li><p>valeur obligatoire</p></li>
-<li><p><strong>valeurs autorisées</strong> : [<em>en attente éléments SIAF</em>]</p></li>
-<li><p><strong>commentaire</strong> : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle.</p></li>
+<li><p><strong>valeurs autorisées</strong> : [“Instances de délibération”, “Direction, cabinet”, “Administration générale (fonctions transverses hors RH)”, “Finances, fiscalité”, “Ressources humaines”, “Économie, industrie”, “Agriculture”, “Équipement, environnement”, “Travail, emploi”, “Affaires sociales, santé”, “Justice”, “Police, protection civile, intérieur”, “Éducation, recherche”, “Culture, jeunesse et sports”, “Défense, anciens combattants”, “Outre-mer”, “Archives privées personnelles et familiales”, “Archives privées cultuelles”, “Archives privées d’associations, de partis politiques, de syndicats”, “Archives privées d’entreprises”, “Archives privées de professionnels (architectes, photographes…)”]</p></li>
+<li><p><strong>commentaire</strong> : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle. Les valeurs “Archives privées personnelles et familiales”, “Archives privées cultuelles”, “Archives privées d’associations, de partis politiques, de syndicats”, “Archives privées d’entreprises”, “Archives privées de professionnels (architectes, photographes…)” sont à réserver aux éléments qui possèdent l’élément “Producteurs privés” en <em>fonction du producteur</em>.</p></li>
 </ul>
 </div>
 <div id="desccontenu" class="section level4" number="6.1.1.13">
