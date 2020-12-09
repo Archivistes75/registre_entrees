@@ -5,7 +5,7 @@ Spécification du modèle de données relatif aux registres des entrées des ser
 
 [VERSION PROVISOIRE SOUMISE A AVIS]
 
-Ce modèle de données repose sur les 20 champs suivants correspondant aux colonnes du [fichier tabulaire](https://docs.google.com/spreadsheets/d/1GMw0vQKkXcWwOcZkIpK-AJX59LDIZWIpEO3RTCsflOo/edit#gid=1111111620).
+Ce modèle de données repose sur les 20 champs suivants correspondant aux colonnes du [fichier tabulaire](https://docs.google.com/spreadsheets/d/1O-8Hhw6_78BILxNAchl391cpYNXpck2S1cTH1bXM_d8/edit?usp=sharing).
 
 #### `ID`
 
