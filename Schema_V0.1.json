@@ -1,0 +1,183 @@
+{
+    "$schema":"https://frictionlessdata.io/schemas/table-schema.json",
+    "title":"Registre d'entrée d'archives",
+    "description":"Spécification du standard des registres d'entrée d'archives",
+    "keywords":[
+        "archives",
+        "archivage",
+        "documents"
+    ],
+    "countryCode":"FR",
+    "licenses": [
+        {
+          "title": "Licence Ouverte",
+          "name": "etalab-2.0",
+          "path": "https://www.etalab.gouv.fr/licence-ouverte-open-licence"
+        }
+      ],
+    "author":"Datactivist",
+    "contact":"hello@datactivist.coop",
+    "version":"0.1",
+    "created":"2020-12-17",
+    "updated":"2020-12-17",
+    "homepage":"https://github.com/datactivist/siaf",
+    "uri":"https://github.com/etalab/schema-lieux-covoiturage/raw/v0.2.0/schema.json",
+	"fields": [
+		{
+			"name": "ID",
+			"title": "Identifiant unique de chaque entrée",
+			"description": "Identifiant unique de chaque entrée sous la forme : l'identifiant du service archives, année d'entrée et numéro incrémental.",
+			"constraints": {
+				"required": true
+			}
+		},
+		{
+			"name": "nomArch",
+			"title": "Nom du service archives",
+			"description":"Nom sous forme textuelle du service d'archives dans où sont entrées les archives",
+			"constraints": {
+				"required": true			}
+		},
+		{
+			"name": "coteArch",
+			"title": "Cotation",
+			"description": "identifiant de l'entrée d’archives et correspondant à sa place dans le cadre de classement (série et sous-série)",
+			"constraints": {
+				"required": false
+			}
+		},
+		{
+			"name": "dateEntree",
+			"title": "Date d'entrée",
+			"description": "date à laquelle les documents sont entrés dans le service d'archives au format ISO8601",
+			"type": "date",
+			"format": "default",
+			"constraints": {
+				"required": true			}
+		},
+		{
+			"name": "nature",
+			"title": "nature juridique des documents entrés",
+			"description": "permet d'identifier le nature juridique des archives",
+			"constraints": {
+				"required": true			}
+		},
+		{
+			"name": "modeEntree",
+			"title": "modalité d'entrée",
+			"description": "permet d'identifier le mode d'entrée des archives",
+			"constraints": {
+				"required": true			}
+		},
+		{
+			"name": "orgaVers",
+			"title": "organisation versant l'entrée",
+			"description":"nom de l'organisation qui a versé l'entrée, distincte du service qui a produit les entrées dans l'organisation",
+			"constraints": {
+				"required": false			}
+		},
+		{
+			"name": "servVers",
+			"title": "service versant l'entrée",
+			"description":"permet d'identifier la personne physique ou morale qui a transféré les documents",
+			"constraints": {
+				"required": false			}
+		},
+		{
+			"name": "orgaProducteur",
+			"title": "organisation productrice de l'entrée",
+			"description": "nom de l'organisation qui a produit l'entrée, distincte du service qui a produit les entrées dans l'organisation",
+			"constraints": {
+				"required": false			}
+		},
+		{
+			"name": "servProd",
+			"title": "service producteur",
+			"description": "permet d'identifier la personne physique ou morale qui a produit les documents",
+			"constraints": {
+				"required": true
+			}
+		},
+		{
+			"name": "fonctionProd",
+			"title": "fonction du producteur",
+			"description": "permet d'identifier la fonction du producteur",
+			"constraints": {
+				"required": true,
+				"enum": ["Présidence de la République", "Premier ministre", "Ministères (directions d'administration centrale) ", "Assemblées parlementaires", "Grands organes de contrôle", "Services déconcentrés et établissements publics de l’État à compétence départementale ou locale", "Services déconcentrés et établissements publics de l’État à compétence régionale ou supra-départementale", "Administrations centrales délocalisées et établissements publics nationaux de l’État", "Communes de plus de 2 000 habitants", "Communes de moins de 2 000 habitants", "Services du conseil départemental et établissements publics départementaux", "Services du conseil régional et établissements publics régionaux", "Services de la commune et établissements publics communaux", "Structures intercommunales ou interdépartementales", "Établissements publics de santé", "Organismes de droit privé chargés d’une mission de service public", "Officiers publics ou ministériels (dont notaires) ", "Producteurs privés"]			}
+		},
+		{
+			"name": "domaineProd",
+			"title": "Domaine ou thématique d'action du producteur",
+			"description": "Permet d'identifier le domaine d'activité du producteur",
+			"constraints": {
+				"required": true, 
+				"enum": ["Instances de délibération", "Direction, cabinet", "Administration générale (fonctions transverses hors RH)", "Finances, fiscalité", "Ressources humaines", "Économie, industrie", "Agriculture", "Équipement, environnement", "Travail, emploi", "Affaires sociales, santé", "Justice", "Police, protection civile, intérieur", "Éducation, recherche", "Culture, jeunesse et sports", "Défense, anciens combattants", "Outre-mer", "Archives privées personnelles et familiales", "Archives privées cultuelles", "Archives privées d'associations, de partis politiques, de syndicats", "Archives privées d'entreprises", "Archives privées de professionnels (architectes, photographes...)"]
+			}
+		},
+		{
+			"name": "descContenu",
+			"title": "description du contenu",
+			"description": "description du contenu",
+			"constraints": {
+				"required": true
+			}
+		},
+		{
+			"name": "datesExD",
+			"title": "Date extrême de début",
+			"description": "date du plus vieux document d'archives format AAAA.", 
+			"type": "year", 
+			"constraints": {
+				"required": false	}
+		},
+		{
+			"name": "datesExF",
+			"title": "Date extrême de fin",
+			"description": "date du plus récent document d'archives format AAAA.", 
+			"type":"year",
+			"constraints": {
+				"required": false			}
+		},
+		{
+			"name": "natureSupport",
+			"title": "nature du support matériel des documents",
+			"description": "permet d'indiquer de façon macro la typologie de support des documents",
+			"constraints": {
+				"required": true			}
+		},
+		{
+			"name": "mlEntree",
+			"title": "métrage linéaire de l'entrée",
+			"description": "volume en mètre linéaire de l'entrée",
+			"type": "number",
+			"constraints": {
+				"required": false			}
+		},
+		{
+			"name": "nbreArt",
+			"title": "nombre d'articles",
+			"description": "permet d'indiquer le nombre d'articles d'une entrée",
+			"type": "number",
+			"constraints": {
+				"required": false			}
+		},
+		{
+			"name": "volElec",
+			"title": "volume d'archives électroniques de l'entrée",
+			"description": "correspond à la volumétrie de fichiers électroniques présents dans l'entrée",
+			"type": "number",
+			"constraints": {
+				"required": false
+			}
+		},
+		{
+			"name": "objElec",
+			"title": "nombre d'objets électroniques",
+			"description": "permet d'indiquer le nombre d'objets électroniques d'une entrée", 
+			"type": "number",
+			"constraints": {
+				"required": false			}
+		}
+	]
+}
