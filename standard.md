@@ -139,7 +139,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **titre** : Fonction du producteur
 
-- **description** : Permet d'identifier la fonction du producteur
+- **description** : permet d'identifier la fonction du producteur, liste établie à partir des éléments du SIAF 
 
 - **type** : Chaîne de caractères
 
@@ -155,7 +155,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **titre** : Domaine ou thématique d'action du producteur
 
-- **description** : Permet d'identifier le domaine d'activité du producteur
+- **description** : Permet d'identifier le domaine d'activité du producteur, liste établie à partir des éléments du SIAF 
 
 - **type** : Chaîne de caractères
 
@@ -247,7 +247,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **titre** : Volume d'archives électroniques de l'entrée
 
-- **description** : Correspond à la volumétrie de fichiers électroniques présents dans l'entrée
+- **description** : Correspond à la volumétrie de fichiers électroniques présents dans l'entrée en Go
 
 - **type** : nombre réel
 
