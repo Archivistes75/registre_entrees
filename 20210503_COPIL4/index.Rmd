@@ -1,0 +1,117 @@
+---
+title: "Schéma de données pour les registres d'entrées"
+subtitle: "COPIL restreint SIAF / AAF"
+author: "Samuel Goëta, Anne-Laure Donzel, Datactivist"
+date: "`r format(Sys.Date(), '05/03/2021')`"
+output:
+  SlidesDatactivist::moon_reader:
+    css: [default, datactivist, datactivist-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: ["macros.js", "https://platform.twitter.com/widgets.js"]
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>`
+params:
+  event: COPIL SIAF / AAF
+  slug: siaf/4
+
+---
+
+```{r, echo=FALSE}
+library(metathis)
+meta() %>% 
+  meta_description(params$event) %>% 
+  meta_name("github-repo" = paste0("datactivist/", params$slug)) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = params$title,
+    url = paste0("https://datactivist.coop/", params$slug),
+    image = params$image,
+    image_alt = params$image_alt,
+    og_type = "website",
+    og_author = "Datactivist",
+    og_locale = "fr_FR",
+    og_site_name = "Datactivist",
+    twitter_card_type = "summary",
+    twitter_creator = "@datactivi_st")
+
+```
+
+layout: true
+
+<style>
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: #e95459;
+}
+
+</style>
+
+
+`r paste0("<div class='my-footer'><span>", params$event, "</span> <center><div class=logo><a href='https://datactivist.coop/'><img src='https://github.com/datactivist/slides_datactivist/raw/master/inst/rmarkdown/templates/xaringan/resources/img/fond_noir_monochrome.png' width='100px'></a></div></center></span></div>")` 
+
+
+---
+
+class: center, middle
+
+Ces slides en ligne : `r paste0("http://datactivist.coop/", params$slug)`
+
+Sources : `r paste0("https://github.com/datactivist/", params$slug)`
+
+
+Les productions de Datactivist sont librement réutilisables selon les termes de la licence [Creative Commons 4.0 BY-SA](https://creativecommons.org/licenses/by-sa/4.0/legalcode.fr).
+
+<BR>
+<BR>
+
+![](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png)
+
+---
+
+# Rappels sur l'appel à commentaires
+
+L'appel à commentaires à eu lieu du 04 janvier au 12 février 2021.
+
+* 7 retours par mail
+* XX commentaires sur le tableau
+
+---
+
+# Remarques d'ensemble
+
+* Intégration des archives intermédiaires
+* Liste déroulante sur les domaines : expliquer pourquoi ces choix ont été faits, certains services ont travaillé de leur côté sur les fonctions et se demandent comment articuler les 2
+* Ajout d'une fiche descriptives de contexte
+* La réalisation du fichier demande un important travail de reprise manuelle
+
+---
+
+# Remarques sur les champs du registre
+
+[Lien vers le tableau de synthèse des remarques](https://docs.google.com/spreadsheets/d/1wvEO6B7eGgeryNulY6FZ0L4t3GXiWH_mvX2ahcmtb44/edit?usp=sharing)
+
+---
+
+# Suite à donner
+
+* Sur quel support transmettre les info?
