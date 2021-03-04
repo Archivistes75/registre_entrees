@@ -88,30 +88,42 @@ Les productions de Datactivist sont librement réutilisables selon les termes de
 
 ---
 
-# Rappels sur l'appel à commentaires
+## Rappels sur l'appel à commentaires
 
-L'appel à commentaires à eu lieu du 04 janvier au 12 février 2021.
+L'appel à commentaires a eu lieu du 04 janvier au 12 février 2021.
 
-* 7 retours par mail
-* XX commentaires sur le tableau
+* 11 commentateurs dans le tableau et 7 retours par mail (certaines personnes ont commenté dans le tableau puis ont envoyé un mail)
+* 48 commentaires reçus
 
 ---
 
-# Remarques d'ensemble
+## Remarques d'ensemble
 
 * Intégration des archives intermédiaires
-* Liste déroulante sur les domaines : expliquer pourquoi ces choix ont été faits, certains services ont travaillé de leur côté sur les fonctions et se demandent comment articuler les 2
+* Les listes déroulantes sur les domaines et fonctions suscitent de nombreuses réactions
 * Ajout d'une fiche descriptives de contexte
-* La réalisation du fichier demande un important travail de reprise manuelle
+* La réalisation du fichier demande un important travail de reprise à la main
+* Explication du json dans la documentation
 
 ---
 
-# Remarques sur les champs du registre
+## Demande d'ajout de champs
+
+* Communicabilité
+* Niveau de description
+* Vocabulaires contrôlés locaux
+* Identifiants pérennes des producteurs et services versants
+
+---
+
+## Remarques sur les champs du registre
 
 [Lien vers le tableau de synthèse des remarques](https://docs.google.com/spreadsheets/d/1wvEO6B7eGgeryNulY6FZ0L4t3GXiWH_mvX2ahcmtb44/edit?usp=sharing)
 
 ---
 
-# Suite à donner
+## Suites à donner
 
-* Sur quel support transmettre les info?
+* Mise à jour du schéma
+* Réunion du COPIL
+* Quelle communication prévoir?
