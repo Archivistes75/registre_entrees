@@ -5,6 +5,8 @@ Création d'un schéma de données pour les registres d'entrées d'archives des 
 * [Copil 1](https://datactivist.coop/siaf/20200703_COPIL1/)
 * [Copil 2](https://datactivist.coop/siaf/20200911_COPIL2/) 
 * [Copil 3](https://datactivist.coop/siaf/20201105_COPIL3/)
+* [Copil restreint 4](https://datactivist.coop/siaf/20210503_COPIL4)
+* [Copil 5](https://datactivist.coop/siaf/20210104_COPIL5)
 
 ## Composition du groupe de travail
 
@@ -95,6 +97,8 @@ Les fichiers doivent comporter :
    * Autant de lignes que nécessaire comprenant des cellules dont les valeurs peuvent être obligatoires (elles doivent être impérativement renseignées) ou optionnelles (elles sont seulement recommandées ou soumises à condition de disponibilité / pertinence)
    
    * Traitement des cellules vides (absence de valeur ou valeur équivalente à 0) : ces cellules doivent être laissées vides. Dans le cas où une valeur numérique est égale à zéro elle doit être écrite 0.0 (zéro [point] zéro), et, dans le cas où des caractères spéciaux sont utilisés pour remplacer des valeurs manquantes (ex. "-" ou "NaN"), cela doit être mentionné dans les métadonnées.
+   
+   * Les dates doivent être formées selon la norme 8601 : YYYY-MM-DD. 
 
 ## Recommandations pour la découvrabilité
 
@@ -137,6 +141,10 @@ Il va falloir préparer les données afin qu'elles correspondent au modèle déf
 * Fréquence de mise à jour :
 
         `Annuelle `(à modifier le cas échéant)
+        
+* Source des données : [Export généré par SIA, tableur réalisé par le service...]
+    
+        `Ce jeu de données est issu du système d'information archivistique XXX`
         
 * Catégories (tag) :
 

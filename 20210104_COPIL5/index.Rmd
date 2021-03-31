@@ -1,0 +1,150 @@
+---
+title: "Schéma de données pour les registres d'entrées"
+subtitle: "COPIL SIAF / AAF"
+author: "Samuel Goëta, Anne-Laure Donzel, Datactivist"
+date: "`r format(Sys.Date(), '01/04/2021')`"
+output:
+  SlidesDatactivist::moon_reader:
+    css: [default, datactivist, datactivist-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: ["macros.js", "https://platform.twitter.com/widgets.js"]
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>`
+params:
+  event: COPIL SIAF / AAF
+  slug: siaf/5
+
+---
+
+```{r, echo=FALSE}
+library(metathis)
+meta() %>% 
+  meta_description(params$event) %>% 
+  meta_name("github-repo" = paste0("datactivist/", params$slug)) %>% 
+  meta_viewport() %>% 
+  meta_social(
+    title = params$title,
+    url = paste0("https://datactivist.coop/", params$slug),
+    image = params$image,
+    image_alt = params$image_alt,
+    og_type = "website",
+    og_author = "Datactivist",
+    og_locale = "fr_FR",
+    og_site_name = "Datactivist",
+    twitter_card_type = "summary",
+    twitter_creator = "@datactivi_st")
+
+```
+
+layout: true
+
+<style>
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: #e95459;
+}
+
+</style>
+
+
+`r paste0("<div class='my-footer'><span>", params$event, "</span> <center><div class=logo><a href='https://datactivist.coop/'><img src='https://github.com/datactivist/slides_datactivist/raw/master/inst/rmarkdown/templates/xaringan/resources/img/fond_noir_monochrome.png' width='100px'></a></div></center></span></div>")` 
+
+
+---
+
+class: center, middle
+
+Ces slides en ligne : `r paste0("http://datactivist.coop/", params$slug)`
+
+Sources : `r paste0("https://github.com/datactivist/", params$slug)`
+
+
+Les productions de Datactivist sont librement réutilisables selon les termes de la licence [Creative Commons 4.0 BY-SA](https://creativecommons.org/licenses/by-sa/4.0/legalcode.fr).
+
+<BR>
+<BR>
+
+![](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png)
+
+---
+
+### Rappels sur l'appel à commentaires
+
+L'appel à commentaires a eu lieu du 04 janvier au 12 février 2021.
+
+* 11 commentateurs dans le tableau et 7 retours par mail (certaines personnes ont commenté dans le tableau puis ont envoyé un mail)
+* 48 commentaires reçus
+
+---
+
+### Remarques générales sur l'appel à commentaires
+
+* Intégration des archives intermédiaires
+* Les listes déroulantes sur les domaines et fonctions suscitent de nombreuses réactions
+* Quelques retours sur le temps nécessaire pour réaliser le schéma
+* Plusieurs demandes d'ajout de champs
+
+Un COPIL restreint a eu lieu le vendredi 5 mars et a tranché plusieurs questions. Il reste cependant quelques éléments qui nécessitent l'avis du COPIL.
+
+---
+
+### Remarques précises sur les champs du registre
+
+[Lien vers le tableau de synthèse des remarques](https://docs.google.com/spreadsheets/d/1wvEO6B7eGgeryNulY6FZ0L4t3GXiWH_mvX2ahcmtb44/edit?usp=sharing)
+
+[Lien vers le tableau de l'appel à commentaires](https://docs.google.com/spreadsheets/d/1O-8Hhw6_78BILxNAchl391cpYNXpck2S1cTH1bXM_d8/edit?usp=sharing)
+
+---
+
+### Réunion avec les éditeurs de SIA
+
+* Réunion SIAF/AAF avec les éditeurs le 25 février 2021
+* La plupart des éditeurs présents (5 éditeurs)
+* Des éditeurs très intéressés par la démarche et pour qui le travail d'implémentation dans les SIA semblait assez simple à réaliser
+* En parallèle, le SIAF a pensé inclure ce projet au sein de l'AAP France Relance
+
+---
+
+### Visualisation des données standardisées
+
+Dernier pan de la mission : proposer un outil de visualisation des données standardisées:
+
+Prérequis :
+
+* Obtenir des données répondant au standard
+* Fixer une échéance au projet
+
+
+---
+
+## Dernières étapes
+
+* Validation du schéma par le COPIL 
+* Réalisation d'un fichier au format tableur pour les services non dotés d'un SIA
+* Mise à jour du schéma et validation technique du schéma (validation schema.data.gouv)
+* Transfert vers Git AAF
+* Outil de visualisation
+* Plan de relance et relations avec les éditeurs
+* Plan B si échec du plan de relance (moulinette?)
+
+.red[Accompagner le tout d'une communication adaptée]

@@ -131,12 +131,12 @@ Il existe d'autres identifiants (VIAF, ISNI...) mais ceux-ci ne sont pas utilis�
 
 ### Concertation en dehors du groupe de travail
 
-[A COMPLETER]
-
 Le schéma a été ajouté à schema.data.gouv comme étant en investigation le 15 novembre 2020.
+
+Un appel à commentaires a eu lieu du 04 janvier au 12 février 2021.Un webinaire de présentation du schéma a ouvert cet appel à commentaire le 04 janvier 2021. Sur la période, une cinquantaine de retours a été réalisé. 
+
+Les commentaires ont été analysé par le groupe de travail.
 
 ## Construction du schéma
 
 [EN COURS]
-
-Le schéma sera produit au format json.

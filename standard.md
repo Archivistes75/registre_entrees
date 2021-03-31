@@ -3,7 +3,7 @@ Spécification du modèle de données relatif aux registres des entrées des ser
 
 ### Modèle de données
 
-[VERSION PROVISOIRE SOUMISE A AVIS]
+[VERSION PROVISOIRE EN COURS DE VALIDATION]
 
 Ce modèle de données repose sur les 20 champs suivants correspondant aux colonnes du [fichier tabulaire](https://docs.google.com/spreadsheets/d/1O-8Hhw6_78BILxNAchl391cpYNXpck2S1cTH1bXM_d8/edit?usp=sharing).
 
@@ -85,7 +85,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - valeur obligatoire
 
-- **valeurs autorisées** : ["Versement","Don","Achat", "Leg ou Dation", "Copie", "Restitution"]
+- **valeurs autorisées** : ["Versement","Don","Achat", "Leg ou Dation", "Copie", "Restitution", "Autre"]
 
 #### `orgaVers`
 
@@ -133,9 +133,9 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **exemple** : `Service de l'achat public`
 
-- valeur optionnelle
+- valeur obligatoire
 
-#### `fonctionProd`
+#### `typeProd`
 
 - **titre** : Fonction du producteur
 
@@ -151,7 +151,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **commentaire** : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l'enquête annuelle. 
 
-#### `domaineProd`
+#### `activiteProd`
 
 - **titre** : Domaine ou thématique d'action du producteur
 
@@ -215,7 +215,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - valeur obligatoire
 
-- **valeurs autorisées** : ["Support papier","Support électronique","Support mixte"]
+- **valeurs autorisées** : ["Support physique","Support électronique","Support mixte"]
 
 #### `mlEntree`
 
