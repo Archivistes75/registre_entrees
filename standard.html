@@ -429,15 +429,15 @@ summary {
 <p>Spécification du modèle de données relatif aux registres des entrées des services publics d’archives.</p>
 <div id="modèle-de-données" class="section level3">
 <h3>Modèle de données</h3>
-<p>[VERSION PROVISOIRE SOUMISE A AVIS]</p>
+<p>[VERSION VALIDEE]</p>
 <p>Ce modèle de données repose sur les 20 champs suivants correspondant aux colonnes du <a href="https://docs.google.com/spreadsheets/d/1O-8Hhw6_78BILxNAchl391cpYNXpck2S1cTH1bXM_d8/edit?usp=sharing">fichier tabulaire</a>.</p>
 <div id="id" class="section level4">
 <h4><code>ID</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Identifiant unique de chaque entrée</p></li>
-<li><p><strong>description</strong> : Identifiant unique de chaque entrée sous la forme : l’identifiant du service archives, année d’entrée et numéro incrémental.</p></li>
+<li><p><strong>description</strong> : Identifiant unique de chaque entrée sous la forme : l’identifiant du service archives, année d’entrée et un identifiant unique (numéro incrémental, identifiant technique…).</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>FRAC_13001_2020_001</code> `</p></li>
+<li><p><strong>exemple</strong> : <code>FRAC_13001_2020_001</code>, <code>FRAN_2020_aeaqaaaabehgml5fab7gialyq46s4jyaaaca</code> `</p></li>
 <li><p>valeur obligatoire</p></li>
 <li><p><strong>commentaire</strong> : L’identifiant du service d’archives peut être composé soit du numéro utilisé pour identifier les IR, ou pour des services d’entreprises le SIREN ou pour d’autres types de services le RCR, le numéro Muséophile. Dans ce cas, il faut renseigneer cet éléments dans les métadonnées associées</p></li>
 </ul>
@@ -492,17 +492,18 @@ summary {
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
 <li><p><strong>exemple</strong> : <code>Versement</code></p></li>
 <li><p>valeur obligatoire</p></li>
-<li><p><strong>valeurs autorisées</strong> : [“Versement”,“Don”,“Achat”, “Leg ou Dation”, “Copie”, “Restitution”]</p></li>
+<li><p><strong>valeurs autorisées</strong> : [“Versement”, “Don”, “Achat”, “Dévolution”, “Leg ou Dation”, “Copie”, “Restitution”, “Protocole”, “Autre”]</p></li>
 </ul>
 </div>
 <div id="orgavers" class="section level4">
 <h4><code>orgaVers</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Organisation qui verse l’entrée</p></li>
-<li><p><strong>description</strong> : Nom de l’organisation qui a versé l’entrée, distincte du service qui a produit les entrées dans l’organisation</p></li>
+<li><p><strong>description</strong> : Nom de l’organisation qui a versé l’entrée, distincte du service qui a produit les entrées dans l’organisation.</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>Ville d&#39;Aix-en-Provence</code></p></li>
+<li><p><strong>exemple</strong> : <code>Ville d&#39;Aix-en-Provence</code>, <code>FR78422804100033_000000011 - Tribunal administratif</code></p></li>
 <li><p>valeur optionnelle</p></li>
+<li><p><strong>commentaire</strong> : Dans le cas où des identifiants pérennes existent pour identifier les organisations versantes, elles peuvent être ajoutées en complément du nom de l’organisation : URI - Nom de l’organisation. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale <em>pipe</em> “|”.</p></li>
 </ul>
 </div>
 <div id="servvers" class="section level4">
@@ -519,10 +520,11 @@ summary {
 <h4><code>orgaProd</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Organisation productrice de l’entrée</p></li>
-<li><p><strong>description</strong> : Nom de l’organisation qui a produit l’entrée, distincte du service qui a produit les entrées dans l’organisation</p></li>
+<li><p><strong>description</strong> : nom de l’organisation qui a produit l’entrée, distincte du service qui a produit les entrées dans l’organisation.</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>Ville d&#39;Aix-en-Provence</code></p></li>
+<li><p><strong>exemple</strong> : <code>Ville d&#39;Aix-en-Provence</code>, <code>FR78422804100033_000000011 - Tribunal administratif</code></p></li>
 <li><p>valeur optionnelle</p></li>
+<li><p><strong>commentaire</strong> : Dans le cas où des identifiants pérennes existent pour identifier les organisations productrices, elles peuvent être ajoutées en complément du nom de l’organisation : URI - Nom de l’organisation. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale <em>pipe</em> “|”.</p></li>
 </ul>
 </div>
 <div id="servprod" class="section level4">
@@ -532,11 +534,11 @@ summary {
 <li><p><strong>description</strong> : Permet d’identifier la personne physique ou morale qui a produit les documents</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
 <li><p><strong>exemple</strong> : <code>Service de l&#39;achat public</code></p></li>
-<li><p>valeur optionnelle</p></li>
+<li><p>valeur obligatoire</p></li>
 </ul>
 </div>
-<div id="fonctionprod" class="section level4">
-<h4><code>fonctionProd</code></h4>
+<div id="typeprod" class="section level4">
+<h4><code>typeProd</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Fonction du producteur</p></li>
 <li><p><strong>description</strong> : permet d’identifier la fonction du producteur, liste établie à partir des éléments du SIAF</p></li>
@@ -547,16 +549,16 @@ summary {
 <li><p><strong>commentaire</strong> : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle.</p></li>
 </ul>
 </div>
-<div id="domaineprod" class="section level4">
-<h4><code>domaineProd</code></h4>
+<div id="activiteprod" class="section level4">
+<h4><code>activiteProd</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Domaine ou thématique d’action du producteur</p></li>
 <li><p><strong>description</strong> : Permet d’identifier le domaine d’activité du producteur, liste établie à partir des éléments du SIAF</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>Ressources humaines</code></p></li>
+<li><p><strong>exemple</strong> : <code>Administration générale (fonctions transverses hors RH) | Culture, jeunesse et sports</code></p></li>
 <li><p>valeur obligatoire</p></li>
 <li><p><strong>valeurs autorisées</strong> : [“Instances de délibération”, “Direction, cabinet”, “Administration générale (fonctions transverses hors RH)”, “Finances, fiscalité”, “Ressources humaines”, “Économie, industrie”, “Agriculture”, “Équipement, environnement”, “Travail, emploi”, “Affaires sociales, santé”, “Justice”, “Police, protection civile, intérieur”, “Éducation, recherche”, “Culture, jeunesse et sports”, “Défense, anciens combattants”, “Outre-mer”, “Archives privées personnelles et familiales”, “Archives privées cultuelles”, “Archives privées d’associations, de partis politiques, de syndicats”, “Archives privées d’entreprises”, “Archives privées de professionnels (architectes, photographes…)”]</p></li>
-<li><p><strong>commentaire</strong> : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle. Les valeurs “Archives privées personnelles et familiales”, “Archives privées cultuelles”, “Archives privées d’associations, de partis politiques, de syndicats”, “Archives privées d’entreprises”, “Archives privées de professionnels (architectes, photographes…)” sont à réserver aux éléments qui possèdent l’élément “Producteurs privés” en <em>fonction du producteur</em>.</p></li>
+<li><p><strong>commentaire</strong> : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle. Les valeurs “Archives privées personnelles et familiales”, “Archives privées cultuelles”, “Archives privées d’associations, de partis politiques, de syndicats”, “Archives privées d’entreprises”, “Archives privées de professionnels (architectes, photographes…)” sont à réserver aux éléments qui possèdent l’élément “Producteurs privés” en <em>fonction du producteur</em>. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale <em>pipe</em> “|”.</p></li>
 </ul>
 </div>
 <div id="desccontenu" class="section level4">
@@ -597,7 +599,7 @@ summary {
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
 <li><p><strong>exemple</strong> : <code>Support papier</code></p></li>
 <li><p>valeur obligatoire</p></li>
-<li><p><strong>valeurs autorisées</strong> : [“Support papier”,“Support électronique”,“Support mixte”]</p></li>
+<li><p><strong>valeurs autorisées</strong> : [“Support physique”,“Support électronique”,“Support mixte”]</p></li>
 </ul>
 </div>
 <div id="mlentree" class="section level4">

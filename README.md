@@ -136,16 +136,14 @@ Il va falloir préparer les données afin qu'elles correspondent au modèle déf
         
 * Description du jeu de données :
 
-        `Ce jeu de données contient les entrées du services des archives de [entité] pour l’année [XXXX]. Chaque entrée dans le service est enregistrée par type d’entrée (publique ou privée) avec le service qui l’a produite, la thématique, le volume. Les données proviennent de l'outil [préciser l'outil de gestion], et elles ont été traitées de la façon suivante avant publication [préciser les traitements : ajout d'éléments, suppression, harmonisation etc.]`
+        `Ce jeu de données contient les entrées du services des archives de [entité] pour l’année [XXXX]. Chaque entrée dans le service est enregistrée par type d’entrée (publique ou privée) avec le nom de l'entité productrice, la thématique, le volume. Les données proviennent de l'outil [préciser l'outil de gestion], et elles ont été traitées de la façon suivante avant publication [préciser les traitements : ajout d'éléments, suppression, harmonisation etc.]. [Dans le cas d'archives entrées à titre intermédiaire, des éliminations règlementaires pourront avoir lieu.]`
+        
+[Des précisions complémentaires concernant le contenu peuvent être apportées : s'agit-]        
         
 * Fréquence de mise à jour :
 
         `Annuelle `(à modifier le cas échéant)
-        
-* Source des données : [Export généré par SIA, tableur réalisé par le service...]
-    
-        `Ce jeu de données est issu du système d'information archivistique XXX`
-        
+
 * Catégories (tag) :
 
         `“Archives”, “Entrées d’Archives”, "Archives publiques"`

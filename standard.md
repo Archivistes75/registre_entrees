@@ -3,7 +3,7 @@ Spécification du modèle de données relatif aux registres des entrées des ser
 
 ### Modèle de données
 
-[VERSION PROVISOIRE EN COURS DE VALIDATION]
+[VERSION VALIDEE]
 
 Ce modèle de données repose sur les 20 champs suivants correspondant aux colonnes du [fichier tabulaire](https://docs.google.com/spreadsheets/d/1O-8Hhw6_78BILxNAchl391cpYNXpck2S1cTH1bXM_d8/edit?usp=sharing).
 
@@ -11,11 +11,11 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **titre** : Identifiant unique de chaque entrée
 
-- **description** : Identifiant unique de chaque entrée sous la forme : l'identifiant du service archives, année d'entrée et numéro incrémental.
+- **description** : Identifiant unique de chaque entrée sous la forme : l'identifiant du service archives, année d'entrée et un identifiant unique (numéro incrémental, identifiant technique...).
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `FRAC_13001_2020_001`
+- **exemple** : `FRAC_13001_2020_001`, `FRAN_2020_aeaqaaaabehgml5fab7gialyq46s4jyaaaca`
 `
 - valeur obligatoire
 
@@ -25,9 +25,9 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **titre** : Nom du service archives 
 
-- **description** : Nom sous forme textuelle du service d'archives dans où sont entrées les archives
+- **description** : Nom sous forme textuelle du service d'archives dans lequel sont entrées les archives
 
-- **type** : chaîne de caractères
+- **type** : Chaîne de caractères
 
 - **exemple** : `Archives municipales d'Aix-en-Provence`
 
@@ -61,7 +61,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **titre** : Nature juridique des documents entrés
 
-- **description** : Permet d'identifier le nature juridique des archives
+- **description** : Permet d'identifier la nature juridique des archives
 
 - **type** : Chaîne de caractères
 
@@ -85,23 +85,25 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - valeur obligatoire
 
-- **valeurs autorisées** : ["Versement","Don","Achat", "Leg ou Dation", "Copie", "Restitution", "Autre"]
+- **valeurs autorisées** : ["Versement", "Don", "Achat", "Dévolution", "Leg ou Dation", "Copie", "Restitution", "Protocole", "Autre"]
 
 #### `orgaVers`
 
 - **titre** : Organisation qui verse l'entrée
 
-- **description** : Nom de l'organisation qui a versé l'entrée, distincte du service qui a produit les entrées dans l'organisation
+- **description** : Nom de l'organisation qui a versé l'entrée, distincte du service qui a produit les entrées dans l'organisation.
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `Ville d'Aix-en-Provence`
+- **exemple** : `Ville d'Aix-en-Provence`, `FR78422804100033_000000011 - Tribunal administratif`
 
 - valeur optionnelle
 
+- **commentaire** : Dans le cas où des identifiants pérennes existent pour identifier les organisations versantes, elles peuvent être ajoutées en complément du nom de l'organisation : URI - Nom de l'organisation. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale *pipe* "|".
+
 #### `servVers`
 
-- **titre** : Service versant l'entrée
+- **titre** : Service qui verse l'entrée
 
 - **description** : permet d'identifier la personne physique ou morale qui a transféré les documents
 
@@ -115,13 +117,15 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **titre** : Organisation productrice de l'entrée
 
-- **description** : Nom de l'organisation qui a produit l'entrée, distincte du service qui a produit les entrées dans l'organisation
+- **description** : nom de l'organisation qui a produit l'entrée, distincte du service qui a produit les entrées dans l'organisation. 
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `Ville d'Aix-en-Provence`
+- **exemple** : `Ville d'Aix-en-Provence`, `FR78422804100033_000000011 - Tribunal administratif`
 
 - valeur optionnelle
+
+- **commentaire** : Dans le cas où des identifiants pérennes existent pour identifier les organisations productrices, elles peuvent être ajoutées en complément du nom de l'organisation : URI - Nom de l'organisation. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale *pipe* "|".
 
 #### `servProd`
 
@@ -149,7 +153,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **valeurs autorisées** : ["Présidence de la République", "Premier ministre", "Ministères (directions d'administration centrale) ", "Assemblées parlementaires", "Grands organes de contrôle", "Services déconcentrés et établissements publics de l’État à compétence départementale ou locale", "Services déconcentrés et établissements publics de l’État à compétence régionale ou supra-départementale", "Administrations centrales délocalisées et établissements publics nationaux de l’État", "Communes de plus de 2 000 habitants", "Communes de moins de 2 000 habitants", "Services du conseil départemental et établissements publics départementaux", "Services du conseil régional et établissements publics régionaux", "Services de la commune et établissements publics communaux", "Structures intercommunales ou interdépartementales", "Établissements publics de santé", "Organismes de droit privé chargés d’une mission de service public", "Officiers publics ou ministériels (dont notaires) ", "Producteurs privés"]
 
-- **commentaire** : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l'enquête annuelle. 
+- **commentaire** : La séparation entre type et activité répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l'enquête annuelle. 
 
 #### `activiteProd`
 
@@ -159,13 +163,13 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `Ressources humaines`
+- **exemple** : `Administration générale (fonctions transverses hors RH) | Culture, jeunesse et sports`
 
 - valeur obligatoire
 
 - **valeurs autorisées** : ["Instances de délibération", "Direction, cabinet", "Administration générale (fonctions transverses hors RH)", "Finances, fiscalité", "Ressources humaines", "Économie, industrie", "Agriculture", "Équipement, environnement", "Travail, emploi", "Affaires sociales, santé", "Justice", "Police, protection civile, intérieur", "Éducation, recherche", "Culture, jeunesse et sports", "Défense, anciens combattants", "Outre-mer", "Archives privées personnelles et familiales", "Archives privées cultuelles", "Archives privées d'associations, de partis politiques, de syndicats", "Archives privées d'entreprises", "Archives privées de professionnels (architectes, photographes...)"]
 
-- **commentaire** : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l'enquête annuelle. Les valeurs "Archives privées personnelles et familiales", "Archives privées cultuelles", "Archives privées d'associations, de partis politiques, de syndicats", "Archives privées d'entreprises", "Archives privées de professionnels (architectes, photographes...)" sont à réserver aux éléments qui possèdent l'élément "Producteurs privés" en *fonction du producteur*.
+- **commentaire** : La séparation entre type et activité répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l'enquête annuelle. Les valeurs "Archives privées personnelles et familiales", "Archives privées cultuelles", "Archives privées d'associations, de partis politiques, de syndicats", "Archives privées d'entreprises", "Archives privées de professionnels (architectes, photographes...)" sont à réserver aux éléments qui possèdent l'élément "Producteurs privés" en *fonction du producteur*. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale *pipe* "|".
 
 #### `descContenu`
 
@@ -221,7 +225,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - **titre** : Métrage linéaire de l'entrée
 
-- **description** : Volument en mètre linéaire de l'entrée
+- **description** : Volume en mètre linéaire de l'entrée
 
 - **type** : nombre réel
 
@@ -229,7 +233,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - valeur optionnelle
 
-- - **commentaire** : le séparateur décimal doit être le point . L'unité sera rappelée en métadonnée.
+- **commentaire** : le séparateur décimal doit être le point . L'unité sera rappelée en métadonnée.
 
 #### `nbreArt`
 
@@ -255,7 +259,7 @@ Ce modèle de données repose sur les 20 champs suivants correspondant aux colon
 
 - valeur optionnelle
 
-- - **commentaire** : le séparateur décimal doit être le point **.** L'unité sera rappelée en métadonnée.
+- **commentaire** : le séparateur décimal doit être le point **.** L'unité sera rappelée en métadonnée.
 
 #### `objElec`
 
