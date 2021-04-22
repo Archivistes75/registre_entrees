@@ -75,7 +75,7 @@ ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree)) +
         theme(plot.title = element_text(face = "bold")) +
         theme(axis.title.y = element_text(size=12)) +
         theme(axis.title.x = element_text(size=12)) +
- #  transition_reveal(dateYear) +
+   transition_reveal(dateYear) +
    facet_wrap(vars(modeEntree)) +
    theme_light() + guides(colour = FALSE)   
 
@@ -90,6 +90,7 @@ anim_save("depots_archives_par_mode.gif")
 t1bis <- t1bis %>% group_by(modeEntree) %>% mutate(count=cumsum(n)) # fréquences cumulées
   # plot
 library(plotly)
+library(viridis)
 p <- t1bis %>%
      ggplot(aes(x=dateYear, y=count, fill=modeEntree,  
                 text = paste("Mode d'entrée :", modeEntree, # customisation du texte à afficher
@@ -156,6 +157,8 @@ colnames(t3) <- c("modeEntree", "nature", "Freq")
 t3 <- avignon %>% group_by(nature) %>% count(modeEntree)
 t3 <- na.omit(t3)
   # plot
+library(ggthemes)
+library(hrbrthemes)
 ggplot(t3, aes(fill=modeEntree, y=n, x=nature)) + 
     geom_bar(stat="identity", position=position_dodge()) +
     scale_fill_viridis_d(name="Type d'entrée", option = "C", direction = 1) +
@@ -184,7 +187,7 @@ ggplot(t4bis, aes(fill=natureSupport, y=n, x=nature)) +
     geom_bar(position="stack", stat="identity") +
     geom_text(aes(y=ypos, label=n), vjust=1.3, color="white", size=5)+
     scale_fill_viridis(discrete = T, name="Nature du support") +
-    ggtitle("Nature du support des archives déposées selon leur nature") +
+    ggtitle("Nature du support des archives entrées selon leur type") +
       labs(caption="Données non réelles pour la nature du support") +
     theme_ipsum() +
     xlab("") + ylab("Nombre d'entrées") +
