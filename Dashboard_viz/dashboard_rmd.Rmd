@@ -2,20 +2,12 @@
 title: "Archives municipales d'Avignon"
 output: 
   flexdashboard::flex_dashboard:
-  #  theme: simplex
-    orientation: rows
+    theme: bootstrap
+    social: menu
+  #  orientation: rows
     vertical_layout: fill
+    logo: datactivist2.png
 ---
-<style>                     
-.navbar {
-  background-color:#999999;
-  border-color:grey;
-}
-.navbar-brand {
-  color:white!important;
-  face:italic;
-}
-</style>  
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
@@ -39,6 +31,11 @@ library(hrbrthemes)
 library(dygraphs) 
 library(gmodels)
 library(forcats)
+library(e1071)
+library(mlbench)
+library(tm)
+library(SnowballC)
+library(wordcloud2)
 
 # Import base
 avignon <- read_delim("Avignon_standardise.csv", ";")
@@ -60,8 +57,25 @@ avignon$modeEntree <- str_replace_all(avignon$modeEntree, c("Collecte"="Collecte
 
 ```
 
-Page 1
+Page 1 {data-orientation=rows}
 =====================================  
+
+
+```{r}
+dataset <- eventReactive(input$file1,{
+   dataset <- read.csv(input$file1$datapath)
+})
+```
+
+
+```{r, echo = FALSE}
+fileInput("file1", "Veuillez importer la base de données csv",
+                    multiple = TRUE,
+                    accept = c("text/csv",
+                             "text/comma-separated-values,text/plain",
+                             ".csv"))
+```
+
 
 
 Row {data-height=200}
@@ -133,6 +147,7 @@ p <- t1bis %>%
 ggplotly(p, source = "select", tooltip=c("text"))
 ```
 
+
 ### Répartition des archives selon le mode d'entrée
 
 ```{r echo=FALSE}
@@ -140,17 +155,24 @@ ggplotly(p, source = "select", tooltip=c("text"))
     # création du tableau des fréquences par mode d'entrée
 t2 <- as.data.frame(table(avignon$modeEntree))
 colnames(t2) <- c("modeEntree", "Freq")
+
     # plot où on met la fréquence en pourcentage puis on réordonne par ordre décroissant
-t2 %>% mutate(Freq = Freq/sum(Freq)) %>% 
+plot_t2 <- t2 %>% mutate(Freq = Freq/sum(Freq)) %>% 
   mutate(modeEntree = fct_reorder(modeEntree, Freq)) %>% 
-  ggplot(aes(x=modeEntree, y=Freq)) +
+  ggplot(aes(x=modeEntree, y=Freq,  
+                text = paste("Mode d'entrée :", modeEntree, # customisation du texte à afficher
+                              "\nPourcentage des archives :", round(Freq*100,0),"%"), group=modeEntree))+
     geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
     coord_flip() +
     ylab("Pourcentage des archives entrées de 1989 à 2020") + xlab("Mode d'entrée") + 
  #  ggtitle("Répartition des archives selon le mode d'entrée") +
     theme_bw() +
     scale_y_continuous(labels = scales::percent_format())  # afficher des % sur la règle des y (abscisses car coord_flip)
+
+ggplotly(plot_t2, tooltip=c("text"))
 ```
+
+
 
 
 Row {data-height=500}
@@ -164,8 +186,8 @@ t1 <- as.data.frame(table(avignon$dateYear))   # ces commandes permettent de ré
 
 t11 <- stats::ts(t1$Freq, frequency=1, start=1989)
 
-dygraph(t11) %>% dyRangeSelector() %>% dyOptions(stackedGraph = TRUE) %>%   dySeries("mdeaths", label = "Male") %>%
-
+dygraph(t11) %>% dyRangeSelector() %>% dyOptions(stackedGraph = TRUE) %>% dySeries("V1", label = "Nombre d'entrées") %>%
+  dyHighlight(highlightSeriesOpts = list(strokeWidth = 2))
 ```
 
 
@@ -174,46 +196,51 @@ dygraph(t11) %>% dyRangeSelector() %>% dyOptions(stackedGraph = TRUE) %>%   dySe
 
 ```{r echo=FALSE}
   # plot
-ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree)) +  
+ggp <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree)) +  
    geom_line(aes(x=dateYear, y=n), lwd=1) +
    labs(y = "Nombre d'archives entrées", x="Année de l'entrée") +
         theme(plot.title = element_text(face = "bold")) +
         theme(axis.title.y = element_text(size=12)) +
         theme(axis.title.x = element_text(size=12)) +
- #  transition_reveal(dateYear) +
+#   transition_reveal(dateYear) +
    facet_wrap(vars(modeEntree)) +
-   theme_light() + guides(colour = FALSE)   
+   theme_light() + guides(colour = FALSE) 
+#animate(ggp)
+ggp
 ```
 
-### Nombre d'entrées selon le type et la nature
+### Wordcloud
+
+```{r include=FALSE}
+  # prepare data
+data_wordcloud <- glimpse(avignon)
+corpus = Corpus(VectorSource(data_wordcloud$activiteProd))
+
+corpus = tm_map(corpus, PlainTextDocument) #Conversion to Lowercase
+corpus = tm_map(corpus, tolower)
+corpus = tm_map(corpus, removePunctuation) #Removing Punctuation
+corpus = tm_map(corpus, removeWords, c("cloth", stopwords("french"))) #Remove stopwords
+corpus = tm_map(corpus, stripWhitespace) # Eliminate white spaces
+
+DTM <- TermDocumentMatrix(corpus)
+mat <- as.matrix(DTM)
+f <- sort(rowSums(mat),decreasing=TRUE)  #moment d'ajouter ville !
+dat <- data.frame(word = names(f),freq=f)
+
+  #plot
+library(wordcloud2) 
+
+```
+
 ```{r echo=FALSE}
-  # création du tableau des fréquences par mode d'entrée selon la nature (publique ou privée)
-t3 <- as.data.frame(table(avignon$modeEntree, avignon$nature))
-colnames(t3) <- c("modeEntree", "nature", "Freq")
-  # OU BIEN : pas d'obs qd fréq=0, évite les "trous" visuels
-t3 <- avignon %>% group_by(nature) %>% count(modeEntree)
-t3 <- na.omit(t3)
-  # plot
-library(ggthemes)
-library(hrbrthemes)
-ggplot(t3, aes(fill=modeEntree, y=n, x=nature)) + 
-    geom_bar(stat="identity", position=position_dodge()) +
-    scale_fill_viridis_d(name="Type d'entrée", option = "C", direction = 1) +
-  #  scale_fill_brewer(palette = "Spectral", direction = 1, name="Type d'entrée")  +
-   # ggtitle("Nombre d'entrées selon le type et la nature") +
-    theme_ipsum() +
-    xlab("") + ylab("Nombre d'archives") +
-        theme(axis.title.y = element_text(size=12, face="italic"))
-
+wordcloud2(data=dat, size=.8, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
 ```
-
-
 
 
 Page 2 {data-orientation=columns}
 =====================================  
 
-Column {data-height=400}
+Column {data-widtht=400}
 -------------------------------------
 
 ### Nature du support des archives entrées selon leur type
@@ -239,9 +266,27 @@ ggplot(t4bis, aes(fill=natureSupport, y=n, x=nature)) +
         theme(axis.title.y = element_text(size=12))
 ```
 
+### Nombre d'entrées selon le type et la nature
+```{r}
+t3 <- avignon %>% group_by(nature) %>% count(modeEntree)
+t3 <- na.omit(t3)
+  # plot
+ggp2 <- ggplot(t3, aes(fill=modeEntree, y=n, x=nature,  
+                text = paste("Nature :", nature, 
+                             "\nType d'entrée :", modeEntree,
+                              "\nCompte :", n,"archives"), group=modeEntree)) + 
+    geom_bar(stat="identity", position=position_dodge()) +
+    scale_fill_viridis_d(name="Type d'entrée", option = "D", direction = 1) +
+  #  ggtitle("Nombre d'entrées selon le type et la nature") +
+    theme_ipsum() +
+    xlab("") + ylab("Nombre d'archives") +
+        theme(axis.title.y = element_text(size=12, face="italic"))
+ggplotly(ggp2, tooltip=c("text"))
+```
 
 
-Column {data-height=600}{.tabset}
+
+Column {data-width=600}{.tabset}
 -------------------------------------
 
 
@@ -253,8 +298,6 @@ Column {data-height=600}{.tabset}
 t2 <- as.data.frame(table(avignon$modeEntree))
 colnames(t2) <- c("modeEntree", "Freq")
     # plot où on met la fréquence en pourcentage puis on réordonne par ordre décroissant
-library(gmodels)
-library(forcats)
 t2 %>% mutate(Freq = Freq/sum(Freq)) %>% 
   mutate(modeEntree = fct_reorder(modeEntree, Freq)) %>% 
   ggplot(aes(x=modeEntree, y=Freq)) +
@@ -273,11 +316,32 @@ t2 %>% mutate(Freq = Freq/sum(Freq)) %>%
 t2_individual <- as.data.frame(table(avignon$modeEntree, avignon$dateYear))
 colnames(t2_individual) <- c("modeEntree", "dateYear", "Freq")
   # plot
-t2_individual %>% ggplot(aes(x=modeEntree, y=Freq)) +
+ t2_individual %>% ggplot(aes(x=modeEntree, y=Freq)) +
   geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) + coord_flip() + 
   facet_wrap(vars(dateYear)) +
   ylab("Nombre d'entrées") + xlab("Mode d'entrée") + # ggtitle("Fréquence des entrées par année selon le type") +
    ggtitle("Répartition des archives selon le mode d'entrée par année") +
   theme_bw()
+
+```
+
+
+Data {data-orientation=rows}
+=====================================  
+
+Row 
+-------------------------------------
+
+### Les données
+
+```{r echo=FALSE}
+knitr::kable(avignon, format = "html") %>%
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"),fixed_thead = list(enabled = T, background = "lightgrey"))
+```
+
+### Wordcloud
+
+```{r echo=FALSE}
+wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
 ```
 
