@@ -91,6 +91,8 @@ t1bis <- t1bis %>% group_by(modeEntree) %>% mutate(count=cumsum(n)) # fréquence
   # plot
 library(plotly)
 library(viridis)
+library(ggthemes)
+library(hrbrthemes)
 p <- t1bis %>%
      ggplot(aes(x=dateYear, y=count, fill=modeEntree,  
                 text = paste("Mode d'entrée :", modeEntree, # customisation du texte à afficher
@@ -232,27 +234,23 @@ wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -p
 
 ### R.G n°9:  Wordcloud à partir de la colonne descContenu
 
-corpus = Corpus(VectorSource(data_wordcloud$descContenu))
+corpus2 = Corpus(VectorSource(data_wordcloud$descContenu))
 
-corpus = tm_map(corpus, PlainTextDocument) #Conversion to Lowercase
-corpus = tm_map(corpus, tolower)
-corpus = tm_map(corpus, removePunctuation) #Removing Punctuation
-corpus = tm_map(corpus, removeWords, c("cloth", stopwords("french"))) #Remove stopwords
-corpus = tm_map(corpus, stripWhitespace) # Eliminate white spaces
-corpus[[1]][1] 
+corpus2 = tm_map(corpus2, PlainTextDocument) #Conversion to Lowercase
+corpus2 = tm_map(corpus2, tolower)
+corpus2 = tm_map(corpus2, removePunctuation) #Removing Punctuation
+corpus2 = tm_map(corpus2, removeWords, c("cloth", stopwords("french"))) #Remove stopwords
+corpus2 = tm_map(corpus2, stripWhitespace) # Eliminate white spaces
 
-DTM <- TermDocumentMatrix(corpus)
-mat <- as.matrix(DTM)
-f <- sort(rowSums(mat),decreasing=TRUE)
-dat <- data.frame(word = names(f),freq=f)
-head(dat, 5)
+DTM2 <- TermDocumentMatrix(corpus2)
+mat2 <- as.matrix(DTM2)
+f2 <- sort(rowSums(mat2),decreasing=TRUE)
+dat2 <- data.frame(word = names(f2),freq=f2)
 
   #plot
-library(wordcloud2) 
-wordcloud2(data=dat, size=1.6, col=rep_len(c("#66CCFF", "#0099CC", "#3399CC", "#006699", "#0066FF", "#0033CC", "#0066CC", "#0000FF"), nrow(dat)))
-
-
-
+#wordcloud2(data=dat, size=1.6, col=rep_len(c("#66CCFF", "#0099CC", "#3399CC", "#006699", "#0066FF", "#0033CC", "#0066CC", "#0000FF"), nrow(dat)))
+#wordcloud2(data=dat2, size=1.2, color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), backgroundColor="#FAF3EE")
+letterCloud(data=dat2, word="SIAF", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), backgroundColor="#FAF3EE")
 
 
 

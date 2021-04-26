@@ -12,8 +12,7 @@ output:
 ```{r setup, include=FALSE}
 library(flexdashboard)
 knitr::opts_chunk$set(echo = FALSE, eval = TRUE, message = FALSE, warning = FALSE,
-collapse = TRUE,  fig.show = "hold",
-out.width = "100%")
+collapse = TRUE,  fig.show = "hold", out.width = "100%")
 ```
 
 ```{r include=FALSE}
@@ -35,7 +34,9 @@ library(e1071)
 library(mlbench)
 library(tm)
 library(SnowballC)
-library(wordcloud2)
+library(wordcloud2)  # Version 0.2.2 nécessaire absolument. #devtools::install_github("lchiffon/wordcloud2")
+library(htmlwidgets)
+
 
 # Import base
 avignon <- read_delim("Avignon_standardise.csv", ";")
@@ -54,10 +55,9 @@ avignon$dateYear <- format(as.Date(avignon$dateEntree, format="%d/%m/%Y"),"%Y")
 
 # On remplace le mode d'entrée 'collecte' par 'collecte privée'
 avignon$modeEntree <- str_replace_all(avignon$modeEntree, c("Collecte"="Collecte privée"))
-
 ```
 
-Page 1 {data-orientation=rows}
+Page 1 {data-orientation=columns}
 =====================================  
 
 
@@ -69,7 +69,7 @@ dataset <- eventReactive(input$file1,{
 
 
 ```{r, echo = FALSE}
-fileInput("file1", "Veuillez importer la base de données csv",
+fileInput("file1", "Veuillez importer la base de données au format csv.",
                     multiple = TRUE,
                     accept = c("text/csv",
                              "text/comma-separated-values,text/plain",
@@ -78,15 +78,17 @@ fileInput("file1", "Veuillez importer la base de données csv",
 
 
 
-Row {data-height=200}
+Column {data-width=250}
 -----------------------------------------------------------------------
+
+**Quelques chiffres clés** :
 
 ### Numbers
 
 ```{r echo=FALSE}
 # All icons here : https://ionicons.com/v2/cheatsheet.html
 row <- nrow(avignon)
-valueBox(row, caption="Archives entrées", color = "warning", icon = "ion-android-archive")
+valueBox(row, caption="Archives entrées", color = "#CC0033", icon = "ion-android-archive")
 ```
 
 ### Numbers 2
@@ -97,28 +99,46 @@ t1$Var1 <- as.character(t1$Var1)  # étape intermédiaire sinon remplace les ann
 t1$Var1 <- as.integer(t1$Var1)
 
 nYear <- tally(t1)
-valueBox(nYear, caption="Années répertoriées", color = "primary", icon = "ion-android-calendar")
+valueBox(nYear, caption="Années répertoriées", color = "#FF9933", icon = "ion-android-calendar")
 ```
 
 ### Part d'archives publiques
 
 ```{r echo=FALSE}
-valueBox("36%", caption="Archives publiques", color = "info", icon = "ion-android-contact")
+valueBox("36%", caption="Archives publiques", color = "#FFCC00", icon = "ion-android-contact")
 #gauge(63, min = 0, max = 100, symbol = '%', gaugeSectors(danger = c(0, 100)))
 ```
 
 ### Part des supports électroniques
 
 ```{r echo=FALSE}
-valueBox("67%", caption="Archives éléectroniques", color = "success", icon = "ion-android-desktop")
+valueBox("67%", caption="Archives éléctroniques", color = "#339900", icon = "ion-android-desktop")
 #gauge(63, min = 0, max = 100, symbol = '%', gaugeSectors(danger = c(0, 100)))
 ```
 
+### Nombre de séries
 
-Row {data-height=500}
+```{r echo=FALSE}
+valueBox(853, caption="Séries", color = "#0066CC", icon = "ion-ios-filing")
+```
+
+
+Column {data-width=600}
 -----------------------------------------------------------------------
 
-### Nombre cumulé d'archives par mode d'entrée depuis 1989
+### Nombre de documents entrés chaque année
+
+```{r}
+avignon$dateYear <- factor(avignon$dateYear, levels = c(min(avignon$dateYear):max(avignon$dateYear)))
+t1 <- as.data.frame(table(avignon$dateYear))   # ces commandes permettent de récupérer des fréquences pour toutes les années même si aucune archive n'a été rentrée (freq=0 alors)
+
+t11 <- stats::ts(t1$Freq, frequency=1, start=1989)
+
+dygraph(t11) %>% dyRangeSelector() %>% dyOptions(stackedGraph = TRUE) %>% dySeries("V1", label = "Nombre d'entrées") %>%
+  dyHighlight(highlightSeriesOpts = list(strokeWidth = 2))
+```
+
+### Nombre cumulé de documents par mode d'entrée depuis `r t1[1,1]`
 
 ```{r echo=FALSE}
 ### R.G n°1 : nb d'archives entrées par année selon le type
@@ -148,7 +168,13 @@ ggplotly(p, source = "select", tooltip=c("text"))
 ```
 
 
-### Répartition des archives selon le mode d'entrée
+Column {data-width=450}{.tabset}
+-----------------------------------------------------------------------
+
+
+   **Répartition des archives selon le mode d'entrée**
+
+### Sur toute la période
 
 ```{r echo=FALSE}
 ### R.G n°4 : part de chaque mode d'entrée ds total archives entrées sur la période
@@ -173,74 +199,28 @@ ggplotly(plot_t2, tooltip=c("text"))
 ```
 
 
+### Année par année {.no-mobile}
 
-
-Row {data-height=500}
------------------------------------------------------------------------
-
-### Évolution du nombre de documents entrés chaque année
-
-```{r}
-avignon$dateYear <- factor(avignon$dateYear, levels = c(min(avignon$dateYear):max(avignon$dateYear)))
-t1 <- as.data.frame(table(avignon$dateYear))   # ces commandes permettent de récupérer des fréquences pour toutes les années même si aucune archive n'a été rentrée (freq=0 alors)
-
-t11 <- stats::ts(t1$Freq, frequency=1, start=1989)
-
-dygraph(t11) %>% dyRangeSelector() %>% dyOptions(stackedGraph = TRUE) %>% dySeries("V1", label = "Nombre d'entrées") %>%
-  dyHighlight(highlightSeriesOpts = list(strokeWidth = 2))
-```
-
-
-
-### Nombre de documents entrés chaque année selon le type
-
-```{r echo=FALSE}
+```{r echo=FALSE, out.width = "70%"}
+    # création du tableau des fréquences par mode d'entrée selon l'année
+t2_individual <- as.data.frame(table(avignon$modeEntree, avignon$dateYear))
+colnames(t2_individual) <- c("modeEntree", "dateYear", "Freq")
   # plot
-ggp <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree)) +  
-   geom_line(aes(x=dateYear, y=n), lwd=1) +
-   labs(y = "Nombre d'archives entrées", x="Année de l'entrée") +
-        theme(plot.title = element_text(face = "bold")) +
-        theme(axis.title.y = element_text(size=12)) +
-        theme(axis.title.x = element_text(size=12)) +
-#   transition_reveal(dateYear) +
-   facet_wrap(vars(modeEntree)) +
-   theme_light() + guides(colour = FALSE) 
-#animate(ggp)
-ggp
-```
-
-### Wordcloud
-
-```{r include=FALSE}
-  # prepare data
-data_wordcloud <- glimpse(avignon)
-corpus = Corpus(VectorSource(data_wordcloud$activiteProd))
-
-corpus = tm_map(corpus, PlainTextDocument) #Conversion to Lowercase
-corpus = tm_map(corpus, tolower)
-corpus = tm_map(corpus, removePunctuation) #Removing Punctuation
-corpus = tm_map(corpus, removeWords, c("cloth", stopwords("french"))) #Remove stopwords
-corpus = tm_map(corpus, stripWhitespace) # Eliminate white spaces
-
-DTM <- TermDocumentMatrix(corpus)
-mat <- as.matrix(DTM)
-f <- sort(rowSums(mat),decreasing=TRUE)  #moment d'ajouter ville !
-dat <- data.frame(word = names(f),freq=f)
-
-  #plot
-library(wordcloud2) 
+ t2_individual %>% ggplot(aes(x=modeEntree, y=Freq)) +
+  geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) + coord_flip() + 
+  facet_wrap(vars(dateYear)) +
+  ylab("Nombre d'entrées") + xlab("Mode d'entrée") + # ggtitle("Fréquence des entrées par année selon le type") +
+#   ggtitle("Répartition des archives selon le mode d'entrée par année") +
+  theme_bw()
 
 ```
 
-```{r echo=FALSE}
-wordcloud2(data=dat, size=.8, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
-```
 
 
 Page 2 {data-orientation=columns}
 =====================================  
 
-Column {data-widtht=400}
+Column {data-width=400}
 -------------------------------------
 
 ### Nature du support des archives entrées selon leur type
@@ -286,51 +266,34 @@ ggplotly(ggp2, tooltip=c("text"))
 
 
 
-Column {data-width=600}{.tabset}
+Column {data-width=600}
 -------------------------------------
 
 
-### Toute la période
+
+### Nombre de documents entrés chaque année selon le type
 
 ```{r echo=FALSE}
-### R.G n°4 : part de chaque mode d'entrée ds total archives entrées sur la période
-    # création du tableau des fréquences par mode d'entrée
-t2 <- as.data.frame(table(avignon$modeEntree))
-colnames(t2) <- c("modeEntree", "Freq")
-    # plot où on met la fréquence en pourcentage puis on réordonne par ordre décroissant
-t2 %>% mutate(Freq = Freq/sum(Freq)) %>% 
-  mutate(modeEntree = fct_reorder(modeEntree, Freq)) %>% 
-  ggplot(aes(x=modeEntree, y=Freq)) +
-    geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
-    coord_flip() +
-    ylab("Pourcentage des archives entrées de 1989 à 2020") + xlab("Mode d'entrée") + 
-   ggtitle("Répartition des archives selon le mode d'entrée") +
-    theme_bw() +
-    scale_y_continuous(labels = scales::percent_format())  # afficher des % sur la règle des y (abscisses car coord_flip)
-```
-
-### Année par année
-
-```{r echo=FALSE}
-    # création du tableau des fréquences par mode d'entrée selon l'année
-t2_individual <- as.data.frame(table(avignon$modeEntree, avignon$dateYear))
-colnames(t2_individual) <- c("modeEntree", "dateYear", "Freq")
   # plot
- t2_individual %>% ggplot(aes(x=modeEntree, y=Freq)) +
-  geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) + coord_flip() + 
-  facet_wrap(vars(dateYear)) +
-  ylab("Nombre d'entrées") + xlab("Mode d'entrée") + # ggtitle("Fréquence des entrées par année selon le type") +
-   ggtitle("Répartition des archives selon le mode d'entrée par année") +
-  theme_bw()
-
+ggp <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree)) +  
+   geom_line(aes(x=dateYear, y=n), lwd=1) +
+   labs(y = "Nombre d'archives entrées", x="Année de l'entrée") +
+        theme(plot.title = element_text(face = "bold")) +
+        theme(axis.title.y = element_text(size=12)) +
+        theme(axis.title.x = element_text(size=12)) +
+#   transition_reveal(dateYear) +
+   facet_wrap(vars(modeEntree)) +
+   theme_light() + guides(colour = FALSE) 
+#animate(ggp)
+ggp
 ```
 
 
-Data {data-orientation=rows}
+
+
+Data {.storyboard}
 =====================================  
 
-Row 
--------------------------------------
 
 ### Les données
 
@@ -341,7 +304,79 @@ kableExtra::kable_styling(bootstrap_options = c("striped", "hover"),fixed_thead 
 
 ### Wordcloud
 
+```{r include=FALSE}
+data_wordcloud <- glimpse(avignon)
+corpus = Corpus(VectorSource(data_wordcloud$activiteProd))
+
+corpus = tm_map(corpus, PlainTextDocument) #Conversion to Lowercase
+corpus = tm_map(corpus, tolower)
+corpus = tm_map(corpus, removePunctuation) #Removing Punctuation
+corpus = tm_map(corpus, removeWords, c("cloth", stopwords("french"))) #Remove stopwords
+corpus = tm_map(corpus, stripWhitespace) # Eliminate white spaces
+corpus[[1]][1] 
+
+DTM <- TermDocumentMatrix(corpus)
+mat <- as.matrix(DTM)
+f <- sort(rowSums(mat),decreasing=TRUE)  #moment d'ajouter ville !
+dat <- data.frame(word = names(f),freq=f)
+head(dat, 5)
+```
+
 ```{r echo=FALSE}
 wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
 ```
 
+### WC 2
+
+```{r include=FALSE}
+data_wordcloud <- glimpse(avignon)
+corpus2 = Corpus(VectorSource(data_wordcloud$descContenu))
+
+corpus2 = tm_map(corpus2, PlainTextDocument) #Conversion to Lowercase
+corpus2 = tm_map(corpus2, tolower)
+corpus2 = tm_map(corpus2, removePunctuation) #Removing Punctuation
+corpus2 = tm_map(corpus2, removeWords, c("cloth", stopwords("french"))) #Remove stopwords
+corpus2 = tm_map(corpus2, stripWhitespace) # Eliminate white spaces
+
+DTM2 <- TermDocumentMatrix(corpus2)
+mat2 <- as.matrix(DTM2)
+f2 <- sort(rowSums(mat2),decreasing=TRUE)
+dat2 <- data.frame(word = names(f2),freq=f2)
+```
+
+```{r echo=FALSE}
+library(wordcloud2)
+letterCloud(data=dat, word="SIAF", backgroundColor="pink", color="red")
+```
+
+### descContenu sans letter
+
+```{r}
+wordcloud2(data=dat2, size=1.6, col="red", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
+```
+
+### descContenu avec letter
+
+```{r}
+letterCloud(data=dat2, word="O")
+```
+
+
+
+
+Nuages de mots
+=====================================  
+
+### Hope il marche
+
+```{r}
+letterCloud(data=dat2, word="SIAF", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), backgroundColor="#FAF3EE")
+
+```
+
+## Essai truc avec 2 diez
+
+
+```{r echo=FALSE}
+wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
+```
