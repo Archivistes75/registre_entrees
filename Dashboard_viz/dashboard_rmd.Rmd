@@ -7,7 +7,25 @@ output:
   #  orientation: rows
     vertical_layout: fill
     logo: datactivist2.png
+    source_code: embed
+
 ---
+
+```{r eval=FALSE, include=FALSE}
+#<style> 
+
+#.navbar {
+#  background-color:#FAF3EE;
+#  border-color:#1D3139;
+#}
+#.navbar-brand {
+#color:#1D3139;
+#}
+
+#</style> 
+```
+
+
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
@@ -105,7 +123,7 @@ valueBox(nYear, caption="Années répertoriées", color = "#FF9933", icon = "ion
 ### Part d'archives publiques
 
 ```{r echo=FALSE}
-valueBox("36%", caption="Archives publiques", color = "#FFCC00", icon = "ion-android-contact")
+valueBox("36%", caption="Archives publiques", color = "#FFCC00", icon = "ion-loop")
 #gauge(63, min = 0, max = 100, symbol = '%', gaugeSectors(danger = c(0, 100)))
 ```
 
@@ -116,10 +134,17 @@ valueBox("67%", caption="Archives éléctroniques", color = "#339900", icon = "i
 #gauge(63, min = 0, max = 100, symbol = '%', gaugeSectors(danger = c(0, 100)))
 ```
 
+### Modes d'entrées
+
+```{r echo=FALSE}
+valueBox(9, caption="Modes d'entrée différents", color = "#009966", icon = "ion-ios-box") #ion-social-buffer pas mal aussi
+```
+
+
 ### Nombre de séries
 
 ```{r echo=FALSE}
-valueBox(853, caption="Séries", color = "#0066CC", icon = "ion-ios-filing")
+valueBox(853, caption="Séries", color = "#0066CC", icon = "ion-filing")
 ```
 
 
@@ -155,8 +180,8 @@ t1bis <- t1bis %>% group_by(modeEntree) %>% mutate(count=cumsum(n)) # fréquence
   # plot
 p <- t1bis %>%
      ggplot(aes(x=dateYear, y=count, fill=modeEntree,  
-                text = paste("Mode d'entrée :", modeEntree, # customisation du texte à afficher
-                              "\nAnnée :", dateYear,
+                text = paste("", "Mode d'entrée :", modeEntree, # customisation du texte à afficher
+                             "\n", "Année :", dateYear,
                               "\n", count, "archives"), group=modeEntree))+
      geom_area(alpha=0.6 , size=.5, colour="white")+
      scale_fill_viridis(discrete = T, name="Mode d'entrée")+
@@ -174,7 +199,7 @@ Column {data-width=450}{.tabset}
 
    **Répartition des archives selon le mode d'entrée**
 
-### Sur toute la période
+### Sur toute la période 
 
 ```{r echo=FALSE}
 ### R.G n°4 : part de chaque mode d'entrée ds total archives entrées sur la période
@@ -199,20 +224,31 @@ ggplotly(plot_t2, tooltip=c("text"))
 ```
 
 
-### Année par année {.no-mobile}
+### Année par année 
 
-```{r echo=FALSE, out.width = "70%"}
-    # création du tableau des fréquences par mode d'entrée selon l'année
-t2_individual <- as.data.frame(table(avignon$modeEntree, avignon$dateYear))
-colnames(t2_individual) <- c("modeEntree", "dateYear", "Freq")
+```{r echo=FALSE}
+
+  # création du tableau des fréquences par mode d'entrée selon l'année
+t2_bis <- avignon %>% group_by(dateYear) %>% count(modeEntree)
+
   # plot
- t2_individual %>% ggplot(aes(x=modeEntree, y=Freq)) +
-  geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) + coord_flip() + 
+plot2_t2 <- t2_bis %>% 
+  ggplot(aes(x=modeEntree, y=n,  
+             text = paste("Mode d'entrée :", modeEntree,
+                              "\nNombre d'archives :", n), group=modeEntree)) +
+  geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) + 
+  coord_flip() + 
   facet_wrap(vars(dateYear)) +
-  ylab("Nombre d'entrées") + xlab("Mode d'entrée") + # ggtitle("Fréquence des entrées par année selon le type") +
-#   ggtitle("Répartition des archives selon le mode d'entrée par année") +
-  theme_bw()
+  ylab("Nombre d'entrées") + xlab("") +
+  theme(axis.text.y = element_text(size = rel(.8)),
+        panel.background = element_rect(fill = "white", colour=NA),
+        panel.border= element_rect(fill=NA, color="black", size=.3),
+        panel.grid = element_line(colour = "grey92"),
+        panel.grid.minor = element_line(size = rel(0.5)), 
+        strip.background = element_rect(fill = "grey85", colour = "grey20"), 
+        legend.key = element_rect(fill = "white", colour = NA), complete = TRUE) #reproduction du theme_bw avec lequel il n'est pas possible de changer la taille des modes d'entrées : axis.text.y
 
+ggplotly(plot2_t2, tooltip=c("text"))
 ```
 
 
@@ -235,15 +271,19 @@ t4bis <- na.omit(t4bis)
 
   # plot
 t4bis <- t4bis %>% group_by(nature) %>% mutate(ypos = cumsum(n) - 0.5*n) %>% ungroup()
-ggplot(t4bis, aes(fill=natureSupport, y=n, x=nature)) + 
+ggp2 <- ggplot(t4bis, aes(fill=natureSupport, y=n, x=nature,  
+                text = paste("", nature, 
+                             "\n", natureSupport,
+                              "\n", n,"archives"), group=natureSupport)) + 
     geom_bar(position="stack", stat="identity") +
-    geom_text(aes(y=ypos, label=n), vjust=1.3, color="white", size=5)+
-    scale_fill_viridis(discrete = T, name="Nature du support") +
+  #  geom_text(aes(y=ypos, label=n), vjust=1.3, color="white", size=5)+
+    scale_fill_viridis(discrete = T, name="Nature du support", option="E", direction=-1) +
   #  ggtitle("Nature du support des archives entrées selon leur type") +
       labs(caption="Données non réelles pour la nature du support") +
     theme_ipsum() +
     xlab("") + ylab("Nombre d'entrées") +
-        theme(axis.title.y = element_text(size=12))
+        theme(axis.title.y = element_text(size=12, face="italic"))
+ggplotly(ggp2, tooltip=c("text"))
 ```
 
 ### Nombre d'entrées selon le type et la nature
@@ -251,7 +291,7 @@ ggplot(t4bis, aes(fill=natureSupport, y=n, x=nature)) +
 t3 <- avignon %>% group_by(nature) %>% count(modeEntree)
 t3 <- na.omit(t3)
   # plot
-ggp2 <- ggplot(t3, aes(fill=modeEntree, y=n, x=nature,  
+ggp3 <- ggplot(t3, aes(fill=modeEntree, y=n, x=nature,  
                 text = paste("Nature :", nature, 
                              "\nType d'entrée :", modeEntree,
                               "\nCompte :", n,"archives"), group=modeEntree)) + 
@@ -259,9 +299,9 @@ ggp2 <- ggplot(t3, aes(fill=modeEntree, y=n, x=nature,
     scale_fill_viridis_d(name="Type d'entrée", option = "D", direction = 1) +
   #  ggtitle("Nombre d'entrées selon le type et la nature") +
     theme_ipsum() +
-    xlab("") + ylab("Nombre d'archives") +
+    xlab("") + ylab("Nombre d'entrées") +
         theme(axis.title.y = element_text(size=12, face="italic"))
-ggplotly(ggp2, tooltip=c("text"))
+ggplotly(ggp3, tooltip=c("text"))
 ```
 
 
@@ -271,7 +311,7 @@ Column {data-width=600}
 
 
 
-### Nombre de documents entrés chaque année selon le type
+### Nombre de documents entrés chaque année selon le type {.no-mobile}
 
 ```{r echo=FALSE}
   # plot
@@ -281,7 +321,7 @@ ggp <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree)) +
         theme(plot.title = element_text(face = "bold")) +
         theme(axis.title.y = element_text(size=12)) +
         theme(axis.title.x = element_text(size=12)) +
-#   transition_reveal(dateYear) +
+  # transition_reveal(dateYear) +
    facet_wrap(vars(modeEntree)) +
    theme_light() + guides(colour = FALSE) 
 #animate(ggp)
@@ -301,6 +341,10 @@ Data {.storyboard}
 knitr::kable(avignon, format = "html") %>%
 kableExtra::kable_styling(bootstrap_options = c("striped", "hover"),fixed_thead = list(enabled = T, background = "lightgrey"))
 ```
+
+### Le standard
+
+texte pour expliquer le standard, démarches, collaborations etc.
 
 ### Wordcloud
 
@@ -326,7 +370,7 @@ head(dat, 5)
 wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
 ```
 
-### WC 2
+### Wordcloud 2 (même mais avec colonne descContenu et couleurs différentes)
 
 ```{r include=FALSE}
 data_wordcloud <- glimpse(avignon)
@@ -345,38 +389,12 @@ dat2 <- data.frame(word = names(f2),freq=f2)
 ```
 
 ```{r echo=FALSE}
-library(wordcloud2)
-letterCloud(data=dat, word="SIAF", backgroundColor="pink", color="red")
+wordcloud2(data=dat2, size=1.6, backgroundColor="#FAF3EE", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
 ```
 
-### descContenu sans letter
+### descContenu en letterCloud SIAF
 
 ```{r}
-wordcloud2(data=dat2, size=1.6, col="red", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
+wordcloud2::letterCloud(data=dat2, size=5, "SIAF", backgroundColor="#FAF3EE", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2))) #censé rendre "Wordclou_siaf.png"
 ```
 
-### descContenu avec letter
-
-```{r}
-letterCloud(data=dat2, word="O")
-```
-
-
-
-
-Nuages de mots
-=====================================  
-
-### Hope il marche
-
-```{r}
-letterCloud(data=dat2, word="SIAF", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), backgroundColor="#FAF3EE")
-
-```
-
-## Essai truc avec 2 diez
-
-
-```{r echo=FALSE}
-wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
-```

@@ -75,7 +75,7 @@ ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree)) +
         theme(plot.title = element_text(face = "bold")) +
         theme(axis.title.y = element_text(size=12)) +
         theme(axis.title.x = element_text(size=12)) +
-   transition_reveal(dateYear) +
+ #  transition_reveal(dateYear) +
    facet_wrap(vars(modeEntree)) +
    theme_light() + guides(colour = FALSE)   
 
@@ -146,6 +146,26 @@ t2_individual %>% ggplot(aes(x=modeEntree, y=Freq)) +
   facet_wrap(vars(dateYear)) +
   ylab("Nombre d'entrées") + xlab("Mode d'entrée") + ggtitle("Fréquence des entrées par année selon le type") + theme_bw()
 
+  # OU BIEN
+t2_bis <- avignon %>% group_by(dateYear) %>% count(modeEntree) # pas de facette pour les années sans entrées d'archives
+
+plot2_t2 <- t2_bis %>% 
+  ggplot(aes(x=modeEntree, y=n,  
+                text = paste("Mode d'entrée :", modeEntree, # customisation du texte à afficher
+                              "\nNombre d'archives :", n), group=modeEntree)) +
+  geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) + 
+  coord_flip() + 
+  ylab("Nombre d'entrées") + xlab("Mode d'entrée") + 
+  theme(text = element_text(size=rel(3.5)),
+        strip.text.x = element_text(size=rel(3.5)),
+        label.text = element_text(size=rel(500)),
+        axis.ticks.x = element_text(size=rel(500)),
+        strip.text.y = element_text(size=rel(3.5))) +
+  facet_wrap(vars(dateYear)) +
+  theme_bw()
+
+ggplotly(plot2_t2, tooltip=c("text"))
+plot2_t2
 
         
 #-------------------------------------------------------------------------------------------------------------------------
@@ -250,7 +270,7 @@ dat2 <- data.frame(word = names(f2),freq=f2)
   #plot
 #wordcloud2(data=dat, size=1.6, col=rep_len(c("#66CCFF", "#0099CC", "#3399CC", "#006699", "#0066FF", "#0033CC", "#0066CC", "#0000FF"), nrow(dat)))
 #wordcloud2(data=dat2, size=1.2, color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), backgroundColor="#FAF3EE")
-letterCloud(data=dat2, word="SIAF", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), backgroundColor="#FAF3EE")
+letterCloud(data=dat2, size=5, word="SIAF", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), backgroundColor="#FAF3EE")
 
 
 
