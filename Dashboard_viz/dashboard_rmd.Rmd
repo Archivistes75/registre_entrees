@@ -2,29 +2,66 @@
 title: "Archives municipales d'Avignon"
 output: 
   flexdashboard::flex_dashboard:
-    theme: bootstrap
+    theme: readable
     social: menu
   #  orientation: rows
     vertical_layout: fill
-    logo: datactivist2.png
+    logo: logo_datactivist.png
     source_code: embed
+#runtime: shiny
 
 ---
+
+<style>
+
+.nav-tabs-custom > .nav-tabs > li.active {
+border-top-color: #E5555C;
+}
+
+body {
+text-align: justify;
+background: #f2f2f2;
+}
+
+.navbar-logo {
+  margin-top: 4px;
+}
+
+.storyboard-nav .sbframelist {
+margin: 0 auto;
+width: 94%;
+color: red;
+height: 50px;
+overflow: hidden;
+text-shadow: none;
+margin-bottom: 8px;
+}
+
+.storyboard-nav .sbnext, .storyboard-nav .sbprev {
+float: left;
+width: 2%;
+height: 45px;
+font-size: 40px;
+}
+
+</style>
 
 ```{r eval=FALSE, include=FALSE}
 #<style> 
 
 #.navbar {
-#  background-color:#FAF3EE;
-#  border-color:#1D3139;
+#  background-color: #FAF3EE;
+#  border-color: #1D3139;
+#  color: #E5555C;   # couleur storyboard
 #}
 #.navbar-brand {
-#color:#1D3139;
+#color: #E5555C;
 #}
 
 #</style> 
-```
 
+# Paramètres des themes : https://github.com/rstudio/flexdashboard/blob/feature/logo-and-favicon/inst/rmarkdown/templates/flex_dashboard/resources/flexdashboard.css 
+```
 
 
 ```{r setup, include=FALSE}
@@ -54,6 +91,7 @@ library(tm)
 library(SnowballC)
 library(wordcloud2)  # Version 0.2.2 nécessaire absolument. #devtools::install_github("lchiffon/wordcloud2")
 library(htmlwidgets)
+library(kableExtra)
 
 
 # Import base
@@ -75,7 +113,7 @@ avignon$dateYear <- format(as.Date(avignon$dateEntree, format="%d/%m/%Y"),"%Y")
 avignon$modeEntree <- str_replace_all(avignon$modeEntree, c("Collecte"="Collecte privée"))
 ```
 
-Page 1 {data-orientation=columns}
+Page 1 {data-icon="fa-chart-line"}
 =====================================  
 
 
@@ -101,10 +139,11 @@ Column {data-width=250}
 
 **Quelques chiffres clés** :
 
+
 ### Numbers
 
 ```{r echo=FALSE}
-# All icons here : https://ionicons.com/v2/cheatsheet.html
+# All icons here : https://ionicons.com/v2/cheatsheet.html or https://fontawesome.com/icons?d=gallery&p=2 
 row <- nrow(avignon)
 valueBox(row, caption="Archives entrées", color = "#CC0033", icon = "ion-android-archive")
 ```
@@ -240,20 +279,14 @@ plot2_t2 <- t2_bis %>%
   coord_flip() + 
   facet_wrap(vars(dateYear)) +
   ylab("Nombre d'entrées") + xlab("") +
-  theme(axis.text.y = element_text(size = rel(.8)),
-        panel.background = element_rect(fill = "white", colour=NA),
-        panel.border= element_rect(fill=NA, color="black", size=.3),
-        panel.grid = element_line(colour = "grey92"),
-        panel.grid.minor = element_line(size = rel(0.5)), 
-        strip.background = element_rect(fill = "grey85", colour = "grey20"), 
-        legend.key = element_rect(fill = "white", colour = NA), complete = TRUE) #reproduction du theme_bw avec lequel il n'est pas possible de changer la taille des modes d'entrées : axis.text.y
+  theme_bw() +
+  theme(axis.text.y = element_text(size = rel(.8))) 
 
 ggplotly(plot2_t2, tooltip=c("text"))
 ```
 
 
-
-Page 2 {data-orientation=columns}
+Page 2 {data-icon="fa-chart-bar"}
 =====================================  
 
 Column {data-width=400}
@@ -337,16 +370,26 @@ Data {.storyboard}
 
 ### Les données
 
-```{r echo=FALSE}
-knitr::kable(avignon, format = "html") %>%
-kableExtra::kable_styling(bootstrap_options = c("striped", "hover"),fixed_thead = list(enabled = T, background = "lightgrey"))
+```{r}
+DT::datatable(avignon, options=list(pageLength=25, searching=T))
 ```
 
 ### Le standard
 
-texte pour expliquer le standard, démarches, collaborations etc.
 
-### Wordcloud
+
+En 2018, 86 kilomètres de documents et plus de 16000Go de données sont venus enrichir les collections des services publics d'archives français (Données du service interministériel des archives de France).
+
+Dans une optique de gestion et de suivi de leurs fonds, les services d'archives consignent chaque entrée d'archives à partir de renseignements sommaires permettant d’identifier et de retracer toutes les arrivées de nouveaux documents (provenance, date d'arrivée dans le service, volume...) : c'est le registre des entrées.
+
+Il est généralement directement tenu au sein d'un système d'information dédié aux archives (le SIA), mais il peut également être réalisé avec un tableur voir sur un cahier.
+
+Dans son Cadre stratégique commun de modernisation des archives, la Délégation interministérielle aux archives de France, mentionne dans les objectifs 2020-2024 :
+
+Objectif 1.4 : Numériser les archives et rendre les archives numériques aisément consultables et exploitables Il conviendra également de généraliser l’open data dans les services d’archives de l’État et de recommander ce modèle aux services territoriaux d’archives. La création d'un schéma de données permet de standardiser la diffusion des données produites par les services d'archives. Cette standardisation est impérative pour les ré-utilisateurs car elle permet de faciliter la découverte des jeux de données et de les utiliser, notamment en simplifiant l'alignement à différentes échelles (utilisation sur des échelles locales ou nationales).
+
+
+<br>
 
 ```{r include=FALSE}
 data_wordcloud <- glimpse(avignon)
@@ -370,7 +413,45 @@ head(dat, 5)
 wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
 ```
 
-### Wordcloud 2 (même mais avec colonne descContenu et couleurs différentes)
+
+***
+
+Les **colonnes à caractère obligatoire** qui composent le standard :
+
+* ID
+* nomArch
+* dateEntree
+* nature
+* modeEntree
+* servProd
+* typeProd
+* activiteProd
+* descContenu
+* natureSupport
+
+<br>
+
+Les **colonnes non obligatoires** qui composent le standard :
+
+* coteArch
+* orgaVers
+* servVers
+* orgaProducteur
+* datesExD
+* datesExF
+* mlEntree
+* nbreArt
+* volElec
+* objElec
+
+<br>
+
+En résumé ce sont :
+
+* 4 variables quantitatives
+* 16 variables qualitatives dont 3 dates
+
+### Wordcloud 2
 
 ```{r include=FALSE}
 data_wordcloud <- glimpse(avignon)
