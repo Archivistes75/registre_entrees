@@ -21,7 +21,11 @@ Création d'un schéma de données pour les registres d'entrées d'archives des 
 * INHA, Université de Paris Nanterre
 * Programme Vitam
 
-#### Schéma [en cours de construction](https://docs.google.com/spreadsheets/d/1O-8Hhw6_78BILxNAchl391cpYNXpck2S1cTH1bXM_d8/edit?usp=sharing)
+### Modèle de données
+
+La version validée 1.0 du schéma de registre des entrées se trouve [ici](Schema_registre_entrees/Schema_registre_entrees_V1.0.xlsx).
+
+Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au format tableur est également prévu pour faciliter la réalisation d'un registre des entrée au format du schéma.
 
 # Introduction
 
@@ -121,8 +125,6 @@ Il va falloir préparer les données afin qu'elles correspondent au modèle déf
 
 ## Documenter les données
 
-[PROPOSITION - SOUMISE A AVIS]
-
 **Métadonnées descriptives**
 
 * Nom du producteur du jeu de données : Le nom du producteur permet d’indiquer le service qui a produit et publié le jeu de données. 
@@ -153,5 +155,3 @@ Il va falloir préparer les données afin qu'elles correspondent au modèle déf
 * Contact : Indiquer un mail de contact pour les réutilisateurs 
 
         `(archives@archives.fr)`
-
-#### Le schéma est en cours de construction, à terme il prendra [cette forme](standard.md) (attention les champs ne sont pas stabilisés).

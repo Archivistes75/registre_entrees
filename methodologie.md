@@ -135,8 +135,5 @@ Le schéma a été ajouté à schema.data.gouv comme étant en investigation le 
 
 Un appel à commentaires a eu lieu du 04 janvier au 12 février 2021.Un webinaire de présentation du schéma a ouvert cet appel à commentaire le 04 janvier 2021. Sur la période, une cinquantaine de retours a été réalisé. 
 
-Les commentaires ont été analysé par le groupe de travail.
+Le groupe de travail a analysé les commentaires et à l'issu de ce travail, une V1.0 a été réalisée.
 
-## Construction du schéma
-
-[EN COURS]
