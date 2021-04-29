@@ -3,11 +3,10 @@ title: "Archives municipales d'Avignon"
 output: 
   flexdashboard::flex_dashboard:
     theme: readable
-    social: menu
-  #  orientation: rows
     vertical_layout: fill
     logo: logo_datactivist.png
     source_code: embed
+    storyboard: true
 #runtime: shiny
 
 ---
@@ -113,7 +112,8 @@ avignon$dateYear <- format(as.Date(avignon$dateEntree, format="%d/%m/%Y"),"%Y")
 avignon$modeEntree <- str_replace_all(avignon$modeEntree, c("Collecte"="Collecte privée"))
 ```
 
-Page 1 {data-icon="fa-chart-line"}
+
+Évolutions temporelles {data-icon="fa-chart-line"}
 =====================================  
 
 
@@ -134,7 +134,7 @@ fileInput("file1", "Veuillez importer la base de données au format csv.",
 
 
 
-Column {data-width=250}
+Column {data-width=230}
 -----------------------------------------------------------------------
 
 **Quelques chiffres clés** :
@@ -187,7 +187,7 @@ valueBox(853, caption="Séries", color = "#0066CC", icon = "ion-filing")
 ```
 
 
-Column {data-width=600}
+Column {data-width=500}
 -----------------------------------------------------------------------
 
 ### Nombre de documents entrés chaque année
@@ -232,61 +232,31 @@ ggplotly(p, source = "select", tooltip=c("text"))
 ```
 
 
-Column {data-width=450}{.tabset}
+Column {data-width=570}
 -----------------------------------------------------------------------
 
 
-   **Répartition des archives selon le mode d'entrée**
 
-### Sur toute la période 
-
-```{r echo=FALSE}
-### R.G n°4 : part de chaque mode d'entrée ds total archives entrées sur la période
-    # création du tableau des fréquences par mode d'entrée
-t2 <- as.data.frame(table(avignon$modeEntree))
-colnames(t2) <- c("modeEntree", "Freq")
-
-    # plot où on met la fréquence en pourcentage puis on réordonne par ordre décroissant
-plot_t2 <- t2 %>% mutate(Freq = Freq/sum(Freq)) %>% 
-  mutate(modeEntree = fct_reorder(modeEntree, Freq)) %>% 
-  ggplot(aes(x=modeEntree, y=Freq,  
-                text = paste("Mode d'entrée :", modeEntree, # customisation du texte à afficher
-                              "\nPourcentage des archives :", round(Freq*100,0),"%"), group=modeEntree))+
-    geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
-    coord_flip() +
-    ylab("Pourcentage des archives entrées de 1989 à 2020") + xlab("Mode d'entrée") + 
- #  ggtitle("Répartition des archives selon le mode d'entrée") +
-    theme_bw() +
-    scale_y_continuous(labels = scales::percent_format())  # afficher des % sur la règle des y (abscisses car coord_flip)
-
-ggplotly(plot_t2, tooltip=c("text"))
-```
-
-
-### Année par année 
+### Nombre de documents entrés chaque année selon le type
 
 ```{r echo=FALSE}
-
-  # création du tableau des fréquences par mode d'entrée selon l'année
-t2_bis <- avignon %>% group_by(dateYear) %>% count(modeEntree)
-
   # plot
-plot2_t2 <- t2_bis %>% 
-  ggplot(aes(x=modeEntree, y=n,  
-             text = paste("Mode d'entrée :", modeEntree,
-                              "\nNombre d'archives :", n), group=modeEntree)) +
-  geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) + 
-  coord_flip() + 
-  facet_wrap(vars(dateYear)) +
-  ylab("Nombre d'entrées") + xlab("") +
-  theme_bw() +
-  theme(axis.text.y = element_text(size = rel(.8))) 
-
-ggplotly(plot2_t2, tooltip=c("text"))
+ggp <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree)) +  
+   geom_line(aes(x=dateYear, y=n), lwd=1) +
+   labs(y = "Nombre d'archives entrées", x="Année de l'entrée") +
+        theme(plot.title = element_text(face = "bold")) +
+        theme(axis.title.y = element_text(size=12)) +
+        theme(axis.title.x = element_text(size=12)) +
+   #transition_reveal(dateYear) +
+   facet_wrap(vars(modeEntree)) +
+   theme_light() + guides(colour = FALSE) 
+#gganimate::animate(ggp)
+ggp
 ```
 
 
-Page 2 {data-icon="fa-chart-bar"}
+
+Type et support des entrées {data-icon="fa-chart-bar"}
 =====================================  
 
 Column {data-width=400}
@@ -339,82 +309,110 @@ ggplotly(ggp3, tooltip=c("text"))
 
 
 
-Column {data-width=600}
+Column {data-width=600}{.tabset}
 -------------------------------------
 
+   **Répartition des archives selon le mode d'entrée**
 
-
-### Nombre de documents entrés chaque année selon le type {.no-mobile}
+### Sur toute la période 
 
 ```{r echo=FALSE}
+### R.G n°4 : part de chaque mode d'entrée ds total archives entrées sur la période
+    # création du tableau des fréquences par mode d'entrée
+t2 <- as.data.frame(table(avignon$modeEntree))
+colnames(t2) <- c("modeEntree", "Freq")
+
+    # plot où on met la fréquence en pourcentage puis on réordonne par ordre décroissant
+plot_t2 <- t2 %>% mutate(Freq = Freq/sum(Freq)) %>% 
+  mutate(modeEntree = fct_reorder(modeEntree, Freq)) %>% 
+  ggplot(aes(x=modeEntree, y=Freq,  
+                text = paste("Mode d'entrée :", modeEntree, # customisation du texte à afficher
+                              "\nPourcentage des archives :", round(Freq*100,0),"%"), group=modeEntree))+
+    geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
+    coord_flip() +
+    ylab("Pourcentage des archives entrées de 1989 à 2020") + xlab("Mode d'entrée") + 
+ #  ggtitle("Répartition des archives selon le mode d'entrée") +
+    theme_bw() +
+    scale_y_continuous(labels = scales::percent_format())  # afficher des % sur la règle des y (abscisses car coord_flip)
+
+ggplotly(plot_t2, tooltip=c("text"))
+```
+
+
+### Année par année {data-padding=65}
+
+```{r echo=FALSE}
+
+  # création du tableau des fréquences par mode d'entrée selon l'année
+t2_bis <- avignon %>% group_by(dateYear) %>% count(modeEntree)
+
   # plot
-ggp <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree)) +  
-   geom_line(aes(x=dateYear, y=n), lwd=1) +
-   labs(y = "Nombre d'archives entrées", x="Année de l'entrée") +
-        theme(plot.title = element_text(face = "bold")) +
-        theme(axis.title.y = element_text(size=12)) +
-        theme(axis.title.x = element_text(size=12)) +
-  # transition_reveal(dateYear) +
-   facet_wrap(vars(modeEntree)) +
-   theme_light() + guides(colour = FALSE) 
-#animate(ggp)
-ggp
+plot2_t2 <- t2_bis %>% 
+  ggplot(aes(x=modeEntree, y=n,  
+             text = paste("Mode d'entrée :", modeEntree,
+                              "\nNombre d'archives :", n), group=modeEntree)) +
+  geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) + 
+  coord_flip() + 
+  facet_wrap(vars(dateYear)) +
+  ylab("Nombre d'entrées") + xlab("") +
+  theme_bw() +
+  theme(axis.text.y = element_text(size = rel(.8))) 
+
+ggplotly(plot2_t2, tooltip=c("text"))
 ```
 
 
 
-
-Data {.storyboard}
+Data {data-icon="fa-table"}
 =====================================  
 
-
-### Les données
 
 ```{r}
 DT::datatable(avignon, options=list(pageLength=25, searching=T))
 ```
 
-### Le standard
+
+Le standard {data-icon="fa-clipboard-list"}
+=====================================  
 
 
+Column {data-width=800} 
+-------------------------------------
 
-En 2018, 86 kilomètres de documents et plus de 16000Go de données sont venus enrichir les collections des services publics d'archives français (Données du service interministériel des archives de France).
+### Présentation du schema {data-padding=35}
 
-Dans une optique de gestion et de suivi de leurs fonds, les services d'archives consignent chaque entrée d'archives à partir de renseignements sommaires permettant d’identifier et de retracer toutes les arrivées de nouveaux documents (provenance, date d'arrivée dans le service, volume...) : c'est le registre des entrées.
+En 2018, 86 kilomètres de documents et plus de 16000Go de données sont venus enrichir les collections des **services publics d'archives français** (*Données du service interministériel des archives de France*).
 
-Il est généralement directement tenu au sein d'un système d'information dédié aux archives (le SIA), mais il peut également être réalisé avec un tableur voir sur un cahier.
+Dans une optique de gestion et de suivi de leurs fonds, les services d'archives consignent chaque entrée d'archives à partir de renseignements sommaires permettant d’identifier et de retracer toutes les arrivées de nouveaux documents (provenance, date d'arrivée dans le service, volume...) : c'est le **registre des entrées**.
 
-Dans son Cadre stratégique commun de modernisation des archives, la Délégation interministérielle aux archives de France, mentionne dans les objectifs 2020-2024 :
-
-Objectif 1.4 : Numériser les archives et rendre les archives numériques aisément consultables et exploitables Il conviendra également de généraliser l’open data dans les services d’archives de l’État et de recommander ce modèle aux services territoriaux d’archives. La création d'un schéma de données permet de standardiser la diffusion des données produites par les services d'archives. Cette standardisation est impérative pour les ré-utilisateurs car elle permet de faciliter la découverte des jeux de données et de les utiliser, notamment en simplifiant l'alignement à différentes échelles (utilisation sur des échelles locales ou nationales).
-
+Il est généralement directement tenu au sein d'un système d'information dédié aux archives (le *SIA*), mais il peut également être réalisé avec un tableur voir sur un cahier.
 
 <br>
 
-```{r include=FALSE}
-data_wordcloud <- glimpse(avignon)
-corpus = Corpus(VectorSource(data_wordcloud$activiteProd))
+Dans son **Cadre stratégique commun de modernisation des archives**, la *Délégation interministérielle aux archives de France*, mentionne dans les objectifs 2020-2024 :
 
-corpus = tm_map(corpus, PlainTextDocument) #Conversion to Lowercase
-corpus = tm_map(corpus, tolower)
-corpus = tm_map(corpus, removePunctuation) #Removing Punctuation
-corpus = tm_map(corpus, removeWords, c("cloth", stopwords("french"))) #Remove stopwords
-corpus = tm_map(corpus, stripWhitespace) # Eliminate white spaces
-corpus[[1]][1] 
+    Objectif 1.4 : Numériser les archives et rendre les archives numériques aisément consultables et exploitables Il conviendra également de généraliser l’open data dans les services d’archives de l’État et de recommander ce modèle aux services territoriaux d’archives. La création d'un schéma de données permet de standardiser la diffusion des données produites par les services d'archives. Cette standardisation est impérative pour les ré-utilisateurs car elle permet de faciliter la découverte des jeux de données et de les utiliser, notamment en simplifiant l'alignement à différentes échelles (utilisation sur des échelles locales ou nationales).
+    
+<br>
 
-DTM <- TermDocumentMatrix(corpus)
-mat <- as.matrix(DTM)
-f <- sort(rowSums(mat),decreasing=TRUE)  #moment d'ajouter ville !
-dat <- data.frame(word = names(f),freq=f)
-head(dat, 5)
-```
+En quelques mois, une équipe composée de représentants du SIAF, de l'AAF et de Datactivist ont travaillé pour mettre au point un standard pour les données des **registres d'entrées**. Ce dernier n'a pas de caractère réglementaire mais son utilisation est recommandée dès lors qu'une réutilisation ou une comparaison des données est envisagée.
 
-```{r echo=FALSE}
-wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
-```
+<br>
+
+En résumé ce sont **20 variables** dont :
+
+  + 4 quantitatives
+  + 3 dates
+  + 13 qualitatives
 
 
-***
+
+Column {data-width=250}
+-------------------------------------
+
+<br>
+
+<br>
 
 Les **colonnes à caractère obligatoire** qui composent le standard :
 
@@ -444,14 +442,105 @@ Les **colonnes non obligatoires** qui composent le standard :
 * volElec
 * objElec
 
-<br>
 
-En résumé ce sont :
 
-* 4 variables quantitatives
-* 16 variables qualitatives dont 3 dates
 
-### Wordcloud 2
+
+Stand 2 {data-orientation=rows}
+=====================================  
+
+Row {data-height=600}
+-------------------------------------
+
+
+En 2018, 86 kilomètres de documents et plus de 16000Go de données sont venus enrichir les collections des **services publics d'archives français** (*Données du service interministériel des archives de France*).
+
+Dans une optique de gestion et de suivi de leurs fonds, les services d'archives consignent chaque entrée d'archives à partir de renseignements sommaires permettant d’identifier et de retracer toutes les arrivées de nouveaux documents (provenance, date d'arrivée dans le service, volume...) : c'est le **registre des entrées**.
+
+Il est généralement directement tenu au sein d'un système d'information dédié aux archives (le *SIA*), mais il peut également être réalisé avec un tableur voir sur un cahier.
+
+Dans son **Cadre stratégique commun de modernisation des archives**, la *Délégation interministérielle aux archives de France*, mentionne dans les objectifs 2020-2024 :
+
+    Objectif 1.4 : Numériser les archives et rendre les archives numériques aisément consultables et exploitables Il conviendra également de généraliser l’open data dans les services d’archives de l’État et de recommander ce modèle aux services territoriaux d’archives. La création d'un schéma de données permet de standardiser la diffusion des données produites par les services d'archives. Cette standardisation est impérative pour les ré-utilisateurs car elle permet de faciliter la découverte des jeux de données et de les utiliser, notamment en simplifiant l'alignement à différentes échelles (utilisation sur des échelles locales ou nationales).
+
+En quelques mois, une équipe composée de représentants du SIAF, de l'AAF et de Dactactivist ont travaillé pour mettre au point un standard pour les données des **registres d'entrées**. Ce dernier n'a pas de caractère réglementaire mais son utilisation est recommandée dès lors qu'une réutilisation ou une comparaison des données est envisagée.
+
+
+Row {data-height=400}
+-------------------------------------
+
+### 
+
+Les **colonnes à caractère obligatoire** qui composent le standard :
+
+* ID
+* nomArch
+* dateEntree
+* nature
+* modeEntree
+* servProd
+* typeProd
+* activiteProd
+* descContenu
+* natureSupport
+
+###
+
+Les **colonnes non obligatoires** qui composent le standard :
+
+* coteArch
+* orgaVers
+* servVers
+* orgaProducteur
+* datesExD
+* datesExF
+* mlEntree
+* nbreArt
+* volElec
+* objElec
+
+###  
+
+En résumé ce sont **20 variables** dont
+
+  + 4 quantitatives
+  + 3 dates
+  + 13 qualitatives
+
+
+
+Nuages de mots {.storyboard}
+=====================================  
+
+### Domaine d'action du producteur
+
+```{r out.width='100%', fig.align='left', include=FALSE}
+data_wordcloud <- glimpse(avignon)
+corpus = Corpus(VectorSource(data_wordcloud$activiteProd))
+
+corpus = tm_map(corpus, PlainTextDocument) #Conversion to Lowercase
+corpus = tm_map(corpus, tolower)
+corpus = tm_map(corpus, removePunctuation) #Removing Punctuation
+
+ajout_stopwords <- c("d'", "d", "article", "articles")
+remix_stopwords <- c(ajout_stopwords, stopwords("french"))  # adding own undesired words to stopwords
+corpus = tm_map(corpus, removeWords, c("cloth", remix_stopwords)) #Remove stopwords
+corpus = tm_map(corpus, stripWhitespace) # Eliminate white spaces
+corpus[[1]][1] 
+
+DTM <- TermDocumentMatrix(corpus)
+mat <- as.matrix(DTM)
+f <- sort(rowSums(mat),decreasing=TRUE) 
+dat <- data.frame(word = names(f),freq=f)
+head(dat, 5)
+```
+
+```{r out.width='97%', fig.align='left', echo=FALSE}
+wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
+```
+
+
+### Description du contenu de l'entrée
 
 ```{r include=FALSE}
 data_wordcloud <- glimpse(avignon)
@@ -460,7 +549,7 @@ corpus2 = Corpus(VectorSource(data_wordcloud$descContenu))
 corpus2 = tm_map(corpus2, PlainTextDocument) #Conversion to Lowercase
 corpus2 = tm_map(corpus2, tolower)
 corpus2 = tm_map(corpus2, removePunctuation) #Removing Punctuation
-corpus2 = tm_map(corpus2, removeWords, c("cloth", stopwords("french"))) #Remove stopwords
+corpus2 = tm_map(corpus2, removeWords, c("cloth", remix_stopwords)) #Remove stopwords
 corpus2 = tm_map(corpus2, stripWhitespace) # Eliminate white spaces
 
 DTM2 <- TermDocumentMatrix(corpus2)
@@ -469,13 +558,13 @@ f2 <- sort(rowSums(mat2),decreasing=TRUE)
 dat2 <- data.frame(word = names(f2),freq=f2)
 ```
 
-```{r echo=FALSE}
-wordcloud2(data=dat2, size=1.6, backgroundColor="#FAF3EE", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
+```{r echo=FALSE, out.width='100%', fig.align='bottom'}
+wordcloud2(data=dat2, size=2, col=rep_len(c("#66CCFF", "#0099CC", "#3399CC", "#006699", "#0066FF", "#0033CC", "#0066CC", "#0000FF"), nrow(dat2)), minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 0)
 ```
 
-### descContenu en letterCloud SIAF
 
-```{r}
-wordcloud2::letterCloud(data=dat2, size=5, "SIAF", backgroundColor="#FAF3EE", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2))) #censé rendre "Wordclou_siaf.png"
+### Un mot de fin ?
+
+```{r out.width='120%', fig.align='top', background="#FAF3EE"}
+knitr::include_graphics(here::here("./Dashboard_viz/wc_blanc.png"))
 ```
-

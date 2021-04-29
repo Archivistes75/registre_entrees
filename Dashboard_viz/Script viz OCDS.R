@@ -233,7 +233,7 @@ corpus = Corpus(VectorSource(data_wordcloud$activiteProd))
 corpus = tm_map(corpus, PlainTextDocument) #Conversion to Lowercase
 corpus = tm_map(corpus, tolower)
 corpus = tm_map(corpus, removePunctuation) #Removing Punctuation
-corpus = tm_map(corpus, removeWords, c("cloth", stopwords("french"))) #Remove stopwords
+corpus = tm_map(corpus, removeWords, c("cloth", remix_stopwords)) #Remove stopwords
 corpus = tm_map(corpus, stripWhitespace) # Eliminate white spaces
 corpus[[1]][1] 
 
@@ -259,7 +259,11 @@ corpus2 = Corpus(VectorSource(data_wordcloud$descContenu))
 corpus2 = tm_map(corpus2, PlainTextDocument) #Conversion to Lowercase
 corpus2 = tm_map(corpus2, tolower)
 corpus2 = tm_map(corpus2, removePunctuation) #Removing Punctuation
-corpus2 = tm_map(corpus2, removeWords, c("cloth", stopwords("french"))) #Remove stopwords
+
+ajout_stopwords <- c("d'", "d", "article", "articles")
+remix_stopwords <- c(ajout_stopwords, stopwords("french"))
+
+corpus2 = tm_map(corpus2, removeWords, c("cloth", remix_stopwords)) #Remove stopwords
 corpus2 = tm_map(corpus2, stripWhitespace) # Eliminate white spaces
 
 DTM2 <- TermDocumentMatrix(corpus2)
@@ -268,10 +272,16 @@ f2 <- sort(rowSums(mat2),decreasing=TRUE)
 dat2 <- data.frame(word = names(f2),freq=f2)
 
   #plot
-#wordcloud2(data=dat, size=1.6, col=rep_len(c("#66CCFF", "#0099CC", "#3399CC", "#006699", "#0066FF", "#0033CC", "#0066CC", "#0000FF"), nrow(dat)))
-#wordcloud2(data=dat2, size=1.2, color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), backgroundColor="#FAF3EE")
-letterCloud(data=dat2, size=5, word="SIAF", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), backgroundColor="#FAF3EE")
+wordcloud2(data=dat, size=1.6, col=rep_len(c("#66CCFF", "#0099CC", "#3399CC", "#006699", "#0066FF", "#0033CC", "#0066CC", "#0000FF"), nrow(dat)))
 
+wordcloud2(data=dat2, size=1.2, color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), backgroundColor="#FAF3EE")
+
+letterCloud(data=dat2, size=1, word="ARCHIVE", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)))
+
+
+
+# Change the shape using your image
+wordcloud2(dat2, figPath = "~/Desktop/R-graph-gallery/img/other/peaceAndLove.jpg", size = 1.5, color = "skyblue", backgroundColor="black")
 
 
 
