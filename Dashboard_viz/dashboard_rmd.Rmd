@@ -52,7 +52,10 @@ border-color: #f2f2f2;
   background: #B8B8B8;
 }
 
+
 </style>
+
+
 
 ```{r eval=FALSE, include=FALSE}
 #<style> 
@@ -101,6 +104,7 @@ library(SnowballC)
 library(wordcloud2)  # Version 0.2.2 nécessaire absolument. #devtools::install_github("lchiffon/wordcloud2")
 library(htmlwidgets)
 library(kableExtra)
+library(gifski)
 
 
 # Import base
@@ -242,7 +246,7 @@ ggplotly(p, source = "select", tooltip=c("text"))
 ```
 
 
-Column {data-width=570}
+Column {data-width=570} {.tabset}
 -----------------------------------------------------------------------
 
 
@@ -263,8 +267,33 @@ ggp <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree)) +
    transition_reveal(dateYear) +
   facet_wrap(vars(modeEntree)) +
   guides(colour = FALSE) 
-gganimate::animate(ggp)
+gganimate::animate(ggp, 
+                   renderer = gifski_renderer(loop = F))
 #ggp
+```
+
+### Essai en plotly {data-padding=20}
+
+```{r echo=FALSE}
+  # plot
+windowsFonts(A = windowsFont("Times New Roman"))  # on définit la police des labels (pour harmoniser la dashboard et reproduire le visu de ggplotly)
+
+p <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree,  
+                text = paste("", "Mode d'entrée :", modeEntree, # customisation du texte à afficher
+                              "\n", "Année :", dateYear,
+                              "\n", n, "archives"), group=modeEntree)) +  
+   geom_line(aes(x=dateYear, y=n), lwd=.8) +
+   theme_light() +
+   labs(y= "Nombre d'archives entrées", 
+        x="Année de l'entrée") +
+        theme(axis.title.y = element_text(family="A", size=rel(1))) +
+        theme(axis.title.x = element_text(margin = unit(c(rel(4), 0, 0, 0), "mm"), family="A", size=rel(1))) +
+        theme(strip.text = element_text(family="A", size=rel(1), face="bold")) +
+   facet_wrap(vars(modeEntree)) +
+   theme(legend.position = 'none') +
+   guides(colour = FALSE)
+
+ggplotly(p, source = "select", tooltip=c("text"))
 ```
 
 
@@ -376,7 +405,70 @@ ggplotly(plot2_t2, tooltip=c("text"))
 
 
 
-Data {data-icon="fa-table"}
+
+
+Nuages de mots {.storyboard data-icon="fa-cloud"}
+=====================================  
+
+### Domaine d'action du producteur
+
+```{r out.width='100%', fig.align='left', include=FALSE}
+data_wordcloud <- glimpse(avignon)
+corpus = Corpus(VectorSource(data_wordcloud$activiteProd))
+
+corpus = tm_map(corpus, PlainTextDocument) #Conversion to Lowercase
+corpus = tm_map(corpus, tolower)
+corpus = tm_map(corpus, removePunctuation) #Removing Punctuation
+
+ajout_stopwords <- c("d'", "d", "article", "articles")
+remix_stopwords <- c(ajout_stopwords, stopwords("french"))  # adding own undesired words to stopwords
+corpus = tm_map(corpus, removeWords, c("cloth", remix_stopwords)) #Remove stopwords
+corpus = tm_map(corpus, stripWhitespace) # Eliminate white spaces
+corpus[[1]][1] 
+
+DTM <- TermDocumentMatrix(corpus)
+mat <- as.matrix(DTM)
+f <- sort(rowSums(mat),decreasing=TRUE) 
+dat <- data.frame(word = names(f),freq=f)
+head(dat, 5)
+```
+
+```{r echo=FALSE}
+wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
+```
+
+
+### Description du contenu de l'entrée
+
+```{r include=FALSE}
+data_wordcloud <- glimpse(avignon)
+corpus2 = Corpus(VectorSource(data_wordcloud$descContenu))
+
+corpus2 = tm_map(corpus2, PlainTextDocument) #Conversion to Lowercase
+corpus2 = tm_map(corpus2, tolower)
+corpus2 = tm_map(corpus2, removePunctuation) #Removing Punctuation
+corpus2 = tm_map(corpus2, removeWords, c("cloth", remix_stopwords)) #Remove stopwords
+corpus2 = tm_map(corpus2, stripWhitespace) # Eliminate white spaces
+
+DTM2 <- TermDocumentMatrix(corpus2)
+mat2 <- as.matrix(DTM2)
+f2 <- sort(rowSums(mat2),decreasing=TRUE)
+dat2 <- data.frame(word = names(f2),freq=f2)
+```
+
+```{r echo=FALSE, fig.align='bottom'}
+wordcloud2(data=dat2, size=2, col="#0066CC", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 0)
+```
+
+
+### Un mot de fin ?
+
+```{r out.width='120%', fig.align='top', background="#FAF3EE"}
+knitr::include_graphics(here::here("./Dashboard_viz/wc_blanc.png"))
+```
+
+
+Les données {data-icon="fa-table"}
 =====================================  
 
 
@@ -385,7 +477,7 @@ DT::datatable(avignon, options=list(pageLength=25, searching=T))
 ```
 
 
-Le standard {data-icon="fa-clipboard-list"}
+À propos du standard {data-icon="fa-clipboard-list"}
 =====================================  
 
 
@@ -577,65 +669,3 @@ Column {data-width=650}
   + 4 quantitatives
   + 3 dates
   + 13 qualitatives
-
-
-
-Nuages de mots {.storyboard data-icon="fa-cloud"}
-=====================================  
-
-### Domaine d'action du producteur
-
-```{r out.width='100%', fig.align='left', include=FALSE}
-data_wordcloud <- glimpse(avignon)
-corpus = Corpus(VectorSource(data_wordcloud$activiteProd))
-
-corpus = tm_map(corpus, PlainTextDocument) #Conversion to Lowercase
-corpus = tm_map(corpus, tolower)
-corpus = tm_map(corpus, removePunctuation) #Removing Punctuation
-
-ajout_stopwords <- c("d'", "d", "article", "articles")
-remix_stopwords <- c(ajout_stopwords, stopwords("french"))  # adding own undesired words to stopwords
-corpus = tm_map(corpus, removeWords, c("cloth", remix_stopwords)) #Remove stopwords
-corpus = tm_map(corpus, stripWhitespace) # Eliminate white spaces
-corpus[[1]][1] 
-
-DTM <- TermDocumentMatrix(corpus)
-mat <- as.matrix(DTM)
-f <- sort(rowSums(mat),decreasing=TRUE) 
-dat <- data.frame(word = names(f),freq=f)
-head(dat, 5)
-```
-
-```{r out.width='97%', fig.align='left', echo=FALSE}
-wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
-```
-
-
-### Description du contenu de l'entrée
-
-```{r include=FALSE}
-data_wordcloud <- glimpse(avignon)
-corpus2 = Corpus(VectorSource(data_wordcloud$descContenu))
-
-corpus2 = tm_map(corpus2, PlainTextDocument) #Conversion to Lowercase
-corpus2 = tm_map(corpus2, tolower)
-corpus2 = tm_map(corpus2, removePunctuation) #Removing Punctuation
-corpus2 = tm_map(corpus2, removeWords, c("cloth", remix_stopwords)) #Remove stopwords
-corpus2 = tm_map(corpus2, stripWhitespace) # Eliminate white spaces
-
-DTM2 <- TermDocumentMatrix(corpus2)
-mat2 <- as.matrix(DTM2)
-f2 <- sort(rowSums(mat2),decreasing=TRUE)
-dat2 <- data.frame(word = names(f2),freq=f2)
-```
-
-```{r echo=FALSE, out.width='100%', fig.align='bottom'}
-wordcloud2(data=dat2, size=2, col="#0066CC", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 0)
-```
-
-
-### Un mot de fin ?
-
-```{r out.width='120%', fig.align='top', background="#FAF3EE"}
-knitr::include_graphics(here::here("./Dashboard_viz/wc_blanc.png"))
-```

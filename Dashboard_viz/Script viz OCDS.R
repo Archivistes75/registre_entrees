@@ -42,6 +42,7 @@ t1$Var1 <- as.character(t1$Var1)  # étape intermédiaire sinon remplace les ann
 t1$Var1 <- as.integer(t1$Var1)
     # plot
 library(ggplot2)
+library(gifski)   # lire 1 fois l'anim puis figer le graph
 library(gganimate)
 ggplot(t1, aes(Var1, Freq)) +  
    geom_line(aes(y=Freq), colour="orange", lwd=1) +
@@ -52,8 +53,9 @@ ggplot(t1, aes(Var1, Freq)) +
         theme(plot.title = element_text(face = "bold")) +
         theme(axis.title.y = element_text(size=12)) +
         theme(axis.title.x = element_text(size=12))
-anim_save("evol_depots_archives.gif")
 
+gganimate::animate(ggp, 
+                   renderer = gifski_renderer(loop = F))  # anim x1
 
 
 #-------------------------------------------------------------------------------------------------------------------------
@@ -69,17 +71,23 @@ t1bis$dateYear <- as.integer(t1bis$dateYear)
 
   # plot
 library(ggthemes)
-ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree)) +  
+p <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree,  
+                text = paste("", "Mode d'entrée :", modeEntree, # customisation du texte à afficher
+                              "\n", "Année :", dateYear,
+                              "\n", n, "archives"), group=modeEntree)) +  
    geom_line(aes(x=dateYear, y=n), lwd=1) +
-   labs(title ="Nombre de documents entrés chaque année selon le type", y = "Nombre d'archives entrées", x="Année de l'entrée") +
+   theme_light() +
+   labs(title ="Nombre de documents entrés chaque année selon le type",
+        y = "Nombre d'archives entrées", 
+        x="Année de l'entrée") +
         theme(plot.title = element_text(face = "bold")) +
         theme(axis.title.y = element_text(size=12)) +
         theme(axis.title.x = element_text(size=12)) +
- #  transition_reveal(dateYear) +
    facet_wrap(vars(modeEntree)) +
-   theme_light() + guides(colour = FALSE)   
+   theme(legend.position = 'none') +
+   guides(colour = FALSE)
 
-anim_save("depots_archives_par_mode.gif")
+ggplotly(p, source = "select", tooltip=c("text"))
 
 
 #-------------------------------------------------------------------------------------------------------------------------
@@ -276,7 +284,7 @@ wordcloud2(data=dat, size=1.6, col=rep_len(c("#66CCFF", "#0099CC", "#3399CC", "#
 
 wordcloud2(data=dat2, size=1.2, color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)), backgroundColor="#FAF3EE")
 
-letterCloud(data=dat2, size=1, word="ARCHIVE", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)))
+letterCloud(data=dat2, size=1, word="ARCHIVES", color=rep_len(c("#1D3139","#E5555C"), nrow(dat2)))
 
 
 
