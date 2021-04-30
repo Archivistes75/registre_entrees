@@ -3,9 +3,9 @@ Spécification du modèle de données relatif aux registres des entrées des ser
 
 ### Modèle de données
 
-[VERSION VALIDEE]
+La version validée 1.0 du schéma de registre des entrées se trouve [ici](Schema_registre_entrees/Schema_registre_entrees_V1.0.xlsx).
 
-Ce modèle de données repose sur les 20 champs suivants correspondant aux colonnes du [fichier tabulaire](https://docs.google.com/spreadsheets/d/1O-8Hhw6_78BILxNAchl391cpYNXpck2S1cTH1bXM_d8/edit?usp=sharing).
+Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au format tableur est également prévu pour faciliter la réalisation d'un registre des entrée au format du schéma.
 
 #### `ID`
 

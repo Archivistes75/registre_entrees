@@ -429,8 +429,7 @@ summary {
 <p>Spécification du modèle de données relatif aux registres des entrées des services publics d’archives.</p>
 <div id="modèle-de-données" class="section level3">
 <h3>Modèle de données</h3>
-<p>[VERSION VALIDEE]</p>
-<p>Ce modèle de données repose sur les 20 champs suivants correspondant aux colonnes du <a href="https://docs.google.com/spreadsheets/d/1O-8Hhw6_78BILxNAchl391cpYNXpck2S1cTH1bXM_d8/edit?usp=sharing">fichier tabulaire</a>.</p>
+<p>La version validée 1.0 du schéma de registre des entrées se trouve <a href="Schema_registre_entrees/Schema_registre_entrees_V1.0.xlsx">ici</a>.</p>
 <div id="id" class="section level4">
 <h4><code>ID</code></h4>
 <ul>
@@ -446,8 +445,8 @@ summary {
 <h4><code>nomArch</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Nom du service archives</p></li>
-<li><p><strong>description</strong> : Nom sous forme textuelle du service d’archives dans où sont entrées les archives</p></li>
-<li><p><strong>type</strong> : chaîne de caractères</p></li>
+<li><p><strong>description</strong> : Nom sous forme textuelle du service d’archives dans lequel sont entrées les archives</p></li>
+<li><p><strong>type</strong> : Chaîne de caractères</p></li>
 <li><p><strong>exemple</strong> : <code>Archives municipales d&#39;Aix-en-Provence</code></p></li>
 <li><p>valeur obligatoire</p></li>
 </ul>
@@ -476,7 +475,7 @@ summary {
 <h4><code>nature</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Nature juridique des documents entrés</p></li>
-<li><p><strong>description</strong> : Permet d’identifier le nature juridique des archives</p></li>
+<li><p><strong>description</strong> : Permet d’identifier la nature juridique des archives</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
 <li><p><strong>exemple</strong> : <code>Archives publiques</code></p></li>
 <li><p>valeur obligatoire</p></li>
@@ -509,7 +508,7 @@ summary {
 <div id="servvers" class="section level4">
 <h4><code>servVers</code></h4>
 <ul>
-<li><p><strong>titre</strong> : Service versant l’entrée</p></li>
+<li><p><strong>titre</strong> : Service qui verse l’entrée</p></li>
 <li><p><strong>description</strong> : permet d’identifier la personne physique ou morale qui a transféré les documents</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
 <li><p><strong>exemple</strong> : <code>Service de l&#39;achat public</code></p></li>
@@ -546,7 +545,7 @@ summary {
 <li><p><strong>exemple</strong> : <code>Communes de plus de 2 000 habitants</code></p></li>
 <li><p>valeur obligatoire</p></li>
 <li><p><strong>valeurs autorisées</strong> : [“Présidence de la République”, “Premier ministre”, “Ministères (directions d’administration centrale)”, “Assemblées parlementaires”, “Grands organes de contrôle”, “Services déconcentrés et établissements publics de l’État à compétence départementale ou locale”, “Services déconcentrés et établissements publics de l’État à compétence régionale ou supra-départementale”, “Administrations centrales délocalisées et établissements publics nationaux de l’État”, “Communes de plus de 2 000 habitants”, “Communes de moins de 2 000 habitants”, “Services du conseil départemental et établissements publics départementaux”, “Services du conseil régional et établissements publics régionaux”, “Services de la commune et établissements publics communaux”, “Structures intercommunales ou interdépartementales”, “Établissements publics de santé”, “Organismes de droit privé chargés d’une mission de service public”, “Officiers publics ou ministériels (dont notaires)”, “Producteurs privés”]</p></li>
-<li><p><strong>commentaire</strong> : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle.</p></li>
+<li><p><strong>commentaire</strong> : La séparation entre type et activité répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle.</p></li>
 </ul>
 </div>
 <div id="activiteprod" class="section level4">
@@ -558,7 +557,7 @@ summary {
 <li><p><strong>exemple</strong> : <code>Administration générale (fonctions transverses hors RH) | Culture, jeunesse et sports</code></p></li>
 <li><p>valeur obligatoire</p></li>
 <li><p><strong>valeurs autorisées</strong> : [“Instances de délibération”, “Direction, cabinet”, “Administration générale (fonctions transverses hors RH)”, “Finances, fiscalité”, “Ressources humaines”, “Économie, industrie”, “Agriculture”, “Équipement, environnement”, “Travail, emploi”, “Affaires sociales, santé”, “Justice”, “Police, protection civile, intérieur”, “Éducation, recherche”, “Culture, jeunesse et sports”, “Défense, anciens combattants”, “Outre-mer”, “Archives privées personnelles et familiales”, “Archives privées cultuelles”, “Archives privées d’associations, de partis politiques, de syndicats”, “Archives privées d’entreprises”, “Archives privées de professionnels (architectes, photographes…)”]</p></li>
-<li><p><strong>commentaire</strong> : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle. Les valeurs “Archives privées personnelles et familiales”, “Archives privées cultuelles”, “Archives privées d’associations, de partis politiques, de syndicats”, “Archives privées d’entreprises”, “Archives privées de professionnels (architectes, photographes…)” sont à réserver aux éléments qui possèdent l’élément “Producteurs privés” en <em>fonction du producteur</em>. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale <em>pipe</em> “|”.</p></li>
+<li><p><strong>commentaire</strong> : La séparation entre type et activité répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle. Les valeurs “Archives privées personnelles et familiales”, “Archives privées cultuelles”, “Archives privées d’associations, de partis politiques, de syndicats”, “Archives privées d’entreprises”, “Archives privées de professionnels (architectes, photographes…)” sont à réserver aux éléments qui possèdent l’élément “Producteurs privés” en <em>fonction du producteur</em>. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale <em>pipe</em> “|”.</p></li>
 </ul>
 </div>
 <div id="desccontenu" class="section level4">
@@ -606,13 +605,11 @@ summary {
 <h4><code>mlEntree</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Métrage linéaire de l’entrée</p></li>
-<li><p><strong>description</strong> : Volument en mètre linéaire de l’entrée</p></li>
+<li><p><strong>description</strong> : Volume en mètre linéaire de l’entrée</p></li>
 <li><p><strong>type</strong> : nombre réel</p></li>
 <li><p><strong>exemple</strong> : <code>1.60</code></p></li>
 <li><p>valeur optionnelle</p></li>
-<li><ul>
-<li><strong>commentaire</strong> : le séparateur décimal doit être le point . L’unité sera rappelée en métadonnée.</li>
-</ul></li>
+<li><p><strong>commentaire</strong> : le séparateur décimal doit être le point . L’unité sera rappelée en métadonnée.</p></li>
 </ul>
 </div>
 <div id="nbreart" class="section level4">
@@ -633,9 +630,7 @@ summary {
 <li><p><strong>type</strong> : nombre réel</p></li>
 <li><p><strong>exemple</strong> : <code>2.30</code></p></li>
 <li><p>valeur optionnelle</p></li>
-<li><ul>
-<li><strong>commentaire</strong> : le séparateur décimal doit être le point <strong>.</strong> L’unité sera rappelée en métadonnée.</li>
-</ul></li>
+<li><p><strong>commentaire</strong> : le séparateur décimal doit être le point <strong>.</strong> L’unité sera rappelée en métadonnée.</p></li>
 </ul>
 </div>
 <div id="objelec" class="section level4">
