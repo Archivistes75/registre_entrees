@@ -63,7 +63,7 @@
     "created": "2020-12-17",
     "updated": "2021-04-29",
     "homepage": "https://github.com/datactivist/siaf",
-    "uri": "https://github.com/etalab/schema-lieux-covoiturage/raw/v0.2.0/schema.json",
+    "uri": "https://raw.githubusercontent.com/datactivist/siaf/master/Schema_V0.2.json",
     "fields": [
         {
             "name": "ID",
