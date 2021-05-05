@@ -1,0 +1,41 @@
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(shiny)
+```
+
+```{r}
+dataset <- eventReactive(input$file1,{
+  dataset <- read.csv(input$file1$datapath)
+})
+```
+
+# Column {.sidebar}
+
+```{r, echo = FALSE}
+fileInput("file1", "Choose CSV File",
+multiple = TRUE,
+accept = c("text/csv",
+ "text/comma-separated-values,text/plain",
+ ".csv"))
+```
+
+# Data 
+
+
+### Data table 
+
+```{r}
+renderTable({
+  dataset <- dataset()
+  dataset
+})
+```

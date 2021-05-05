@@ -6,7 +6,8 @@
 
 # Import base
 library(tidyverse)
-avignon <- read_delim("Dashboard_viz/Avignon_standardise.csv", ";")
+avignon <- read_csv("C:/Users/diane/Desktop/Archives_registre_dentrees/siaf/Dashboard_viz/Avignon_standardise.csv")
+
 
 # Format des données
 str(avignon)
@@ -54,8 +55,25 @@ ggplot(t1, aes(Var1, Freq)) +
         theme(axis.title.y = element_text(size=12)) +
         theme(axis.title.x = element_text(size=12))
 
-gganimate::animate(ggp, 
-                   renderer = gifski_renderer(loop = F))  # anim x1
+#gganimate::animate(ggp, renderer = gifski_renderer(loop = F))  # anim x1
+
+
+#-------------------------------------------------------------------------------------------------------------------------
+
+
+  # Tableau des fréquences
+avignon$dateYear <- factor(avignon$dateYear, levels = c(min(data$dateYear):max(data$dateYear)))
+t1 <- as.data.frame(table(avignon$dateYear))   # ces commandes permettent de récupérer des fréquences pour toutes les années même si aucune archive n'a été rentrée (:freq=0 alors)
+
+  # On prépare les données au graph
+t11 <- stats::ts(t1$Freq, frequency=1, start=1989)
+
+  # Plot
+dygraph(t11) %>% dyRangeSelector() %>% dyOptions(stackedGraph = TRUE) %>% dySeries("V1", label = "Nombre d'entrées") %>%
+  dyHighlight(highlightSeriesOpts = list(strokeWidth = 2))
+
+
+
 
 
 #-------------------------------------------------------------------------------------------------------------------------
@@ -86,7 +104,7 @@ p <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree,
    facet_wrap(vars(modeEntree)) +
    theme(legend.position = 'none') +
    guides(colour = FALSE)
-
+library(plotly)
 ggplotly(p, source = "select", tooltip=c("text"))
 
 
@@ -173,7 +191,6 @@ plot2_t2 <- t2_bis %>%
   theme_bw()
 
 ggplotly(plot2_t2, tooltip=c("text"))
-plot2_t2
 
         
 #-------------------------------------------------------------------------------------------------------------------------
@@ -212,7 +229,7 @@ t4bis <- avignon %>% group_by(nature) %>% count(natureSupport)
 t4bis <- na.omit(t4bis)
 
   # plot
-t4bis <- t4bis %>% group_by(nature) %>% mutate(ypos = cumsum(n) - 0.5*n) %>% ungroup()
+t4bis <- t4bis %>% group_by(nature) %>% mutate(ypos = cumsum(n) - 0.5*n) %>% ungroup()  # position y label on graph
 ggplot(t4bis, aes(fill=natureSupport, y=n, x=nature)) + 
     geom_bar(position="stack", stat="identity") +
     geom_text(aes(y=ypos, label=n), vjust=1.3, color="white", size=5)+
