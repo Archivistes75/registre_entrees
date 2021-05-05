@@ -1,5 +1,4 @@
 ---
-title: "Archives municipales d'Avignon"
 output: 
   flexdashboard::flex_dashboard:
     theme: readable
@@ -10,9 +9,10 @@ output:
 params:
   data: 
     input: file  
-    label: 'Input dataset:'  
-    value: myData.csv  
-#runtime: shiny
+    label: 'Fichier CSV'  
+    value: Avignon_standardise.csv  
+  Lien: "Entrer ici le lien des données"
+  Date: !r Sys.Date()
 ---
 
 <style>
@@ -101,33 +101,27 @@ library(kableExtra)
 library(gifski)
 ```
 
-```{r}
-data <- eventReactive(input$file1,{
-   data <- read_csv(input$file1$datapath)  # import browse
-})
-
-#data <- eventReactive(input$file1,{
- #  data <- read_csv(input$text1)      # import lien 
-#})
-```
-
 
 Évolutions temporelles {data-icon="fa-chart-line"}
 =====================================  
 
-```{r, echo = FALSE}
-fileInput("file1", "Veuillez choisir le fichier des données au format CSV.",
-                    multiple = TRUE,
-                    accept = c("text/csv",
-                             "text/comma-separated-values,text/plain",
-                             ".csv"))
+```{r data, include=FALSE}
+# On récupère les données importées en fichier avec les paramètres
+cat(params$data)
+data <- read_csv(params$data)
 
-#textinput("text1", "Veuillez entrer le lien des données", value="")
+# De même s'il s'agit d'un lien internet
+cat(params$Lien)
+if (params$Lien != "Entrer ici le lien des données" & params$Lien != "" & params$Lien != " ") { 
+  data <- read_csv(params$Lien) }  # on ne récupère les données que si ce n'est pas une erreur
 ```
 
+---
+title: "`r data[2,]$nomArch`"
+---
 
 ```{r include=FALSE}
-data <- read_csv("Avignon_standardise.csv")
+#data <- read_csv("Avignon_standardise.csv")
 # Format des données
 str(data)
 
@@ -147,7 +141,7 @@ data$modeEntree <- str_replace_all(data$modeEntree, c("Collecte"="Collecte priv�
 Column {data-width=230}
 -----------------------------------------------------------------------
 
-**Quelques chiffres clés** :
+**Quelques chiffres clés au `r format(as.Date(params$Date, format="%Y/%m/%d"),"%d %B %Y")`** :
 
 
 ### Box 1
