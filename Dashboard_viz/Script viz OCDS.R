@@ -6,7 +6,7 @@
 
 # Import base
 library(tidyverse)
-avignon <- read_csv("C:/Users/diane/Desktop/Archives_registre_dentrees/siaf/Dashboard_viz/Avignon_standardise.csv")
+avignon <- read_csv("C:/Users/diane/Desktop/Archives_registre_dentrees/siaf/Dashboard_viz/Avignon.csv")
 
 
 # Format des données
@@ -221,8 +221,8 @@ ggplot(t3, aes(fill=modeEntree, y=n, x=nature)) +
 ### R.G n°7 : Nature du support des archives
 
   # On attribue des valeurs aléatoires à la nature du support non rentré pour Avignon mais présent désormais ds le standard
-nature <- c("Support physique", "Support électronique", "Support mixte")
-avignon$natureSupport <- sample(nature, size = nrow(avignon), replace = TRUE)
+nature <- c("Support papier", "Support électronique", "Support mixte")
+avignon$natureSupport <- sample(nature, size = nrow(avignon), replace = TRUE, prob = c(9/10,0.06,0.04))
   # On récupère un tableau des fréquences
 t4 <- as.data.frame(table(avignon$natureSupport))
 t4bis <- avignon %>% group_by(nature) %>% count(natureSupport)
@@ -240,6 +240,8 @@ ggplot(t4bis, aes(fill=natureSupport, y=n, x=nature)) +
     xlab("") + ylab("Nombre d'entrées") +
         theme(axis.title.y = element_text(size=12))
 
+# Export base complète càd équivalente au standard donc analyse reproductible si basée sur ces données finalisées.
+#write.csv(avignon,"./Dashboard_viz/Avignon.csv", row.names = FALSE, fileEncoding = "UTF-8")
   
 
 
@@ -270,15 +272,18 @@ head(dat, 5)
 
   #plot
 library(wordcloud2) 
-wordcloud2(data=dat, size=1.6, col="grey")
-wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
+wc <- wordcloud2(data=dat, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
 
+# Save plot
+library(webshot)
+webshot::install_phantomjs()
+webshot("wc.png")
 
 
 #-------------------------------------------------------------------------------------------------------------------------
 
 ### R.G n°9:  Wordcloud à partir de la colonne descContenu
-
+library(wordcloud2)
 corpus2 = Corpus(VectorSource(data_wordcloud$descContenu))
 
 corpus2 = tm_map(corpus2, PlainTextDocument) #Conversion to Lowercase
@@ -307,6 +312,8 @@ letterCloud(data=dat2, size=1, word="ARCHIVES", color=rep_len(c("#1D3139","#E555
 
 # Change the shape using your image
 wordcloud2(dat2, figPath = "~/Desktop/R-graph-gallery/img/other/peaceAndLove.jpg", size = 1.5, color = "skyblue", backgroundColor="black")
+
+
 
 
 

@@ -4,15 +4,25 @@ output:
     theme: readable
     vertical_layout: fill
     logo: logo_datactivist.png
-    source_code: embed
     storyboard: true
+    
 params:
   data: 
     input: file  
     label: 'Fichier CSV'  
-    value: Avignon_standardise.csv  
+    value: Avignon.csv  
   Lien: "Entrer ici le lien des données"
   Date: !r Sys.Date()
+  
+knit: (
+  function(inputFile, encoding) { 
+
+    date <- format(as.Date(Sys.Date(), format="%Y/%m/%d"),"%d-%m-%Y")
+
+    rmarkdown::render( 
+      input       = inputFile, 
+      encoding    = encoding,
+      output_file = paste0("Dashboard_", date, ".html")) })
 ---
 
 <style>
@@ -72,8 +82,9 @@ knitr::opts_chunk$set(echo = FALSE,
                       message = FALSE, 
                       warning = FALSE,
                       collapse = TRUE,  
-                      fig.show = "hold", 
-                      out.width = "100%")
+                      fig.show = "hold",
+                      out.width = "100%")  # all chunk options at https://yihui.org/knitr/options/
+
 ```
 
 ```{r include=FALSE}
@@ -121,20 +132,14 @@ title: "`r data[2,]$nomArch`"
 ---
 
 ```{r include=FALSE}
-#data <- read_csv("Avignon_standardise.csv")
 # Format des données
 str(data)
 
-### Statistiques descriptives
-summary(data)
-table(data$nature)
-table(data$modeEntree)
+### On force le format des données pour avoir des bases homogénéisées donc pas de soucis de manips pour la suite du dashboard
+#data$ <- as.character(data$)
 
 # Création d'une colonne où on récup l'année de la date d'entrée
 data$dateYear <- format(as.Date(data$dateEntree, format="%d/%m/%Y"),"%Y")
-
-# On remplace le mode d'entrée 'collecte' par 'collecte privée'
-data$modeEntree <- str_replace_all(data$modeEntree, c("Collecte"="Collecte privée"))
 ```
 
 
@@ -155,36 +160,43 @@ valueBox(row, caption="Archives entrées", color = "#CC0033", icon = "ion-androi
 ### Box 2
 
 ```{r echo=FALSE}
-t1 <- as.data.frame(table(data$dateYear))
-t1$Var1 <- as.character(t1$Var1)  # étape intermédiaire sinon remplace les années par un ID de 1 à 24 
-t1$Var1 <- as.integer(t1$Var1)
-
-nYear <- tally(t1)
-valueBox(nYear, caption="Années répertoriées", color = "#FF9933", icon = "ion-android-calendar")
+A.publiques <- as.data.frame(table(data$nature))
+nb_A.publiques <- A.publiques %>% filter(Var1=="Archives publiques")
+valueBox(nb_A.publiques$Freq, caption="Archives publiques", color = "#FF9933", icon = "ion-loop")
 ```
 
 ### Box 3
 
 ```{r echo=FALSE}
-valueBox("63%", caption="Archives publiques", color = "#FFCC00", icon = "ion-loop")
+A.papier <- as.data.frame(table(data$natureSupport)) 
+nb_A.papier <- A.papier %>% filter(Var1=="Support papier")
+valueBox(nb_A.papier$Freq, caption="Supports papier", color = "#FFCC00", icon = "ion-social-buffer")
 ```
 
 ### Box 4
 
 ```{r echo=FALSE}
-valueBox("27%", caption="Archives éléctroniques", color = "#339900", icon = "ion-android-desktop")
+Modes_entree <- as.data.frame(table(data$modeEntree))
+nMode <- tally(Modes_entree)
+valueBox(nMode, caption="Modes d'entrée différents", color = "#339900", icon = "ion-filing")
 ```
 
 ### Box 5
 
 ```{r echo=FALSE}
-valueBox(9, caption="Modes d'entrée différents", color = "#009966", icon = "ion-ios-box") #ion-social-buffer pas mal aussi
+Annees <- as.data.frame(table(data$dateYear))
+nYear <- tally(Annees)
+valueBox(nYear, caption="Années répertoriées", color = "#009966", icon = "ion-android-calendar")
 ```
 
 ### Box 6
 
 ```{r echo=FALSE}
-valueBox(853, caption="Séries", color = "#0066CC", icon = "ion-filing")  # à changer
+nb_A.privees <- A.publiques %>% filter(Var1=="Archives privées")
+nb_A.privees$Freq <- round(nb_A.privees$Freq/row*100,0)
+percent <- paste(nb_A.privees$Freq, "%", sep = "")
+
+valueBox(percent, caption="Archives privées", color = "#0066CC", icon = "ion-ios-box") 
 ```
 
 
@@ -195,7 +207,9 @@ Column {data-width=500}
 
 ```{r}
   # Tableau des fréquences
-t1 <- as.data.frame(table(data$dateYear))   # ces commandes permettent de récupérer des fréquences pour toutes les années même si aucune archive n'a été rentrée (:freq=0 alors)
+t1 <- as.data.frame(table(data$dateYear))
+t1$Var1 <- as.character(t1$Var1)  # étape intermédiaire sinon remplace les années par un ID de 1 à 24 
+t1$Var1 <- as.integer(t1$Var1)
 
   # On prépare les données au graph
 t11 <- stats::ts(t1$Freq, frequency=1, start=1989)
@@ -240,7 +254,7 @@ Column {data-width=570}
 
 ### Nombre de documents entrés chaque année selon le type
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.height=9}
   # label font
 windowsFonts(A = windowsFont("Times New Roman"))  # on définit la police des labels (pour harmoniser la dashboard et reproduire le visu de ggplotly)
 
@@ -272,10 +286,6 @@ Column {data-width=400}
 ### Nature du support des archives entrées selon leur type
 
 ```{r}
-  # Création de valeurs random pour naturesupport car champ obligatoire ds le standard mais pas renseigné dans jeu d'essai Avignon
-nature <- c("Support physique", "Support électronique", "Support mixte")
-data$natureSupport <- sample(nature, size = nrow(data), replace = TRUE)
-
   # On récupère un tableau des fréquences
 t2 <- data %>% group_by(nature) %>% count(natureSupport)
 t2 <- na.omit(t2)
@@ -287,7 +297,7 @@ ggp2 <- ggplot(t2, aes(fill=natureSupport, y=n, x=nature,
                               "\n", n,"archives"), group=natureSupport)) + 
     geom_bar(position="stack", stat="identity") +
     scale_fill_viridis(discrete = T, name="Nature du support", option="E", direction=-1) +
-    labs(caption="Données non réelles pour la nature du support") +
+ #   labs(caption="Données non réelles pour la nature du support") +
     theme_ipsum() +
     xlab("") + ylab("Nombre d'entrées") +
     theme(axis.title.y = element_text(size=12))
@@ -338,7 +348,7 @@ ggp4 <- t4 %>%
                               "\nPourcentage des archives :", round(Freq*100,0),"%"), group=modeEntree))+
     geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
     coord_flip() +
-    ylab("Pourcentage des archives entrées de 1989 à 2020") + xlab("Mode d'entrée") + 
+    ylab(paste("Pourcentage des archives entrées de", t1[1,1], "à", tail(t1$Var1, n=1))) + xlab("Mode d'entrée") + 
     scale_y_continuous(labels = scales::percent_format()) +  # afficher des % sur la règle des y (abscisses car coord_flip)
     theme_bw()
 
@@ -346,9 +356,9 @@ ggplotly(ggp4, tooltip=c("text"))
 ```
 
 
-### Année par année {data-padding=65}
+### Année par année
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.height=9}
 
   # création du tableau des fréquences par mode d'entrée selon l'année
 t4_bis <- data %>% group_by(dateYear) %>% count(modeEntree)
@@ -401,6 +411,12 @@ word_data <- data.frame(word = names(f),freq=f)
 wordcloud2(data=word_data, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
 ```
 
+```{r}
+checkboxInput("save", "Export widget")
+actionButton("action", label = "Save plot")
+
+
+```
 
 ### Description du contenu de l'entrée
 
@@ -429,7 +445,7 @@ wordcloud2(data=word_data2, size=2, col="#0066CC", minRotation = -pi/6, maxRotat
 
 ### Un mot de fin ?
 
-```{r out.width='120%', fig.align='top', background="#FAF3EE"}
+```{r out.width='120%', fig.align='top'}
   # Lettercloud "ARCHIVES" format non intéractif
 knitr::include_graphics(here::here("./Dashboard_viz/wc_blanc.png"))
 ```
