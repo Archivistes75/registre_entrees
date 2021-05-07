@@ -13,6 +13,15 @@ params:
     value: Avignon.csv  
   Lien: "Entrer ici le lien des données"
   Date: !r Sys.Date()
+  
+knit: (
+  function(inputFile, encoding) { 
+    
+    date <- format(as.Date(Sys.Date(), format="%Y/%m/%d"),"%d-%m-%Y")
+
+    rmarkdown::render("Dashboard.Rmd", params = "ask", 
+      encoding    = encoding,
+      output_file = paste0("Dashboard_", date, ".html")) })
 ---
 
 <style>
@@ -78,28 +87,23 @@ knitr::opts_chunk$set(echo = FALSE,
 ```
 
 ```{r include=FALSE}
-# Chargement des librairies
-library(shiny)
-library(tidyverse)
-library(viridis) 
-library(plotly) 
-library(data.table) 
-library(stringr)
-library(ggplot2)
-library(gganimate)
-library(ggthemes)
-library(hrbrthemes)
-library(dygraphs) 
-library(gmodels)
-library(forcats)
-library(e1071)
-library(mlbench)
-library(tm)
-library(SnowballC)
-library(wordcloud2)  # Version 0.2.2 nécessaire absolument. #devtools::install_github("lchiffon/wordcloud2")
-library(htmlwidgets)
-library(kableExtra)
-library(gifski)
+# Packages nécessaires à l'analyse
+packages = c("tidyverse","viridis", "shiny", "plotly", "data.table", "stringr", "ggplot2", "gganimate", "ggthemes", "hrbrthemes", "dygraphs", "gmodels", "forcats", "e1071", "mlbench", "tm", "SnowballC", "htmlwidgets", "kableExtra", "gifski")
+
+## Installation des packages si besoin et chargement des librairies
+package.check <- lapply(
+  packages,
+  FUN = function(x) {
+    if (!require(x, character.only = TRUE)) {
+      install.packages(x, dependencies = TRUE)
+      library(x, character.only = TRUE)
+    }
+  }
+)
+
+# Wordcloud2 à part car nécessite une version précise (up-to-date)
+devtools::install_github("lchiffon/wordcloud2")  # Version 0.2.2 nécessaire absolument.
+library(wordcloud2)
 ```
 
 
@@ -126,7 +130,13 @@ title: "`r data[2,]$nomArch`"
 str(data)
 
 ### On force le format des données pour avoir des bases homogénéisées donc pas de soucis de manips pour la suite du dashboard
-#data$ <- as.character(data$)
+data$nomArch <- as.character(data$nomArch)
+data$dateEntree <- as.character(data$dateEntree)
+data$nature <- as.character(data$nature)
+data$modeEntree <- as.character(data$modeEntree)
+data$activiteProd <- as.character(data$activiteProd)
+data$descContenu <- as.character(data$descContenu)
+data$natureSupport <- as.character(data$natureSupport)
 
 # Création d'une colonne où on récup l'année de la date d'entrée
 data$dateYear <- format(as.Date(data$dateEntree, format="%d/%m/%Y"),"%Y")
@@ -200,6 +210,7 @@ Column {data-width=500}
 t1 <- as.data.frame(table(data$dateYear))
 t1$Var1 <- as.character(t1$Var1)  # étape intermédiaire sinon remplace les années par un ID de 1 à 24 
 t1$Var1 <- as.integer(t1$Var1)
+t1 <- na.omit(t1)
 
   # On prépare les données au graph
 t11 <- stats::ts(t1$Freq, frequency=1, start=1989)
@@ -219,6 +230,7 @@ colnames(t1bis) <- c("dateYear", "modeEntree", "n") # mise en forme de la table,
   # formatage des données
 t1bis$dateYear <- as.character(t1bis$dateYear)  # exploitabilité
 t1bis$dateYear <- as.integer(t1bis$dateYear)
+t1bis <- na.omit(t1bis)
 
   # calcul des fréquences cumulées par année selon le mode d'entrée
 t1bis <- t1bis %>% group_by(modeEntree) %>% mutate(count=cumsum(n)) # fréquences cumulées
@@ -287,10 +299,14 @@ ggp2 <- ggplot(t2, aes(fill=natureSupport, y=n, x=nature,
                               "\n", n,"archives"), group=natureSupport)) + 
     geom_bar(position="stack", stat="identity") +
     scale_fill_viridis(discrete = T, name="Nature du support", option="E", direction=-1) +
- #   labs(caption="Données non réelles pour la nature du support") +
     theme_ipsum() +
     xlab("") + ylab("Nombre d'entrées") +
     theme(axis.title.y = element_text(size=12))
+
+if (data[2,]$nomArch == "Archives municipales d'Avignon"){
+  ggp2 = ggp2 + xlab("Données non réelles pour la nature du support") + 
+                theme(axis.title.x = element_text(size=11, face="italic"))
+}
 
 ggplotly(ggp2, tooltip=c("text"))
 ```
@@ -328,6 +344,7 @@ Column {data-width=600}{.tabset}
     # création du tableau des fréquences par mode d'entrée
 t4 <- as.data.frame(table(data$modeEntree))
 colnames(t4) <- c("modeEntree", "Freq")
+t4 <- na.omit(t4)
 
     # plot où on met la fréquence en pourcentage puis on réordonne par ordre décroissant
 ggp4 <- t4 %>% 
@@ -352,6 +369,7 @@ ggplotly(ggp4, tooltip=c("text"))
 
   # création du tableau des fréquences par mode d'entrée selon l'année
 t4_bis <- data %>% group_by(dateYear) %>% count(modeEntree)
+t4_bis <- na.omit(t4_bis)
 
   # plot
 ggp5 <- t4_bis %>% 
@@ -375,7 +393,7 @@ Nuages de mots {.storyboard data-icon="fa-cloud"}
 
 ### Domaine d'action du producteur
 
-```{r out.width='100%', fig.align='left', include=FALSE}
+```{r include=FALSE}
   # preparation des données
 data_wordcloud <- glimpse(data)
 corpus = Corpus(VectorSource(data_wordcloud$activiteProd))
@@ -396,18 +414,9 @@ f <- sort(rowSums(mat),decreasing=TRUE)
 word_data <- data.frame(word = names(f),freq=f)
 ```
 
-#### 
 ```{r echo=FALSE}
   # plot
-wc <- wordcloud2(data=word_data, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
-wc
-```
-
-
-#### 
-```{r}
-actionButton("action", label = "Exporter le wordcloud")
-webshot("tmp.html","fig_1.pdf", delay =5, vwidth = 480, vheight=480)
+wordcloud2(data=word_data, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
 ```
 
 
@@ -430,7 +439,7 @@ f2 <- sort(rowSums(mat2),decreasing=TRUE)
 word_data2 <- data.frame(word = names(f2),freq=f2)
 ```
 
-```{r echo=FALSE, fig.align='bottom'}
+```{r echo=FALSE}
   # plot
 wordcloud2(data=word_data2, size=2, col="#0066CC", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 0)
 ```
