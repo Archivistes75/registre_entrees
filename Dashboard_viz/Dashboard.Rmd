@@ -17,7 +17,7 @@ params:
 knit: (
   function(inputFile, encoding) { 
     
-    date <- format(as.Date(Sys.Date(), format="%Y/%m/%d"),"%d-%m-%Y")
+    date <- format(as.Date(params$Date, format="%Y/%m/%d"),"%d-%m-%Y")
 
     rmarkdown::render("Dashboard.Rmd", params = "ask", 
       encoding    = encoding,
@@ -83,12 +83,11 @@ knitr::opts_chunk$set(echo = FALSE,
                       collapse = TRUE,  
                       fig.show = "hold",
                       out.width = "100%")  # all chunk options at https://yihui.org/knitr/options/
-
 ```
 
 ```{r include=FALSE}
 # Packages nécessaires à l'analyse
-packages = c("tidyverse","viridis", "shiny", "plotly", "data.table", "stringr", "ggplot2", "gganimate", "ggthemes", "hrbrthemes", "dygraphs", "gmodels", "forcats", "e1071", "mlbench", "tm", "SnowballC", "htmlwidgets", "kableExtra", "gifski")
+packages = c("tidyverse","viridis", "shiny", "plotly", "stringr", "ggplot2", "gganimate", "ggthemes", "hrbrthemes", "dygraphs", "gmodels", "forcats", "e1071", "mlbench", "tm", "SnowballC", "htmlwidgets", "kableExtra")
 
 ## Installation des packages si besoin et chargement des librairies
 package.check <- lapply(
@@ -102,8 +101,10 @@ package.check <- lapply(
 )
 
 # Wordcloud2 à part car nécessite une version précise (up-to-date)
-devtools::install_github("lchiffon/wordcloud2")  # Version 0.2.2 nécessaire absolument.
-library(wordcloud2)
+if (!require("wordcloud2", character.only = TRUE)) {
+      devtools::install_github("lchiffon/wordcloud2")   # Version 0.2.2 nécessaire absolument.
+      library("wordcloud2", character.only = TRUE)
+}
 ```
 
 
@@ -123,6 +124,9 @@ if (params$Lien != "Entrer ici le lien des données" & params$Lien != "" & param
 
 ---
 title: "`r data[2,]$nomArch`"
+
+rmarkdown::render(
+      output_file = paste0("Dashboard_", params$Date, ".html"))
 ---
 
 ```{r include=FALSE}
@@ -257,9 +261,6 @@ Column {data-width=570}
 ### Nombre de documents entrés chaque année selon le type
 
 ```{r echo=FALSE, fig.height=9}
-  # label font
-windowsFonts(A = windowsFont("Times New Roman"))  # on définit la police des labels (pour harmoniser la dashboard et reproduire le visu de ggplotly)
-
   # plot
 ggp1 <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree,  
                 text = paste("", "Mode d'entrée :", modeEntree, # customisation du texte à afficher
@@ -269,9 +270,9 @@ ggp1 <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree,
    facet_wrap(vars(modeEntree)) +
    labs(y= "Nombre d'archives entrées", x="Année de l'entrée") +
    theme_light() +
-        theme(axis.title.y = element_text(family="A", size=rel(1))) +
-        theme(axis.title.x = element_text(margin = unit(c(rel(4), 0, 0, 0), "mm"), family="A", size=rel(1))) +
-        theme(strip.text = element_text(family="A", size=rel(1), face="bold")) +
+        theme(axis.title.y = element_text(family="Times New Roman", size=rel(1))) +
+        theme(axis.title.x = element_text(margin = unit(c(rel(4), 0, 0, 0), "mm"), family="Times New Roman", size=rel(1))) +
+        theme(strip.text = element_text(family="Times New Roman", size=rel(1), face="bold")) +
    theme(legend.position = 'none') + guides(colour = FALSE) #pour que la légende ne s'affiche pas
 
 ggplotly(ggp1, source = "select", tooltip=c("text"))
@@ -416,7 +417,7 @@ word_data <- data.frame(word = names(f),freq=f)
 
 ```{r echo=FALSE}
   # plot
-wordcloud2(data=word_data, size=1.6, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
+wordcloud2(data=word_data, size=1.9, col="grey", minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)
 ```
 
 
@@ -449,7 +450,7 @@ wordcloud2(data=word_data2, size=2, col="#0066CC", minRotation = -pi/6, maxRotat
 
 ```{r out.width='120%', fig.align='top'}
   # Lettercloud "ARCHIVES" format non intéractif
-knitr::include_graphics(here::here("./Dashboard_viz/wc_blanc.png"))
+knitr::include_graphics(here::here("./Dashboard_viz/wc_blanc.PNG"))
 ```
 
 
@@ -486,7 +487,7 @@ Dans son **cadre stratégique commun de modernisation des archives**, la *délé
     
 <br>
 
-Ainsi, en quelques mois, une équipe composée de représentants du SIAF, de l'AAF et de Datactivist ont travaillé pour mettre au point un standard pour les données des **registres d'entrées**. Ce dernier n'a pas de caractère réglementaire mais son utilisation est recommandée dès lors qu'une réutilisation ou une comparaison des données est envisagée.
+Ainsi, en quelques mois, une équipe composée de représentants du SIAF, de l'AAF et de Datactivist a travaillé pour mettre au point un standard pour les données des **registres d'entrées**. Ce dernier n'a pas de caractère réglementaire mais son utilisation est recommandée dès lors qu'une réutilisation ou une comparaison des données est envisagée.
 
 
 

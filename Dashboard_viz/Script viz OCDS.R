@@ -7,6 +7,7 @@
 # Import base
 library(tidyverse)
 avignon <- read_csv("C:/Users/diane/Desktop/Archives_registre_dentrees/siaf/Dashboard_viz/Avignon.csv")
+stetienne <- read_csv("C:/Users/diane/Desktop/Archives_registre_dentrees/siaf/Dashboard_viz/StEtienne.csv")
 
 
 # Format des données
@@ -87,6 +88,9 @@ str(t1bis)
 t1bis$dateYear <- as.character(t1bis$dateYear)  # exploitabilité
 t1bis$dateYear <- as.integer(t1bis$dateYear)
 
+  # label font
+windowsFonts(A = windowsFont("Times New Roman"))  # on définit la police des labels (pour harmoniser la dashboard et reproduire le visu de ggplotly)
+
   # plot
 library(ggthemes)
 p <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree,  
@@ -99,7 +103,7 @@ p <- ggplot(t1bis, aes(x=dateYear, y=n, colour=modeEntree,
         y = "Nombre d'archives entrées", 
         x="Année de l'entrée") +
         theme(plot.title = element_text(face = "bold")) +
-        theme(axis.title.y = element_text(size=12)) +
+        theme(axis.title.y = element_text(size=12, family="Times New Roman")) +
         theme(axis.title.x = element_text(size=12)) +
    facet_wrap(vars(modeEntree)) +
    theme(legend.position = 'none') +
