@@ -210,13 +210,10 @@
             "constraints": {
                 "required": true,
                 "enum": [
-                    "Instances de délibération",
+                    "Instance de délibération",
                     "Direction, cabinet",
-                    "Administration générale (fonctions transverses hors RH)",
-                    "Finances, fiscalité",
-                    "Ressources humaines",
-                    "Économie, industrie",
-                    "Agriculture",
+                    "Administration générale (fonctions transverses, RH)",
+                    "Finances, fiscalité", "Économie, industrie", "Agriculture",
                     "Équipement, environnement",
                     "Travail, emploi",
                     "Affaires sociales, santé",
