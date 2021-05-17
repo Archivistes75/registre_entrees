@@ -17,7 +17,7 @@ params:
 knit: (
   function(inputFile, encoding) { 
     
-    date <- format(as.Date(params$Date, format="%Y/%m/%d"),"%d-%m-%Y")
+    date <- format(as.Date(Sys.Date(), format="%Y/%m/%d"),"%d-%m-%Y")
 
     rmarkdown::render("Dashboard.Rmd", params = "ask", 
       encoding    = encoding,
@@ -124,10 +124,8 @@ if (params$Lien != "Entrer ici le lien des données" & params$Lien != "" & param
 
 ---
 title: "`r data[2,]$nomArch`"
-
-rmarkdown::render(
-      output_file = paste0("Dashboard_", params$Date, ".html"))
 ---
+
 
 ```{r include=FALSE}
 # Format des données
@@ -136,7 +134,7 @@ str(data)
 ### On force le format des données pour avoir des bases homogénéisées donc pas de soucis de manips pour la suite du dashboard
 data$nomArch <- as.character(data$nomArch)
 data$dateEntree <- as.character(data$dateEntree)
-data$nature <- as.character(data$nature)
+data$nature <- as.character(data$statutJur)
 data$modeEntree <- as.character(data$modeEntree)
 data$activiteProd <- as.character(data$activiteProd)
 data$descContenu <- as.character(data$descContenu)
@@ -164,7 +162,7 @@ valueBox(row, caption="Archives entrées", color = "#CC0033", icon = "ion-androi
 ### Box 2
 
 ```{r echo=FALSE}
-A.publiques <- as.data.frame(table(data$nature))
+A.publiques <- as.data.frame(table(data$statutJur))
 nb_A.publiques <- A.publiques %>% filter(Var1=="Archives publiques")
 valueBox(nb_A.publiques$Freq, caption="Archives publiques", color = "#FF9933", icon = "ion-loop")
 ```
@@ -217,7 +215,7 @@ t1$Var1 <- as.integer(t1$Var1)
 t1 <- na.omit(t1)
 
   # On prépare les données au graph
-t11 <- stats::ts(t1$Freq, frequency=1, start=1989)
+t11 <- stats::ts(t1$Freq, frequency=1, start=t1[1,1])
 
   # Plot
 dygraph(t11) %>% dyRangeSelector() %>% dyOptions(stackedGraph = TRUE) %>% dySeries("V1", label = "Nombre d'entrées") %>%
@@ -290,12 +288,12 @@ Column {data-width=400}
 
 ```{r}
   # On récupère un tableau des fréquences
-t2 <- data %>% group_by(nature) %>% count(natureSupport)
+t2 <- data %>% group_by(statutJur) %>% count(natureSupport)
 t2 <- na.omit(t2)
 
   # on plot
-ggp2 <- ggplot(t2, aes(fill=natureSupport, y=n, x=nature,  
-                text = paste("", nature, 
+ggp2 <- ggplot(t2, aes(fill=natureSupport, y=n, x=statutJur,  
+                text = paste("", statutJur, 
                              "\n", natureSupport,
                               "\n", n,"archives"), group=natureSupport)) + 
     geom_bar(position="stack", stat="identity") +
@@ -304,7 +302,7 @@ ggp2 <- ggplot(t2, aes(fill=natureSupport, y=n, x=nature,
     xlab("") + ylab("Nombre d'entrées") +
     theme(axis.title.y = element_text(size=12))
 
-if (data[2,]$nomArch == "Archives municipales d'Avignon"){
+if (data[2,]$nomArch == "Archives municipales d'Avignon" || data[2,]$nomArch == "Archives municipales de St Etienne"){
   ggp2 = ggp2 + xlab("Données non réelles pour la nature du support") + 
                 theme(axis.title.x = element_text(size=11, face="italic"))
 }
@@ -317,11 +315,11 @@ ggplotly(ggp2, tooltip=c("text"))
 
 ```{r}
   # tableau des fréquences
-t3 <- data %>% group_by(nature) %>% count(modeEntree)
+t3 <- data %>% group_by(statutJur) %>% count(modeEntree)
 t3 <- na.omit(t3)
   # plot
-ggp3 <- ggplot(t3, aes(fill=modeEntree, y=n, x=nature,  
-                text = paste("Nature :", nature, 
+ggp3 <- ggplot(t3, aes(fill=modeEntree, y=n, x=statutJur,  
+                text = paste("Statut juridique :", statutJur, 
                              "\nType d'entrée :", modeEntree,
                               "\nCompte :", n,"archives"), group=modeEntree)) + 
     geom_bar(stat="identity", position=position_dodge()) +
@@ -403,7 +401,7 @@ corpus = tm_map(corpus, PlainTextDocument) #Conversion to Lowercase
 corpus = tm_map(corpus, tolower)
 corpus = tm_map(corpus, removePunctuation) #Removing Punctuation
   # retrait des mots non désirés (pronoms, auxiliaires etc.)
-ajout_stopwords <- c("d'", "d", "article", "articles")
+ajout_stopwords <- c("d'", "d", "article", "articles", "Service producteur inconnu")
 remix_stopwords <- c(ajout_stopwords, stopwords("french"))  # adding own undesired words to stopwords
 corpus = tm_map(corpus, removeWords, c("cloth", remix_stopwords)) #Remove stopwords
 corpus = tm_map(corpus, stripWhitespace) # Eliminate white spaces
@@ -523,9 +521,9 @@ Column {data-width=650}
 
 
 
-`nature`
+`statutJur`
 
-- **titre** : Nature juridique des documents entrés
+- **titre** : Statut juridique des documents entrés
 
 - **description** : Permet d'identifier la nature juridique des archives
 

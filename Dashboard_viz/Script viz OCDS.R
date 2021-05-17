@@ -227,6 +227,7 @@ ggplot(t3, aes(fill=modeEntree, y=n, x=nature)) +
   # On attribue des valeurs aléatoires à la nature du support non rentré pour Avignon mais présent désormais ds le standard
 nature <- c("Support papier", "Support électronique", "Support mixte")
 avignon$natureSupport <- sample(nature, size = nrow(avignon), replace = TRUE, prob = c(9/10,0.06,0.04))
+stetienne$natureSupport <- sample(nature, size = nrow(stetienne), replace = TRUE, prob = c(9/10,0.06,0.04))
   # On récupère un tableau des fréquences
 t4 <- as.data.frame(table(avignon$natureSupport))
 t4bis <- avignon %>% group_by(nature) %>% count(natureSupport)
@@ -246,6 +247,7 @@ ggplot(t4bis, aes(fill=natureSupport, y=n, x=nature)) +
 
 # Export base complète càd équivalente au standard donc analyse reproductible si basée sur ces données finalisées.
 #write.csv(avignon,"./Dashboard_viz/Avignon.csv", row.names = FALSE, fileEncoding = "UTF-8")
+#write.csv(stetienne,"./Dashboard_viz/StEtienne.csv", row.names = FALSE, fileEncoding = "UTF-8")
   
 
 
