@@ -15,12 +15,12 @@
 
 <meta name="author" content="GT SIAF/AAF/Datactivist" />
 
-<meta name="date" content="2021-01-04" />
+<meta name="date" content="2021-05-17" />
 
 <meta name="description" content="Documentation d’accompagnement du schéma de données">
 
 <script id="pandoc-meta" type="application/json">
-{"newpage_html_class":"page-break-after","date":"2021-01-04","output":{"links-to-footnotes":"true","pagedown::html_paged":{"self_contained":null,"toc":"true","knit":"pagedown::chrome_print"}},"author":"GT SIAF/AAF/Datactivist","title":"Documentation d’accompagnement du schéma de données"}
+{"newpage_html_class":"page-break-after","date":"2021-05-17","output":{"links-to-footnotes":"true","pagedown::html_paged":{"self_contained":null,"toc":"true","knit":"pagedown::chrome_print"}},"author":"GT SIAF/AAF/Datactivist","title":"Documentation d’accompagnement du schéma de données"}
 </script>
 
 <title>Documentation d’accompagnement du schéma de données</title>
@@ -55,7 +55,7 @@
 <div id="header" class="title-page">
 <h1 class="title">Documentation d’accompagnement du schéma de données</h1>
 <h2 class="author">GT SIAF/AAF/Datactivist</h2>
-<h2 class="date">2021-01-04</h2>
+<h2 class="date">2021-05-17</h2>
 </div>
 </div>
 
@@ -81,7 +81,6 @@
 <li><a href="#cas-de-lidentifiant-pivot"><span class="toc-section-number">3.2.4</span> Cas de l’identifiant pivot</a></li>
 <li><a href="#concertation-en-dehors-du-groupe-de-travail"><span class="toc-section-number">3.2.5</span> Concertation en dehors du groupe de travail</a></li>
 </ul></li>
-<li><a href="#construction-du-schéma"><span class="toc-section-number">3.3</span> Construction du schéma</a></li>
 </ul></li>
 <li><a href="#remarques-générales-sur-les-schémas-de-données"><span class="toc-section-number">4</span> - Remarques générales sur les schémas de données</a>
 <ul>
@@ -256,14 +255,11 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 </div>
 <div id="concertation-en-dehors-du-groupe-de-travail" class="section level3" number="3.2.5">
 <h3><span class="header-section-number">3.2.5</span> Concertation en dehors du groupe de travail</h3>
-<p>[A COMPLETER]</p>
 <p>Le schéma a été ajouté à schema.data.gouv comme étant en investigation le 15 novembre 2020.</p>
-</div>
-</div>
-<div id="construction-du-schéma" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Construction du schéma</h2>
-<p>[EN COURS]</p>
+<p>Un appel à commentaires a eu lieu du 04 janvier au 12 février 2021.Un webinaire de présentation du schéma a ouvert cet appel à commentaire le 04 janvier 2021. Sur la période, une cinquantaine de retours a été réalisé.</p>
+<p>Le groupe de travail a analysé les commentaires et à l’issu de ce travail, une V1.0 a été réalisée.</p>
 <p>Le schéma sera produit au format json.</p>
+</div>
 </div>
 </div>
 <div id="remarques-générales-sur-les-schémas-de-données" class="section level1" number="4">
@@ -335,17 +331,21 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 </div>
 <div id="documenter-les-données" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Documenter les données</h2>
+<p>Pour obtenir des <strong>informations sur la publication</strong> d’un jeu de données, vous pouvez consulter : l’<a href="https://doc.data.gouv.fr/jeux-de-donnees/publier-un-jeu-de-donnees/">aide de data.gouv.fr</a>.</p>
 <p><strong>Métadonnées descriptives</strong></p>
 <ul>
 <li><p>Nom du producteur du jeu de données : Le nom du producteur permet d’indiquer le service qui a produit et publié le jeu de données.</p>
-<pre><code>      `Archives municipales de la commune de XXX`
-      `Archives départementales de XXX`</code></pre></li>
+<pre><code>  `Archives municipales de la commune de XXX`
+  `Archives départementales de XXX`</code></pre></li>
 <li><p>Titre du jeu de données : il s’agit du nom du jeu de données et pas du nom du fichier</p>
 <pre><code>  `Registre des entrées de [entité productrice], année [XXXX]`</code></pre></li>
 <li><p>Description du jeu de données :</p>
 <pre><code>  `Ce jeu de données contient les entrées du services des archives de [entité] pour l’année [XXXX]. Chaque entrée dans le service est enregistrée par type d’entrée (publique ou privée) avec le service qui l’a produite, la thématique, le volume. Les données proviennent de l&#39;outil [préciser l&#39;outil de gestion], et elles ont été traitées de la façon suivante avant publication [préciser les traitements : ajout d&#39;éléments, suppression, harmonisation etc.]`</code></pre></li>
+</ul>
+<p>[Toutes les précisions complémentaires concernant le contenu peuvent être apportées si le jugé nécessaire]</p>
+<ul>
 <li><p>Fréquence de mise à jour :</p>
-<pre><code>  `Annuelle `(à modifier le cas échéant)</code></pre></li>
+<pre><code>  `Annuelle`(à modifier le cas échéant)</code></pre></li>
 <li><p>Catégories (tag) :</p>
 <pre><code>  `“Archives”, “Entrées d’Archives”, &quot;Archives publiques&quot;`</code></pre></li>
 <li><p>Licence : [Dans le cas où une licence est associée au jeu de données, elle est à choisir dans le respect du cadre règlementaire]</p></li>
@@ -374,26 +374,26 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <h2><span class="header-section-number">6.1</span> Registres des entrées</h2>
 <div id="modèle-de-données" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Modèle de données</h3>
-<p>[EN CONSTRUCTION - SOUMIS A AVIS]</p>
-<p>Ce modèle de données repose sur les 20 champs suivants correspondant aux colonnes du fichier tabulaire.</p>
+<p>La version validée 1.0 du schéma de registre des entrées se trouve <a href="Schema_registre_entrees/Schema_registre_entrees_V1.1.xlsx">ici</a>.</p>
+<p>Un <a href="Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx">gabarit</a> au format tableur est également prévu pour faciliter la réalisation d’un registre des entrée au format du schéma.</p>
 <div id="id" class="section level4" number="6.1.1.1">
 <h4><span class="header-section-number">6.1.1.1</span> <code>ID</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Identifiant unique de chaque entrée</p></li>
-<li><p><strong>description</strong> : Identifiant unique de chaque entrée sous la forme : l’identifiant du service archives, année d’entrée et numéro incrémental.</p></li>
+<li><p><strong>description</strong> : Identifiant unique de chaque entrée composés de ces trois éléments séparés par des tirets bas : l’identifiant du service archives, année d’entrée et un identifiant unique (numéro incrémental, identifiant technique…).</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>FRAC_13001_2020_001</code>
+<li><p><strong>exemple</strong> : <code>FRAC_13001_2020_001</code>, <code>FRAN_2020_aeaqaaaabehgml5fab7gialyq46s4jyaaaca</code>
 `</p></li>
 <li><p>valeur obligatoire</p></li>
-<li><p><strong>commentaire</strong> : L’identifiant du service d’archives peut être composé soit du numéro utilisé pour identifier les IR, ou pour des services d’entreprises le SIREN ou pour d’autres types de services le RCR, le numéro Muséophile. Dans ce cas, il faut renseigneer cet éléments dans les métadonnées associées</p></li>
+<li><p><strong>commentaire</strong> : L’identifiant du service d’archives peut être composé soit du numéro utilisé pour identifier les IR, ou pour des services d’entreprises le SIREN ou pour d’autres types de services le RCR, le numéro Muséophile. Dans ce cas, il faut renseigneer cet éléments dans les métadonnées associées.</p></li>
 </ul>
 </div>
 <div id="nomarch" class="section level4" number="6.1.1.2">
 <h4><span class="header-section-number">6.1.1.2</span> <code>nomArch</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Nom du service archives</p></li>
-<li><p><strong>description</strong> : Nom sous forme textuelle du service d’archives dans où sont entrées les archives</p></li>
-<li><p><strong>type</strong> : chaîne de caractères</p></li>
+<li><p><strong>description</strong> : Nom sous forme textuelle du service d’archives dans lequel sont entrées les archives</p></li>
+<li><p><strong>type</strong> : Chaîne de caractères</p></li>
 <li><p><strong>exemple</strong> : <code>Archives municipales d'Aix-en-Provence</code></p></li>
 <li><p>valeur obligatoire</p></li>
 </ul>
@@ -402,9 +402,9 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <h4><span class="header-section-number">6.1.1.3</span> <code>coteArch</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Cotation</p></li>
-<li><p><strong>description</strong> : Identifiant de l’entrée d’archives et correspondant à sa place dans le cadre de classement (série et sous-série)</p></li>
+<li><p><strong>description</strong> : Identifiant de l’entrée d’archives et correspondant à sa place dans le cadre de classement (série et sous-série). Dans le cas où les articles sont connus dès l’entrée, ils peuvent être ajoutés à la cotation (mais cela reste optionnel).</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>1236W</code></p></li>
+<li><p><strong>exemple</strong> : <code>1238W</code>, <code>1240W1-12</code></p></li>
 <li><p>valeur optionnelle</p></li>
 </ul>
 </div>
@@ -418,11 +418,11 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <li><p>valeur obligatoire</p></li>
 </ul>
 </div>
-<div id="nature" class="section level4" number="6.1.1.5">
-<h4><span class="header-section-number">6.1.1.5</span> <code>nature</code></h4>
+<div id="statutjur" class="section level4" number="6.1.1.5">
+<h4><span class="header-section-number">6.1.1.5</span> <code>statutJur</code></h4>
 <ul>
-<li><p><strong>titre</strong> : Nature juridique des documents entrés</p></li>
-<li><p><strong>description</strong> : Permet d’identifier le nature juridique des archives</p></li>
+<li><p><strong>titre</strong> : Statut juridique des documents entrés</p></li>
+<li><p><strong>description</strong> : Permet d’identifier le statut juridique des archives</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
 <li><p><strong>exemple</strong> : <code>Archives publiques</code></p></li>
 <li><p>valeur obligatoire</p></li>
@@ -438,23 +438,23 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
 <li><p><strong>exemple</strong> : <code>Versement</code></p></li>
 <li><p>valeur obligatoire</p></li>
-<li><p><strong>valeurs autorisées</strong> : [“Versement”,“Don”,“Achat”, “Leg ou Dation”, “Copie”, “Restitution”]</p></li>
+<li><p><strong>valeurs autorisées</strong> : [“Versement”, “Don”, “Achat”, “Dévolution”, “Leg ou Dation”, “Copie”, “Réintégration”, “Protocole”, “Autre”]</p></li>
 </ul>
 </div>
 <div id="orgavers" class="section level4" number="6.1.1.7">
 <h4><span class="header-section-number">6.1.1.7</span> <code>orgaVers</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Organisation qui verse l’entrée</p></li>
-<li><p><strong>description</strong> : Nom de l’organisation qui a versé l’entrée, distincte du service qui a produit les entrées dans l’organisation</p></li>
+<li><p><strong>description</strong> : Nom de l’organisation qui a versé l’entrée, distincte du service qui a produit les entrées dans l’organisation. Dans le cas où des identifiants pérennes existent pour identifier les organisations versantes, elles peuvent être ajoutées en complément du nom de l’organisation : URI - Nom de l’organisation. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale <em>pipe</em> “|”.</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>Ville d'Aix-en-Provence</code></p></li>
+<li><p><strong>exemple</strong> : <code>Ville d'Aix-en-Provence</code>, <code>FR78422804100033_000000011 - Tribunal administratif</code></p></li>
 <li><p>valeur optionnelle</p></li>
 </ul>
 </div>
 <div id="servvers" class="section level4" number="6.1.1.8">
 <h4><span class="header-section-number">6.1.1.8</span> <code>servVers</code></h4>
 <ul>
-<li><p><strong>titre</strong> : Service versant l’entrée</p></li>
+<li><p><strong>titre</strong> : Service qui verse l’entrée</p></li>
 <li><p><strong>description</strong> : permet d’identifier la personne physique ou morale qui a transféré les documents</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
 <li><p><strong>exemple</strong> : <code>Service de l'achat public</code></p></li>
@@ -465,9 +465,9 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <h4><span class="header-section-number">6.1.1.9</span> <code>orgaProd</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Organisation productrice de l’entrée</p></li>
-<li><p><strong>description</strong> : Nom de l’organisation qui a produit l’entrée, distincte du service qui a produit les entrées dans l’organisation</p></li>
+<li><p><strong>description</strong> : nom de l’organisation qui a produit l’entrée, distincte du service qui a produit les entrées dans l’organisation. Dans le cas où des identifiants pérennes existent pour identifier les organisations versantes, elles peuvent être ajoutées en complément du nom de l’organisation : URI - Nom de l’organisation. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale <em>pipe</em> “|”.</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>Ville d'Aix-en-Provence</code></p></li>
+<li><p><strong>exemple</strong> : <code>Ville d'Aix-en-Provence</code>, <code>FR78422804100033_000000011 - Tribunal administratif</code></p></li>
 <li><p>valeur optionnelle</p></li>
 </ul>
 </div>
@@ -477,32 +477,33 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <li><p><strong>titre</strong> : Service producteur</p></li>
 <li><p><strong>description</strong> : Permet d’identifier la personne physique ou morale qui a produit les documents</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>Service de l'achat public</code></p></li>
-<li><p>valeur optionnelle</p></li>
+<li><p><strong>exemple</strong> : <code>Service de l'achat public</code>, <code>Service producteur inconnu</code></p></li>
+<li><p>valeur obligatoire</p></li>
+<li><p><strong>commentaire</strong> : Si le producteur est inconnu, saisir <code>Service producteur inconnu</code></p></li>
 </ul>
 </div>
-<div id="fonctionprod" class="section level4" number="6.1.1.11">
-<h4><span class="header-section-number">6.1.1.11</span> <code>fonctionProd</code></h4>
+<div id="typeprod" class="section level4" number="6.1.1.11">
+<h4><span class="header-section-number">6.1.1.11</span> <code>typeProd</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Fonction du producteur</p></li>
-<li><p><strong>description</strong> : Permet d’identifier la fonction du producteur</p></li>
+<li><p><strong>description</strong> : permet d’identifier la fonction du producteur, liste établie à partir des éléments du SIAF</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>Communes de plus de 2 000 habitants</code></p></li>
+<li><p><strong>exemple</strong> : <code>Commune et établissement public communal</code></p></li>
 <li><p>valeur obligatoire</p></li>
-<li><p><strong>valeurs autorisées</strong> : [“Présidence de la République”, “Premier ministre”, “Ministères (directions d’administration centrale)”, “Assemblées parlementaires”, “Grands organes de contrôle”, “Services déconcentrés et établissements publics de l’État à compétence départementale ou locale”, “Services déconcentrés et établissements publics de l’État à compétence régionale ou supra-départementale”, “Administrations centrales délocalisées et établissements publics nationaux de l’État”, “Communes de plus de 2 000 habitants”, “Communes de moins de 2 000 habitants”, “Services du conseil départemental et établissements publics départementaux”, “Services du conseil régional et établissements publics régionaux”, “Services de la commune et établissements publics communaux”, “Structures intercommunales ou interdépartementales”, “Établissements publics de santé”, “Organismes de droit privé chargés d’une mission de service public”, “Officiers publics ou ministériels (dont notaires)”, “Producteurs privés”]</p></li>
-<li><p><strong>commentaire</strong> : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle.</p></li>
+<li><p><strong>valeurs autorisées</strong> : [“Présidence de la République”, “Premier ministre”, “Ministère (administration centrale)”, “Assemblée parlementaire”, “Grand organe de contrôle”, “Service déconcentré et établissement public de l’État à compétence départementale ou locale”, “Service déconcentré et établissement public de l’État à compétence régionale ou supra-départementale”, “Etablissement public national”, “Commune et établissement public communal”, “Conseil départemental et établissement public départemental”, “Conseil régional et établissement public régional”, “Structure de coopération intercommunale ou interdépartementale”, “Établissement public de santé”, “Organisme de droit privé chargé d’une mission de service public”, “Officier public ou ministériel (dont notaire)”, “Producteur privé”]</p></li>
+<li><p><strong>commentaire</strong> : La séparation entre type et activité répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle.</p></li>
 </ul>
 </div>
-<div id="domaineprod" class="section level4" number="6.1.1.12">
-<h4><span class="header-section-number">6.1.1.12</span> <code>domaineProd</code></h4>
+<div id="activiteprod" class="section level4" number="6.1.1.12">
+<h4><span class="header-section-number">6.1.1.12</span> <code>activiteProd</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Domaine ou thématique d’action du producteur</p></li>
-<li><p><strong>description</strong> : Permet d’identifier le domaine d’activité du producteur</p></li>
+<li><p><strong>description</strong> : Permet d’identifier le domaine d’activité du producteur, liste établie à partir des éléments du SIAF</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>Ressources humaines</code></p></li>
+<li><p><strong>exemple</strong> : <code>Administration générale (fonctions transverses, RH) | Culture, jeunesse et sports</code></p></li>
 <li><p>valeur obligatoire</p></li>
-<li><p><strong>valeurs autorisées</strong> : [“Instances de délibération”, “Direction, cabinet”, “Administration générale (fonctions transverses hors RH)”, “Finances, fiscalité”, “Ressources humaines”, “Économie, industrie”, “Agriculture”, “Équipement, environnement”, “Travail, emploi”, “Affaires sociales, santé”, “Justice”, “Police, protection civile, intérieur”, “Éducation, recherche”, “Culture, jeunesse et sports”, “Défense, anciens combattants”, “Outre-mer”, “Archives privées personnelles et familiales”, “Archives privées cultuelles”, “Archives privées d’associations, de partis politiques, de syndicats”, “Archives privées d’entreprises”, “Archives privées de professionnels (architectes, photographes…)”]</p></li>
-<li><p><strong>commentaire</strong> : La séparation entre fonction et domaine répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle. Les valeurs “Archives privées personnelles et familiales”, “Archives privées cultuelles”, “Archives privées d’associations, de partis politiques, de syndicats”, “Archives privées d’entreprises”, “Archives privées de professionnels (architectes, photographes…)” sont à réserver aux éléments qui possèdent l’élément “Producteurs privés” en <em>fonction du producteur</em>.</p></li>
+<li><p><strong>valeurs autorisées</strong> : [“Instance de délibération”, “Direction, cabinet”, “Administration générale (fonctions transverses, RH)”, “Finances, fiscalité”, “Économie, industrie”, “Agriculture”, “Équipement, environnement”, “Travail, emploi”, “Affaires sociales, santé”, “Justice”, “Police, protection civile, intérieur”, “Éducation, recherche”, “Culture, jeunesse et sports”, “Défense, anciens combattants”, “Outre-mer”, “Archives privées personnelles et familiales”, “Archives privées cultuelles”, “Archives privées d’associations, de partis politiques, de syndicats”, “Archives privées d’entreprises”, “Archives privées professionnelles”]</p></li>
+<li><p><strong>commentaire</strong> : La séparation entre type et activité répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l’enquête annuelle. Les valeurs “Archives privées personnelles et familiales”, “Archives privées cultuelles”, “Archives privées d’associations, de partis politiques, de syndicats”, “Archives privées d’entreprises”, “Archives privées de professionnels (architectes, photographes…)” sont à réserver aux éléments qui possèdent l’élément “Producteurs privés” en <em>fonction du producteur</em>. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale <em>pipe</em> “|”.</p></li>
 </ul>
 </div>
 <div id="desccontenu" class="section level4" number="6.1.1.13">
@@ -541,22 +542,20 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <li><p><strong>titre</strong> : Nature du support matériel des documents</p></li>
 <li><p><strong>description</strong> : Permet d’indiquer de façon macro la typologie de support des documents</p></li>
 <li><p><strong>type</strong> : Chaîne de caractères</p></li>
-<li><p><strong>exemple</strong> : <code>Support papier</code></p></li>
+<li><p><strong>exemple</strong> : <code>Support physique</code></p></li>
 <li><p>valeur obligatoire</p></li>
-<li><p><strong>valeurs autorisées</strong> : [“Support papier”,“Support électronique”,“Support mixte”]</p></li>
+<li><p><strong>valeurs autorisées</strong> : [“Support physique”,“Support électronique”,“Support mixte”]</p></li>
 </ul>
 </div>
 <div id="mlentree" class="section level4" number="6.1.1.17">
 <h4><span class="header-section-number">6.1.1.17</span> <code>mlEntree</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Métrage linéaire de l’entrée</p></li>
-<li><p><strong>description</strong> : Volument en mètre linéaire de l’entrée</p></li>
+<li><p><strong>description</strong> : Volume en mètre linéaire de l’entrée. Le séparateur décimal doit être le point. L’unité sera rappelée en métadonnée.</p></li>
 <li><p><strong>type</strong> : nombre réel</p></li>
 <li><p><strong>exemple</strong> : <code>1.60</code></p></li>
 <li><p>valeur optionnelle</p></li>
-<li><ul>
-<li><strong>commentaire</strong> : le séparateur décimal doit être le point . L’unité sera rappelée en métadonnée.</li>
-</ul></li>
+<li><p><strong>commentaire</strong> : le séparateur décimal doit être le point . L’unité sera rappelée en métadonnée.</p></li>
 </ul>
 </div>
 <div id="nbreart" class="section level4" number="6.1.1.18">
@@ -573,13 +572,11 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <h4><span class="header-section-number">6.1.1.19</span> <code>volElec</code></h4>
 <ul>
 <li><p><strong>titre</strong> : Volume d’archives électroniques de l’entrée</p></li>
-<li><p><strong>description</strong> : Correspond à la volumétrie de fichiers électroniques présents dans l’entrée</p></li>
+<li><p><strong>description</strong> : Correspond à la volumétrie de fichiers électroniques présents dans l’entrée en Go. Le séparateur décimal doit être le point. L’unité sera rappelée en métadonnée.</p></li>
 <li><p><strong>type</strong> : nombre réel</p></li>
-<li><p><strong>exemple</strong> : <code>2.30</code></p></li>
+<li><p><strong>exemple</strong> : <code>2.30</code>, <code>0.075</code></p></li>
 <li><p>valeur optionnelle</p></li>
-<li><ul>
-<li><strong>commentaire</strong> : le séparateur décimal doit être le point <strong>.</strong> L’unité sera rappelée en métadonnée.</li>
-</ul></li>
+<li><p><strong>commentaire</strong> : le séparateur décimal doit être le point <strong>.</strong> L’unité sera rappelée en métadonnée.</p></li>
 </ul>
 </div>
 <div id="objelec" class="section level4" number="6.1.1.20">
@@ -589,7 +586,6 @@ La création d’un schéma de données permet de standardiser la diffusion des 
 <li><p><strong>description</strong> : Permet d’indiquer le nombre d’objets électroniques d’une entrée</p></li>
 <li><p><strong>type</strong> : nombre entier</p></li>
 <li><p><strong>exemple</strong> : <code>234</code></p></li>
-<li><p>valeur optionnelle</p></li>
 </ul>
 </div>
 </div>

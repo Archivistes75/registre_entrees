@@ -3,7 +3,7 @@ Spécification du modèle de données relatif aux registres des entrées des ser
 
 ### Modèle de données
 
-La version validée 1.0 du schéma de registre des entrées se trouve [ici](Schema_registre_entrees/Schema_registre_entrees_V1.0.xlsx).
+La version validée 1.0 du schéma de registre des entrées se trouve [ici](Schema_registre_entrees/Schema_registre_entrees_V1.1.xlsx).
 
 Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au format tableur est également prévu pour faciliter la réalisation d'un registre des entrée au format du schéma.
 
@@ -11,7 +11,7 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - **titre** : Identifiant unique de chaque entrée
 
-- **description** : Identifiant unique de chaque entrée sous la forme : l'identifiant du service archives, année d'entrée et un identifiant unique (numéro incrémental, identifiant technique...).
+- **description** : Identifiant unique de chaque entrée composés de ces trois éléments séparés par des tirets bas : l'identifiant du service archives, année d'entrée et un identifiant unique (numéro incrémental, identifiant technique...).
 
 - **type** : Chaîne de caractères
 
@@ -19,7 +19,7 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 `
 - valeur obligatoire
 
-- **commentaire** : L'identifiant du service d'archives peut être composé soit du numéro utilisé pour identifier les IR, ou pour des services d'entreprises le SIREN ou pour d'autres types de services le RCR, le numéro Muséophile. Dans ce cas, il faut renseigneer cet éléments dans les métadonnées associées
+- **commentaire** : L'identifiant du service d'archives peut être composé soit du numéro utilisé pour identifier les IR, ou pour des services d'entreprises le SIREN ou pour d'autres types de services le RCR, le numéro Muséophile. Dans ce cas, il faut renseigneer cet éléments dans les métadonnées associées.
 
 #### `nomArch`
 
@@ -37,11 +37,11 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - **titre** : Cotation
 
-- **description** : Identifiant de l'entrée d’archives et correspondant à sa place dans le cadre de classement (série et sous-série)
+- **description** : Identifiant de l'entrée d’archives et correspondant à sa place dans le cadre de classement (série et sous-série). Dans le cas où les articles sont connus dès l'entrée, ils peuvent être ajoutés à la cotation (mais cela reste optionnel).
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `1236W`
+- **exemple** : `1238W`, `1240W1-12`
 
 - valeur optionnelle
 
@@ -57,11 +57,11 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - valeur obligatoire
 
-#### `nature`
+#### `statutJur`
 
-- **titre** : Nature juridique des documents entrés
+- **titre** : Statut juridique des documents entrés
 
-- **description** : Permet d'identifier la nature juridique des archives
+- **description** : Permet d'identifier le statut juridique des archives
 
 - **type** : Chaîne de caractères
 
@@ -85,21 +85,19 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - valeur obligatoire
 
-- **valeurs autorisées** : ["Versement", "Don", "Achat", "Dévolution", "Leg ou Dation", "Copie", "Restitution", "Protocole", "Autre"]
+- **valeurs autorisées** : ["Versement", "Don", "Achat", "Dévolution", "Leg ou Dation", "Copie", "Réintégration", "Protocole", "Autre"]
 
 #### `orgaVers`
 
 - **titre** : Organisation qui verse l'entrée
 
-- **description** : Nom de l'organisation qui a versé l'entrée, distincte du service qui a produit les entrées dans l'organisation.
+- **description** : Nom de l'organisation qui a versé l'entrée, distincte du service qui a produit les entrées dans l'organisation. Dans le cas où des identifiants pérennes existent pour identifier les organisations versantes, elles peuvent être ajoutées en complément du nom de l'organisation : URI - Nom de l'organisation. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale *pipe* "|".
 
 - **type** : Chaîne de caractères
 
 - **exemple** : `Ville d'Aix-en-Provence`, `FR78422804100033_000000011 - Tribunal administratif`
 
 - valeur optionnelle
-
-- **commentaire** : Dans le cas où des identifiants pérennes existent pour identifier les organisations versantes, elles peuvent être ajoutées en complément du nom de l'organisation : URI - Nom de l'organisation. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale *pipe* "|".
 
 #### `servVers`
 
@@ -117,15 +115,13 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - **titre** : Organisation productrice de l'entrée
 
-- **description** : nom de l'organisation qui a produit l'entrée, distincte du service qui a produit les entrées dans l'organisation. 
+- **description** : nom de l'organisation qui a produit l'entrée, distincte du service qui a produit les entrées dans l'organisation. Dans le cas où des identifiants pérennes existent pour identifier les organisations versantes, elles peuvent être ajoutées en complément du nom de l'organisation : URI - Nom de l'organisation. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale *pipe* "|".
 
 - **type** : Chaîne de caractères
 
 - **exemple** : `Ville d'Aix-en-Provence`, `FR78422804100033_000000011 - Tribunal administratif`
 
 - valeur optionnelle
-
-- **commentaire** : Dans le cas où des identifiants pérennes existent pour identifier les organisations productrices, elles peuvent être ajoutées en complément du nom de l'organisation : URI - Nom de l'organisation. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale *pipe* "|".
 
 #### `servProd`
 
@@ -135,9 +131,11 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `Service de l'achat public`
+- **exemple** : `Service de l'achat public`, `Service producteur inconnu`
 
 - valeur obligatoire
+
+- **commentaire** : Si le producteur est inconnu, saisir `Service producteur inconnu`
 
 #### `typeProd`
 
@@ -147,11 +145,11 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `Communes de plus de 2 000 habitants`
+- **exemple** : `Commune et établissement public communal`
 
 - valeur obligatoire
 
-- **valeurs autorisées** : ["Présidence de la République", "Premier ministre", "Ministères (directions d'administration centrale) ", "Assemblées parlementaires", "Grands organes de contrôle", "Services déconcentrés et établissements publics de l’État à compétence départementale ou locale", "Services déconcentrés et établissements publics de l’État à compétence régionale ou supra-départementale", "Administrations centrales délocalisées et établissements publics nationaux de l’État", "Communes de plus de 2 000 habitants", "Communes de moins de 2 000 habitants", "Services du conseil départemental et établissements publics départementaux", "Services du conseil régional et établissements publics régionaux", "Services de la commune et établissements publics communaux", "Structures intercommunales ou interdépartementales", "Établissements publics de santé", "Organismes de droit privé chargés d’une mission de service public", "Officiers publics ou ministériels (dont notaires) ", "Producteurs privés"]
+- **valeurs autorisées** : ["Présidence de la République", "Premier ministre", "Ministère (administration centrale) ", "Assemblée parlementaire", "Grand organe de contrôle", "Service déconcentré et établissement public de l’État à compétence départementale ou locale", "Service déconcentré et établissement public de l’État à compétence régionale ou supra-départementale", "Etablissement public national", "Commune et établissement public communal", "Conseil départemental et établissement public départemental", "Conseil régional et établissement public régional", "Structure de coopération intercommunale ou interdépartementale", "Établissement public de santé", "Organisme de droit privé chargé d’une mission de service public", "Officier public ou ministériel (dont notaire) ", "Producteur privé"]
 
 - **commentaire** : La séparation entre type et activité répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l'enquête annuelle. 
 
@@ -163,11 +161,11 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `Administration générale (fonctions transverses hors RH) | Culture, jeunesse et sports`
+- **exemple** : `Administration générale (fonctions transverses, RH) | Culture, jeunesse et sports`
 
 - valeur obligatoire
 
-- **valeurs autorisées** : ["Instances de délibération", "Direction, cabinet", "Administration générale (fonctions transverses hors RH)", "Finances, fiscalité", "Ressources humaines", "Économie, industrie", "Agriculture", "Équipement, environnement", "Travail, emploi", "Affaires sociales, santé", "Justice", "Police, protection civile, intérieur", "Éducation, recherche", "Culture, jeunesse et sports", "Défense, anciens combattants", "Outre-mer", "Archives privées personnelles et familiales", "Archives privées cultuelles", "Archives privées d'associations, de partis politiques, de syndicats", "Archives privées d'entreprises", "Archives privées de professionnels (architectes, photographes...)"]
+- **valeurs autorisées** : ["Instance de délibération", "Direction, cabinet", "Administration générale (fonctions transverses, RH)", "Finances, fiscalité", "Économie, industrie", "Agriculture", "Équipement, environnement", "Travail, emploi", "Affaires sociales, santé", "Justice", "Police, protection civile, intérieur", "Éducation, recherche", "Culture, jeunesse et sports", "Défense, anciens combattants", "Outre-mer", "Archives privées personnelles et familiales", "Archives privées cultuelles", "Archives privées d'associations, de partis politiques, de syndicats", "Archives privées d'entreprises", "Archives privées professionnelles"]
 
 - **commentaire** : La séparation entre type et activité répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l'enquête annuelle. Les valeurs "Archives privées personnelles et familiales", "Archives privées cultuelles", "Archives privées d'associations, de partis politiques, de syndicats", "Archives privées d'entreprises", "Archives privées de professionnels (architectes, photographes...)" sont à réserver aux éléments qui possèdent l'élément "Producteurs privés" en *fonction du producteur*. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale *pipe* "|".
 
@@ -215,7 +213,7 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - **type** : Chaîne de caractères
 
-- **exemple** : `Support papier`
+- **exemple** : `Support physique`
 
 - valeur obligatoire
 
@@ -225,7 +223,7 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - **titre** : Métrage linéaire de l'entrée
 
-- **description** : Volume en mètre linéaire de l'entrée
+- **description** : Volume en mètre linéaire de l'entrée. Le séparateur décimal doit être le point. L'unité sera rappelée en métadonnée.
 
 - **type** : nombre réel
 
@@ -251,11 +249,11 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - **titre** : Volume d'archives électroniques de l'entrée
 
-- **description** : Correspond à la volumétrie de fichiers électroniques présents dans l'entrée en Go
+- **description** : Correspond à la volumétrie de fichiers électroniques présents dans l'entrée en Go. Le séparateur décimal doit être le point. L'unité sera rappelée en métadonnée.
 
 - **type** : nombre réel
 
-- **exemple** : `2.30`
+- **exemple** : `2.30`, `0.075`
 
 - valeur optionnelle
 

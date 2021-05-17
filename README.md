@@ -8,6 +8,8 @@ Création d'un schéma de données pour les registres d'entrées d'archives des 
 * [Copil restreint 4](https://datactivist.coop/siaf/20210503_COPIL4)
 * [Copil 5](https://datactivist.coop/siaf/20210104_COPIL5)
 
+Une documentation complète sous format pdf est accessible [ici](https://datactivist.coop/siaf/Documentation/Documentation_schema_registre.pdf)
+
 ## Composition du groupe de travail
 
 * Service Interministériel des Archives de France
@@ -23,7 +25,7 @@ Création d'un schéma de données pour les registres d'entrées d'archives des 
 
 ### Modèle de données
 
-La version validée 1.0 du schéma de registre des entrées se trouve [ici](Schema_registre_entrees/Schema_registre_entrees_V1.0.xlsx).
+La version validée 1.0 du schéma de registre des entrées se trouve [ici](Schema_registre_entrees/Schema_registre_entrees_V1.1.xlsx).
 
 Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au format tableur est également prévu pour faciliter la réalisation d'un registre des entrée au format du schéma.
 
@@ -125,6 +127,8 @@ Il va falloir préparer les données afin qu'elles correspondent au modèle déf
 
 ## Documenter les données
 
+Pour obtenir des **informations sur la publication** d'un jeu de données, vous pouvez consulter : l'[aide de data.gouv.fr](https://doc.data.gouv.fr/jeux-de-donnees/publier-un-jeu-de-donnees/).
+
 **Métadonnées descriptives**
 
 * Nom du producteur du jeu de données : Le nom du producteur permet d’indiquer le service qui a produit et publié le jeu de données. 
@@ -140,7 +144,7 @@ Il va falloir préparer les données afin qu'elles correspondent au modèle déf
 
         `Ce jeu de données contient les entrées du services des archives de [entité] pour l’année [XXXX]. Chaque entrée dans le service est enregistrée par type d’entrée (publique ou privée) avec le nom de l'entité productrice, la thématique, le volume. Les données proviennent de l'outil [préciser l'outil de gestion], et elles ont été traitées de la façon suivante avant publication [préciser les traitements : ajout d'éléments, suppression, harmonisation etc.]. [Dans le cas d'archives entrées à titre intermédiaire, des éliminations règlementaires pourront avoir lieu.]`
         
-[Des précisions complémentaires concernant le contenu peuvent être apportées : s'agit-]        
+[Toutes les précisions complémentaires concernant le contenu peuvent être apportées si le jugé nécessaire]        
         
 * Fréquence de mise à jour :
 
