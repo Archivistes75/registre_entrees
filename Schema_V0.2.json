@@ -87,8 +87,8 @@
         {
             "name": "coteArch",
             "title": "Cotation",
-            "description": "identifiant de l'entrée d’archives et correspondant à sa place dans le cadre de classement (série et sous-série)",
-            "example": "1238W",
+            "description": "Identifiant de l'entrée d’archives et correspondant à sa place dans le cadre de classement (série et sous-série). Dans le cas où les articles sont connus dès l'entrée, ils peuvent être ajoutés à la cotation (mais cela reste optionnel).",
+            "example": "1238W, 1240W 1-12",
             "constraints": {
                 "required": false
             }
@@ -105,9 +105,9 @@
             }
         },
         {
-            "name": "nature",
+            "name": "statutJur",
             "title": "nature juridique des documents entrés",
-            "description": "permet d'identifier le nature juridique des archives",
+            "description": "permet d'identifier le statut juridique des archives",
             "example": "Archives publiques",
             "constraints": {
                 "required": true,
@@ -133,7 +133,7 @@
                     "Achat",
                     "Legs ou dation",
                     "Copie",
-                    "Restitution",
+                    "Réintégration",
                     "Protocole",
                     "Autre"
                 ]
@@ -169,8 +169,8 @@
         {
             "name": "servProd",
             "title": "service producteur",
-            "description": "permet d'identifier la personne physique ou morale qui a produit les documents",
-            "example": "Service de l'Achat public",
+            "description": "permet d'identifier la personne physique ou morale qui a produit les documents. Si le producteur est inconnu, saisir `Service producteur inconnu`.",
+            "example": "Service de l'Achat public, Service producteur inconnu",
             "constraints": {
                 "required": true
             }
@@ -179,28 +179,26 @@
             "name": "typeProd",
             "title": "fonction du producteur",
             "description": "permet d'identifier la fonction du producteur, liste établie à partir des éléments du SIAF. La séparation entre type et activité répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l'enquête annuelle.",
-            "example": "Communes de plus de 2 000 habitants",
+            "example": "Commune et établissement public communal",
             "constraints": {
                 "required": true,
                 "enum": [
                     "Présidence de la République",
                     "Premier ministre",
-                    "Ministères (directions d'administration centrale) ",
-                    "Assemblées parlementaires",
-                    "Grands organes de contrôle",
-                    "Services déconcentrés et établissements publics de l’État à compétence départementale ou locale",
-                    "Services déconcentrés et établissements publics de l’État à compétence régionale ou supra-départementale",
-                    "Administrations centrales délocalisées et établissements publics nationaux de l’État",
-                    "Communes de plus de 2 000 habitants",
-                    "Communes de moins de 2 000 habitants",
-                    "Services du conseil départemental et établissements publics départementaux",
-                    "Services du conseil régional et établissements publics régionaux",
-                    "Services de la commune et établissements publics communaux",
-                    "Structures intercommunales ou interdépartementales",
-                    "Établissements publics de santé",
-                    "Organismes de droit privé chargés d’une mission de service public",
-                    "Officiers publics ou ministériels (dont notaires) ",
-                    "Producteurs privés"
+                    "Ministère (administration centrale) ",
+                    "Assemblée parlementaire",
+                    "Grand organe de contrôle",
+                    "Service déconcentré et établissement public de l’État à compétence départementale ou locale",
+                    "Service déconcentré et établissement public de l’État à compétence régionale ou supra-départementale",
+                    "Etablissement public national",
+                    "Commune et établissement public communal",
+                    "Conseil départemental et établissement public départemental",
+                    "Conseil régional et établissement public régional",
+                    "Structure de coopération intercommunale ou interdépartementale",
+                    "Établissement public de santé",
+                    "Organisme de droit privé chargé d’une mission de service public",
+                    "Officier public ou ministériel (dont notaire) ",
+                    "Producteur privé"
                 ]
             }
         },
@@ -208,7 +206,7 @@
             "name": "activiteProd",
             "title": "Domaine ou thématique d'action du producteur",
             "description": "permet d'identifier la fonction du producteur, liste établie à partir des éléments du SIAF. La séparation entre type et activité répond à la nouvelle organisation définie pa le SIAF et mise en place au sein de l'enquête annuelle. Ce champ peut comporter plusieurs valeurs, dans ce cas, les éléments sont séparés par une barre verticale |",
-            "example": "Administration générale (fonctions transverses hors RH) | Culture, jeunesse et sports",
+            "example": "Administration générale (fonctions transverses, RH) | Culture, jeunesse et sports",
             "constraints": {
                 "required": true,
                 "enum": [
@@ -232,7 +230,7 @@
                     "Archives privées cultuelles",
                     "Archives privées d'associations, de partis politiques, de syndicats",
                     "Archives privées d'entreprises",
-                    "Archives privées de professionnels (architectes, photographes...)"
+                    "Archives privées professionnelles"
                 ]
             }
         },
@@ -269,7 +267,7 @@
             "name": "natureSupport",
             "title": "nature du support matériel des documents",
             "description": "permet d'indiquer de façon macro la typologie de support des documents",
-            "example": "Support papier",
+            "example": "Support physique",
             "constraints": {
                 "required": true,
                 "enum": [
@@ -303,7 +301,7 @@
             "name": "volElec",
             "title": "volume d'archives électroniques de l'entrée",
             "description": "correspond à la volumétrie de fichiers électroniques présents dans l'entrée en Go. le séparateur décimal doit être le point. L'unité sera le Go et sera rappelée en métadonnées.",
-            "example": "2.30",
+            "example": "2.30, 0.075",
             "type": "number",
             "constraints": {
                 "required": false
