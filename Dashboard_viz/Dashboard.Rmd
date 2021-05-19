@@ -1,6 +1,6 @@
 ---
 output: 
-  flexdashboard::flex_dashboard:
+  flexdashboard::gitub_document:
     theme: readable
     vertical_layout: fill
     logo: logo_datactivist.png
