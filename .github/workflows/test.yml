@@ -24,4 +24,4 @@ jobs:
       run: pip install -r requirements.txt
     - name: Vérification du schéma et des fichiers d'exemples
       run: |
-        frictionless validate --type schema Schema_V0.1.json
+        frictionless validate --type schema schema.json
