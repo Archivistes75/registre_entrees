@@ -27,6 +27,7 @@
 			"name": "ID",
 			"title": "Identifiant unique de chaque entrée",
 			"description": "Identifiant unique de chaque entrée sous la forme : l'identifiant du service archives, année d'entrée et numéro incrémental.",
+            "type": "string",
 			"constraints": {
 				"required": true
 			}
@@ -35,6 +36,7 @@
 			"name": "nomArch",
 			"title": "Nom du service archives",
 			"description":"Nom sous forme textuelle du service d'archives dans où sont entrées les archives",
+            "type": "string",
 			"constraints": {
 				"required": true			}
 		},
@@ -42,6 +44,7 @@
 			"name": "coteArch",
 			"title": "Cotation",
 			"description": "identifiant de l'entrée d’archives et correspondant à sa place dans le cadre de classement (série et sous-série)",
+            "type": "string",
 			"constraints": {
 				"required": false
 			}
@@ -59,6 +62,7 @@
 			"name": "nature",
 			"title": "nature juridique des documents entrés",
 			"description": "permet d'identifier le nature juridique des archives",
+            "type": "string",
 			"constraints": {
 				"required": true			}
 		},
@@ -66,6 +70,7 @@
 			"name": "modeEntree",
 			"title": "modalité d'entrée",
 			"description": "permet d'identifier le mode d'entrée des archives",
+            "type": "string",
 			"constraints": {
 				"required": true			}
 		},
@@ -73,6 +78,7 @@
 			"name": "orgaVers",
 			"title": "organisation versant l'entrée",
 			"description":"nom de l'organisation qui a versé l'entrée, distincte du service qui a produit les entrées dans l'organisation",
+            "type": "string",
 			"constraints": {
 				"required": false			}
 		},
@@ -80,6 +86,7 @@
 			"name": "servVers",
 			"title": "service versant l'entrée",
 			"description":"permet d'identifier la personne physique ou morale qui a transféré les documents",
+            "type": "string",
 			"constraints": {
 				"required": false			}
 		},
@@ -87,6 +94,7 @@
 			"name": "orgaProducteur",
 			"title": "organisation productrice de l'entrée",
 			"description": "nom de l'organisation qui a produit l'entrée, distincte du service qui a produit les entrées dans l'organisation",
+            "type": "string",
 			"constraints": {
 				"required": false			}
 		},
@@ -94,6 +102,7 @@
 			"name": "servProd",
 			"title": "service producteur",
 			"description": "permet d'identifier la personne physique ou morale qui a produit les documents",
+            "type": "string",
 			"constraints": {
 				"required": true
 			}
@@ -102,6 +111,7 @@
 			"name": "fonctionProd",
 			"title": "fonction du producteur",
 			"description": "permet d'identifier la fonction du producteur",
+            "type": "string",
 			"constraints": {
 				"required": true,
 				"enum": ["Présidence de la République", "Premier ministre", "Ministères (directions d'administration centrale) ", "Assemblées parlementaires", "Grands organes de contrôle", "Services déconcentrés et établissements publics de l’État à compétence départementale ou locale", "Services déconcentrés et établissements publics de l’État à compétence régionale ou supra-départementale", "Administrations centrales délocalisées et établissements publics nationaux de l’État", "Communes de plus de 2 000 habitants", "Communes de moins de 2 000 habitants", "Services du conseil départemental et établissements publics départementaux", "Services du conseil régional et établissements publics régionaux", "Services de la commune et établissements publics communaux", "Structures intercommunales ou interdépartementales", "Établissements publics de santé", "Organismes de droit privé chargés d’une mission de service public", "Officiers publics ou ministériels (dont notaires) ", "Producteurs privés"]			}
@@ -110,6 +120,7 @@
 			"name": "domaineProd",
 			"title": "Domaine ou thématique d'action du producteur",
 			"description": "Permet d'identifier le domaine d'activité du producteur",
+            "type": "string",
 			"constraints": {
 				"required": true, 
 				"enum": ["Instances de délibération", "Direction, cabinet", "Administration générale (fonctions transverses hors RH)", "Finances, fiscalité", "Ressources humaines", "Économie, industrie", "Agriculture", "Équipement, environnement", "Travail, emploi", "Affaires sociales, santé", "Justice", "Police, protection civile, intérieur", "Éducation, recherche", "Culture, jeunesse et sports", "Défense, anciens combattants", "Outre-mer", "Archives privées personnelles et familiales", "Archives privées cultuelles", "Archives privées d'associations, de partis politiques, de syndicats", "Archives privées d'entreprises", "Archives privées de professionnels (architectes, photographes...)"]
@@ -119,6 +130,7 @@
 			"name": "descContenu",
 			"title": "description du contenu",
 			"description": "description du contenu",
+            "type": "string",
 			"constraints": {
 				"required": true
 			}
@@ -143,6 +155,7 @@
 			"name": "natureSupport",
 			"title": "nature du support matériel des documents",
 			"description": "permet d'indiquer de façon macro la typologie de support des documents",
+            "type": "string",
 			"constraints": {
 				"required": true			}
 		},
