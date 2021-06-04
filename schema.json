@@ -59,11 +59,11 @@
             "role": "contributor"
         }
     ],
-    "version": "0.2",
+    "version": "0.2.0",
     "created": "2020-12-17",
     "updated": "2021-04-29",
-    "homepage": "https://github.com/datactivist/siaf",
-    "uri": "https://raw.githubusercontent.com/datactivist/siaf/master/Schema_V0.2.json",
+    "homepage": "https://github.com/Archivistes75/registre_entrees",
+    "uri": "https://raw.githubusercontent.com/Archivistes75/registre_entrees/raw/v0.2.0/schema.json",
     "fields": [
         {
             "name": "ID",
