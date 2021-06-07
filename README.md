@@ -1,6 +1,8 @@
-# SIAF / AAF - Standard des registres d'entrée d'archives
+# Schéma registres d'entrée d'archives
 
-# Contexte
+Ce schéma permet de modéliser les différents attributs des entrées dans les services publics d'archives.
+
+## Contexte
 
 En 2018, 86 kilomètres de documents et plus de 16000Go de données sont venus enrichir les collections des services publics d'archives français (Données du service interministériel des archives de France).
 
@@ -16,12 +18,12 @@ Dans son [Cadre stratégique commun de modernisation des archives](https://www.g
 
 Pour en savoir plus sur la méthodologie de construction de ce schéma, consultez [ce document](methodologie.md). 
 
-# Cadre juridique
+## Cadre juridique
 
 * Livre II du Code du Patrimoine
 * Code des relations entre le public et l'administration
 
-# Finalité
+## Finalité
 
 Les services d'archives consignent systématiquement, au sein d'un registre des entrées, tous les nouveaux documents qui entrent dans les fonds. Cela permet d’identifier et de retracer toutes les entrées de nouveaux documents d’archives.
 
@@ -31,13 +33,13 @@ Ces données informent sur la collecte des archives publiques et les acquisition
 
 Cette standardisation permet de faciliter la découverte des jeux de données et de les utiliser, notamment en simplifiant l'alignement à différentes échelles (utilisation sur des échelles locales ou nationales).
 
-# Description du schéma
+## Description du schéma
 
 La documentation des champs est accessible [ici](Documentation/Documentation_schema_registre.pdf).
 
 Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au format tableur est également prévu pour faciliter la réalisation d'un registre des entrée au format du schéma.
 
-# Format de fichier
+## Format de fichier
 
 Le format de fichier retenu pour la publication des données est le CSV (Comma Separated Values, valeurs séparées par des virgules).
 
@@ -75,7 +77,7 @@ Les fichiers doivent, sauf exception et autant que possible, respecter les règl
 
 **Exemple** : `20201012_FRAD_001_registre_des_entrees_2020.csv`
 
-## Recommandations pour la mise en conformité
+**Recommandations pour la mise en conformité** :
 
 Ces conseils reprennent ceux du [Schéma des données locales publié par Open Data france](https://scdl.opendatafrance.net/docs/recommandations-relatives-aux-jeux-de-donnees.html)
 
