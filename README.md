@@ -90,34 +90,3 @@ Les fichiers doivent comporter :
    * Traitement des cellules vides (absence de valeur ou valeur équivalente à 0) : ces cellules doivent être laissées vides. Dans le cas où une valeur numérique est égale à zéro elle doit être écrite 0.0 (zéro [point] zéro), et, dans le cas où des caractères spéciaux sont utilisés pour remplacer des valeurs manquantes (ex. "-" ou "NaN"), cela doit être mentionné dans les métadonnées.
    
    * Les dates doivent être formées selon la norme 8601 : YYYY-MM-DD. 
-
-**Métadonnées descriptives**
-
-* Nom du producteur du jeu de données : Le nom du producteur permet d’indiquer le service qui a produit et publié le jeu de données. 
-
-            `Archives municipales de la commune de XXX`
-            `Archives départementales de XXX`
-            
-* Titre du jeu de données : il s’agit du nom du jeu de données et pas du nom du fichier
-
-        `Registre des entrées de [entité productrice], année [XXXX]`
-        
-* Description du jeu de données :
-
-        `Ce jeu de données contient les entrées du services des archives de [entité] pour l’année [XXXX]. Chaque entrée dans le service est enregistrée par type d’entrée (publique ou privée) avec le nom de l'entité productrice, la thématique, le volume. Les données proviennent de l'outil [préciser l'outil de gestion], et elles ont été traitées de la façon suivante avant publication [préciser les traitements : ajout d'éléments, suppression, harmonisation etc.]. [Dans le cas d'archives entrées à titre intermédiaire, des éliminations règlementaires pourront avoir lieu.]`
-        
-[Toutes les précisions complémentaires concernant le contenu peuvent être apportées si le jugé nécessaire]        
-        
-* Fréquence de mise à jour :
-
-        `Annuelle `(à modifier le cas échéant)
-
-* Catégories (tag) :
-
-        `“Archives”, “Entrées d’Archives”, "Archives publiques"`
-
-* Licence : [Licence à choisir dans le cadre règlementaire]
-        
-* Contact : Indiquer un mail de contact pour les réutilisateurs 
-
-        `(archives@archives.fr)`
