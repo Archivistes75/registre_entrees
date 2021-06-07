@@ -1,35 +1,6 @@
 # SIAF / AAF - Standard des registres d'entrée d'archives
 
-Création d'un schéma de données pour les registres d'entrées d'archives des services publics d'archives. 
-
-* [Copil 1](https://Archivistes75.github.io/registre_entrees/20200703_COPIL1/)
-* [Copil 2](https://Archivistes75.github.io/registre_entrees/20200911_COPIL2/) 
-* [Copil 3](https://Archivistes75.github.io/registre_entrees/20201105_COPIL3/)
-* [Copil restreint 4](https://Archivistes75.github.io/registre_entrees/20210503_COPIL4)
-* [Copil 5](https://Archivistes75.github.io/registre_entrees/20210104_COPIL5)
-
-Une documentation complète sous format pdf est accessible [ici](https://Archivistes75.github.io/registre_entrees/Documentation/Documentation_schema_registre.pdf)
-
-## Composition du groupe de travail
-
-* Service Interministériel des Archives de France
-* Association des Archivistes Français
-* Datactivist
-* Archives départementales de l'Eure
-* Archives départementales de l'Oise
-* Archives municipales d'Avignon
-* Archives nationales
-* Archives régionales des Pays-de-la-Loire
-* INHA, Université de Paris Nanterre
-* Programme Vitam
-
-### Modèle de données
-
-La version validée 1.0 du schéma de registre des entrées se trouve [ici](Schema_registre_entrees/Schema_registre_entrees_V1.1.xlsx).
-
-Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au format tableur est également prévu pour faciliter la réalisation d'un registre des entrée au format du schéma.
-
-# Introduction
+# Contexte
 
 En 2018, 86 kilomètres de documents et plus de 16000Go de données sont venus enrichir les collections des services publics d'archives français (Données du service interministériel des archives de France).
 
@@ -40,21 +11,33 @@ Il est généralement directement tenu au sein d'un système d'information dédi
 Dans son [Cadre stratégique commun de modernisation des archives](https://www.gouvernement.fr/cadre-strategique-commun-de-modernisation-des-archives-3042), la Délégation interministérielle aux archives de France, mentionne dans les objectifs 2020-2024 :
 
 > **Objectif 1.4 : Numériser les archives et rendre les archives numériques aisément consultables et exploitables** 
+
 > Il conviendra également de généraliser l’open data dans les services d’archives de l’État et de recommander ce modèle aux services territoriaux d’archives.
-La création d'un schéma de données permet de standardiser la diffusion des données produites par les services d'archives. Cette standardisation est impérative pour les ré-utilisateurs car elle permet de faciliter la découverte des jeux de données et de les utiliser, notamment en simplifiant l'alignement à différentes échelles (utilisation sur des échelles locales ou nationales).
 
-#### Pour en savoir plus sur la méthodologie de construction de ce schéma, consultez [ce document](methodologie.md). 
+Pour en savoir plus sur la méthodologie de construction de ce schéma, consultez [ce document](methodologie.md). 
 
-## Quand utiliser ce schéma?
+# Cadre juridique
 
-Ce shéma peut être utilisé lors de la publication d'un jeu de données de registre des entrées. Il a été créé par des services publics d'archives mais il peut tout à fait convenir à des services d'archives privées ou à des établissements spécialisés.
+* Livre II du Code du Patrimoine
+* Code des relations entre le public et l'administration
 
-## Suis-je obligé d'utiliser ce schéma?
+# Finalité
 
-Non, aucune obligation car ce schéma n'a pas de caractère réglementaire. En revanche, si vous souhaitez publier des données l'utilisation de ce schéma est très fortement recommandée car il peut permettre une réutilisation plus facile de vos données car il est documenté et que vos données sont standardisées et peuvent être agrégées et comparées avec d'autres.
+Les services d'archives consignent systématiquement, au sein d'un registre des entrées, tous les nouveaux documents qui entrent dans les fonds. Cela permet d’identifier et de retracer toutes les entrées de nouveaux documents d’archives.
 
+La création d'un schéma de données permet de standardiser la diffusion des données produites par les services d'archives. 
 
-## Recommandations pour le formatage des fichiers
+Ces données informent sur la collecte des archives publiques et les acquisitions d'archives privées par les différentes institutions françaises.
+
+Cette standardisation permet de faciliter la découverte des jeux de données et de les utiliser, notamment en simplifiant l'alignement à différentes échelles (utilisation sur des échelles locales ou nationales).
+
+# Description du schéma
+
+La documentation des champs est accessible [ici](Documentation/Documentation_schema_registre.pdf).
+
+Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au format tableur est également prévu pour faciliter la réalisation d'un registre des entrée au format du schéma.
+
+# Format de fichier
 
 Le format de fichier retenu pour la publication des données est le CSV (Comma Separated Values, valeurs séparées par des virgules).
 
@@ -74,7 +57,7 @@ Les fichiers doivent, sauf exception et autant que possible, respecter les règl
 
 * le type MIME ou Content-Type est text/csv.
 
-## Recommandations pour le nommage des fichiers
+**Recommandations pour le nommage des fichiers** :
 
 Les fichiers doivent, sauf exception et autant que possible, respecter les règles de nommage suivantes :
 
@@ -105,29 +88,6 @@ Les fichiers doivent comporter :
    * Traitement des cellules vides (absence de valeur ou valeur équivalente à 0) : ces cellules doivent être laissées vides. Dans le cas où une valeur numérique est égale à zéro elle doit être écrite 0.0 (zéro [point] zéro), et, dans le cas où des caractères spéciaux sont utilisés pour remplacer des valeurs manquantes (ex. "-" ou "NaN"), cela doit être mentionné dans les métadonnées.
    
    * Les dates doivent être formées selon la norme 8601 : YYYY-MM-DD. 
-
-## Recommandations pour la découvrabilité
-
-Le respect du nommage de fichier et des métadonnées du schéma doivent permettre de découvrir l'ensemble des jeux de données répondant au schéma.
-
-# Les étapes de publication d'un jeu de données
-
-Pour préparer la publication de vos données, vous pouvez trouver des informations sur les fiches pratiques réalisées par [OpenDataFrance](https://opendatafrance.gitbook.io/odl-ressources/fiches-pratiques/premiers-pas/preparer-les-donnees-pour-une-publication-en-open-data)
-
-## Identifier les données
-Lors de la phase de création du standard, nous avons identifié deux sources de productions des données, elles peuvent :
-
-* provenir des systèmes d'information des services d'archives (SIA)
-
-* provenir de fichers tabulaires (excel, calc)
-
-## Préparer les données
-
-Il va falloir préparer les données afin qu'elles correspondent au modèle défini par le standard. Il peut être nécessaire de changer le nom des colonnes, de supprimer ou ajouter certaines colonnes, de modifier des valeurs etc.
-
-## Documenter les données
-
-Pour obtenir des **informations sur la publication** d'un jeu de données, vous pouvez consulter : l'[aide de data.gouv.fr](https://doc.data.gouv.fr/jeux-de-donnees/publier-un-jeu-de-donnees/).
 
 **Métadonnées descriptives**
 

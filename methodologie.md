@@ -1,16 +1,37 @@
 # Méthodologie de la création du schéma
 
-Cette partie reprend l'organisation du guide publié par [Etalab](https://schema.data.gouv.fr/). Elle vient enrichir le contenu méthodologique développé par Etalab d'un retour d'expérience complémentaire.
-
 ## Investigation
 
-### organisation
+### Organisation
 
 L'idée de création d'un schéma de données pour les entrées d'archives vient à la fois du Service Interministériel des Archives de France (SIAF) et de l'Association des Archivistes Français (AAF). 
 
 La première étape a été de constituer un groupe de travail composé de ses deux acteurs mais également d'archivistes qui produisent les registres des entrées. L'objectif a été d'avoir un groupe assez représentatif des différents services qui peuvent exister, mais également des outils utilisés par les services. Le groupe a aussi associé un expert chargé de représenter les réutilisateurs et usagers extérieurs aux archives.
 
 Dans le cadre de ce projet, les commanditaires (SIAF et AAF) ont également joué le rôle de sponsors et ont réellement permis de faire avancer et de faciliter le travail.
+
+Création d'un schéma de données pour les registres d'entrées d'archives des services publics d'archives. 
+
+* [Copil 1](https://Archivistes75.github.io/registre_entrees/20200703_COPIL1/)
+* [Copil 2](https://Archivistes75.github.io/registre_entrees/20200911_COPIL2/) 
+* [Copil 3](https://Archivistes75.github.io/registre_entrees/20201105_COPIL3/)
+* [Copil restreint 4](https://Archivistes75.github.io/registre_entrees/20210503_COPIL4)
+* [Copil 5](https://Archivistes75.github.io/registre_entrees/20210104_COPIL5)
+
+Une documentation complète sous format pdf est accessible [ici](https://Archivistes75.github.io/registre_entrees/Documentation/Documentation_schema_registre.pdf)
+
+**Composition du groupe de travail** : 
+
+* Service Interministériel des Archives de France
+* Association des Archivistes Français
+* Datactivist
+* Archives départementales de l'Eure
+* Archives départementales de l'Oise
+* Archives municipales d'Avignon
+* Archives nationales
+* Archives régionales des Pays-de-la-Loire
+* INHA, Université de Paris Nanterre
+* Programme Vitam
 
 ### Etat des lieux
 
@@ -136,4 +157,23 @@ Le schéma a été ajouté à schema.data.gouv comme étant en investigation le 
 Un appel à commentaires a eu lieu du 04 janvier au 12 février 2021.Un webinaire de présentation du schéma a ouvert cet appel à commentaire le 04 janvier 2021. Sur la période, une cinquantaine de retours a été réalisé. 
 
 Le groupe de travail a analysé les commentaires et à l'issu de ce travail, une V1.0 a été réalisée.
+
+## Les étapes de publication d'un jeu de données
+
+Pour préparer la publication de vos données, vous pouvez trouver des informations sur les fiches pratiques réalisées par [OpenDataFrance](https://opendatafrance.gitbook.io/odl-ressources/fiches-pratiques/premiers-pas/preparer-les-donnees-pour-une-publication-en-open-data)
+
+### Identifier les données
+Lors de la phase de création du standard, nous avons identifié deux sources de productions des données, elles peuvent :
+
+* provenir des systèmes d'information des services d'archives (SIA)
+
+* provenir de fichers tabulaires (excel, calc)
+
+### Préparer les données
+
+Il va falloir préparer les données afin qu'elles correspondent au modèle défini par le standard. Il peut être nécessaire de changer le nom des colonnes, de supprimer ou ajouter certaines colonnes, de modifier des valeurs etc.
+
+### Documenter les données
+
+Pour obtenir des **informations sur la publication** d'un jeu de données, vous pouvez consulter : l'[aide de data.gouv.fr](https://doc.data.gouv.fr/jeux-de-donnees/publier-un-jeu-de-donnees/).
 
