@@ -17,11 +17,9 @@ params:
 knit: (
   function(inputFile, encoding) { 
     
-    date <- format(as.Date(Sys.Date(), format="%Y/%m/%d"),"%d-%m-%Y")
-
-    rmarkdown::render("Dashboard.Rmd", params = "ask", 
+    rmarkdown::render("index.Rmd", params = "ask", 
       encoding    = encoding,
-      output_file = paste0("Dashboard_", date, ".html")) })
+      output_file = paste0("index".html")) })
 ---
 
 <style>
