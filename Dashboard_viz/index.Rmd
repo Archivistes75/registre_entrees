@@ -19,7 +19,7 @@ knit: (
     
     rmarkdown::render("index.Rmd", params = "ask", 
       encoding    = encoding,
-      output_file = paste0("index".html")) })
+      output_file = paste0("index",".html")) })
 ---
 
 <style>
