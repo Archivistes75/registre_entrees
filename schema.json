@@ -282,7 +282,7 @@
                 "required": true,
                 "enum": [
                     "Support physique",
-                    "Support électroniques",
+                    "Support électronique",
                     "Support mixte"
                 ]
             }
