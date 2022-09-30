@@ -59,9 +59,9 @@
             "role": "contributor"
         }
     ],
-    "version": "0.2.0",
+    "version": "0.3.0",
     "created": "2020-12-17",
-    "updated": "2021-04-29",
+    "updated": "2022-09-30",
     "homepage": "https://github.com/Archivistes75/registre_entrees",
     "uri": "https://raw.githubusercontent.com/Archivistes75/registre_entrees/raw/v0.2.0/schema.json",
     "fields": [
@@ -311,7 +311,7 @@
             "name": "volElec",
             "title": "volume d'archives électroniques de l'entrée",
             "description": "correspond à la volumétrie de fichiers électroniques présents dans l'entrée en Go. le séparateur décimal doit être le point. L'unité sera le Go et sera rappelée en métadonnées.",
-            "example": "2.30, 0.075",
+            "example": "2.30",
             "type": "number",
             "constraints": {
                 "required": false

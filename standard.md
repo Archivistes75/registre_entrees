@@ -85,7 +85,7 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - valeur obligatoire
 
-- **valeurs autorisées** : ["Versement", "Don", "Achat", "Dévolution", "Leg ou Dation", "Copie", "Réintégration", "Protocole", "Autre"]
+- **valeurs autorisées** : ["Versement", "Dépôt", "Don", "Achat", "Dévolution", "Leg ou Dation", "Copie", "Réintégration", "Protocole", "Autre"]
 
 #### `orgaVers`
 
@@ -253,7 +253,7 @@ Un [gabarit](Schema_registre_entrees/Schema_registre_entrees_gabarit.xlsx) au fo
 
 - **type** : nombre réel
 
-- **exemple** : `2.30`, `0.075`
+- **exemple** : `2.30`
 
 - valeur optionnelle
 

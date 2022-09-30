@@ -17,9 +17,9 @@
       ],
     "author":"Datactivist",
     "contact":"hello@datactivist.coop",
-    "version":"0.1",
+    "version":"0.3",
     "created":"2020-12-17",
-    "updated":"2020-12-17",
+    "updated":"2022-09-30",
     "homepage":"https://github.com/datactivist/siaf",
     "uri":"https://github.com/etalab/schema-lieux-covoiturage/raw/v0.2.0/schema.json",
 	"fields": [

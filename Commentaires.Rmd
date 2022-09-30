@@ -1,0 +1,17 @@
+---
+title: "Retours et commentaires"
+output: html_notebook
+---
+
+Ce fichier compile les retours et commentaires reçus sur le schéma. Il pourra servir pour le suivi et la prise en compte des modifications dans les futures versions du schéma :
+
+| Date       | Commentaire                                                                                                                                                                                                                                                                     | Statut               |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| 12 janvier | Eclaircir le ml entrée dans la documentation                                                                                                                                                                                                                                    | COPIL                |
+| 12 janvier | Le nommage proposé pour le fichier pourrait intégrer la notion de durée dans la mesure où il est certainement intéressant d'avoir la plus grande antériorité                                                                                                                    
+              possible : pour nous c'est 2018_2021. En l'état, avec « millésime » à la fin, le nommage invite à ne libérer que la dernière année d'entrée                                                                                                                                      
+              (dommage) ou autant de fichiers que d'années (dommage aussi)                                                                                                                                                                                                                     | COPIL                |
+| 12 janvier | Le schéma indique `Archives privées d'associations, de partis politiques, de syndicats` alors que votre fichier contient `Archives privées d’associations, de partis politiques, de syndicats`. La différence est subtile : l'apostrophe n'est pas le même (`'`dactylographique 
+              vs `’`typographique).                                                                                                                                                                                                                                                            | Ok corrigé dans Json |
+| 12 janvier | "s" en trop à "support électronique" dans natureSupport.                                                                                                                                                                                                                        | Ok corrigé dans Json |
+| 25 mars    | "s" en trop à "support électronique" dans natureSupport.                                                                                                                                                                                                                        | Ok corrigé dans Json |
