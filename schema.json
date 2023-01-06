@@ -220,26 +220,7 @@
             "type": "string",
             "constraints": {
                 "required": true,
-                "enum": [
-                    "Instance de délibération",
-                    "Direction, cabinet",
-                    "Administration générale (fonctions transverses, RH)",
-                    "Finances, fiscalité", "Économie, industrie", "Agriculture",
-                    "Équipement, environnement",
-                    "Travail, emploi",
-                    "Affaires sociales, santé",
-                    "Justice",
-                    "Police, protection civile, intérieur",
-                    "Éducation, recherche",
-                    "Culture, jeunesse et sports",
-                    "Défense, anciens combattants",
-                    "Outre-mer",
-                    "Archives privées personnelles et familiales",
-                    "Archives privées cultuelles",
-                    "Archives privées d'associations, de partis politiques, de syndicats",
-                    "Archives privées d'entreprises",
-                    "Archives privées professionnelles"
-                ]
+                "pattern": "(Instance de délibération|Direction, cabinet|Administration générale \(fonctions transverses, RH\)|                Finances, fiscalité|Économie, industrie|Agriculture|Équipement, environnement|Travail, emploi|Affaires sociales, santé|Justice|Police, protection civile, intérieur|Éducation, recherche|Culture, jeunesse et sports|Défense, anciens combattants|Outre-mer|Archives privées personnelles et familiales|Archives privées cultuelles|Archives privées d'associations, de partis politiques, de syndicats|Archives privées d'entreprises|Archives privées professionnelles)(\|(Instance de délibération|Direction, cabinet|Administration générale \(fonctions transverses, RH\)|                Finances, fiscalité|Économie, industrie|Agriculture|Équipement, environnement|Travail, emploi|Affaires sociales, santé|Justice|Police, protection civile, intérieur|Éducation, recherche|Culture, jeunesse et sports|Défense, anciens combattants|Outre-mer|Archives privées personnelles et familiales|Archives privées cultuelles|Archives privées d'associations, de partis politiques, de syndicats|Archives privées d'entreprises|Archives privées professionnelles))*"
             }
         },
         {
