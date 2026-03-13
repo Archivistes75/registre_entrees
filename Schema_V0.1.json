@@ -17,11 +17,11 @@
       ],
     "author":"Datactivist",
     "contact":"hello@datactivist.coop",
-    "version":"0.3.1",
+    "version":"0.4.1",
     "created":"2020-12-17",
-    "updated":"2023-01-06",
+    "updated":"2026-03-06",
     "homepage":"https://github.com/Archivistes75/registre_entrees",
-    "uri":"https://raw.githubusercontent.com/Archivistes75/registre_entrees/raw/v0.3.1/schema.json",
+    "uri":"https://raw.githubusercontent.com/Archivistes75/registre_entrees/raw/v0.4.1/schema.json",
 	"fields": [
 		{
 			"name": "ID",
@@ -114,7 +114,7 @@
             "type": "string",
 			"constraints": {
 				"required": true,
-				"enum": ["Présidence de la République", "Premier ministre", "Ministères (directions d'administration centrale) ", "Assemblées parlementaires", "Grands organes de contrôle", "Services déconcentrés et établissements publics de l’État à compétence départementale ou locale", "Services déconcentrés et établissements publics de l’État à compétence régionale ou supra-départementale", "Administrations centrales délocalisées et établissements publics nationaux de l’État", "Communes de plus de 2 000 habitants", "Communes de moins de 2 000 habitants", "Services du conseil départemental et établissements publics départementaux", "Services du conseil régional et établissements publics régionaux", "Services de la commune et établissements publics communaux", "Structures intercommunales ou interdépartementales", "Établissements publics de santé", "Organismes de droit privé chargés d’une mission de service public", "Officiers publics ou ministériels (dont notaires) ", "Producteurs privés"]			}
+				"enum": ["Présidence de la République", "Premier ministre", "Ministères (directions d'administration centrale)", "Assemblées parlementaires", "Grands organes de contrôle", "Services déconcentrés et établissements publics de l’État à compétence départementale ou locale", "Services déconcentrés et établissements publics de l’État à compétence régionale ou supra-départementale", "Administrations centrales délocalisées et établissements publics nationaux de l’État", "Communes de plus de 2 000 habitants", "Communes de moins de 2 000 habitants", "Services du conseil départemental et établissements publics départementaux", "Services du conseil régional et établissements publics régionaux", "Services de la commune et établissements publics communaux", "Structures intercommunales ou interdépartementales", "Établissements publics de santé", "Organismes de droit privé chargés d’une mission de service public", "Officiers publics ou ministériels (dont notaires)", "Producteurs privés"]			}
 		},
 		{
 			"name": "domaineProd",

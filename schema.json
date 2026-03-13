@@ -59,11 +59,11 @@
             "role": "contributor"
         }
     ],
-    "version": "0.3.1",
+    "version": "0.4.1",
     "created": "2020-12-17",
-    "updated": "2023-01-06",
+    "updated": "2026-03-06",
     "homepage": "https://github.com/Archivistes75/registre_entrees",
-    "uri": "https://raw.githubusercontent.com/Archivistes75/registre_entrees/raw/v0.3.1/schema.json",
+    "uri": "https://raw.githubusercontent.com/Archivistes75/registre_entrees/raw/v0.4.1/schema.json",
     "fields": [
         {
             "name": "ID",
@@ -195,7 +195,7 @@
                 "enum": [
                     "Présidence de la République",
                     "Premier ministre",
-                    "Ministère (administration centrale) ",
+                    "Ministère (administration centrale)",
                     "Assemblée parlementaire",
                     "Grand organe de contrôle",
                     "Service déconcentré et établissement public de l’État à compétence départementale ou locale",
@@ -207,7 +207,7 @@
                     "Structure de coopération intercommunale ou interdépartementale",
                     "Établissement public de santé",
                     "Organisme de droit privé chargé d’une mission de service public",
-                    "Officier public ou ministériel (dont notaire) ",
+                    "Officier public ou ministériel (dont notaire)",
                     "Producteur privé"
                 ]
             }
